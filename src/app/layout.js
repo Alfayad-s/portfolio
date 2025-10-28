@@ -5,6 +5,7 @@ import ClickSpark from "@/components/ClickSpark";
 import { LanguageProvider } from "@/context/LanguageContext";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import Script from "next/script";
+import { Analytics } from "@vercel/analytics/next"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -157,7 +158,7 @@ export default function RootLayout({ children }) {
       >
         {/* Google Analytics */}
         <GoogleAnalytics GA_MEASUREMENT_ID={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />
-        
+        <Analytics />
         <LanguageProvider>
           <ClickSpark
             sparkColor='#fff'

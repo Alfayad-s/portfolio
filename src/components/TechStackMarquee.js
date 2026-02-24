@@ -49,7 +49,7 @@ export default function TechStackMarquee() {
   const title = t('techStackTitle') || 'TECH STACK';
 
   return (
-    <section className="py-16 sm:py-20 bg-black" data-gsap="fade-up">
+    <section id="tech-stack" className="py-16 sm:py-20 bg-black scroll-mt-20" data-gsap="fade-up">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-12 sm:mb-14">
           <div className="section-title-wrap inline-block">

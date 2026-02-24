@@ -13,6 +13,9 @@ export default function Home() {
 
   const handleSplashComplete = () => {
     setShowSplash(false);
+    if (typeof window !== "undefined") {
+      window.dispatchEvent(new CustomEvent("splashComplete"));
+    }
   };
 
   return (

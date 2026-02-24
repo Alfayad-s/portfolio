@@ -5,7 +5,8 @@ import ClickSpark from "@/components/ClickSpark";
 import { LanguageProvider } from "@/context/LanguageContext";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import Script from "next/script";
-import { Analytics } from "@vercel/analytics/next"
+import { Analytics } from "@vercel/analytics/next";
+import ChatWidget from "@/components/ChatWidget";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -170,6 +171,7 @@ export default function RootLayout({ children }) {
             <Header />
             {children}
           </ClickSpark>
+          <ChatWidget />
         </LanguageProvider>
       </body>
     </html>

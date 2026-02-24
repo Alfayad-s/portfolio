@@ -9,7 +9,10 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@ai-sdk/groq": "^3.0.24",
+    "@ai-sdk/react": "^3.0.99",
     "@vercel/analytics": "^1.5.0",
+    "ai": "^6.0.97",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "gsap": "^3.14.2",
@@ -17,7 +20,8 @@
     "next": "15.5.7",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "tailwind-merge": "^3.3.1"
+    "tailwind-merge": "^3.3.1",
+    "zod": "^4.3.6"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

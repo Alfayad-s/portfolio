@@ -32,7 +32,7 @@ export default function AboutSection() {
   }, []);
 
   return (
-    <div ref={sectionRef} className="min-h-screen bg-black py-16 sm:py-20 px-4 sm:px-6 md:px-16" data-gsap="fade-up">
+    <div ref={sectionRef} id="about" className="min-h-screen bg-black py-16 sm:py-20 px-4 sm:px-6 md:px-16 scroll-mt-20" data-gsap="fade-up">
       <div className="max-w-7xl mx-auto">
         
         {/* Section Header */}

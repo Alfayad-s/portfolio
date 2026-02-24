@@ -138,3 +138,61 @@ button {
     position: relative;
   }
 }
+
+/* Tech stack marquee */
+@keyframes marquee-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marquee-right {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+.animate-marquee-left {
+  animation: marquee-left 45s linear infinite;
+}
+
+.animate-marquee-right {
+  animation: marquee-right 45s linear infinite;
+}
+
+/* Section title hover — smooth glow, letter-spacing, underline scale */
+.section-title-wrap {
+  cursor: default;
+}
+
+.section-title-wrap .section-title-text {
+  transition: text-shadow 0.5s ease, letter-spacing 0.5s ease, transform 0.4s ease;
+}
+
+.section-title-wrap:hover .section-title-text {
+  text-shadow: 0 0 24px rgba(239, 68, 68, 0.25);
+  letter-spacing: 0.02em;
+  transform: translateX(2px);
+}
+
+.section-title-wrap .section-title-line {
+  transform-origin: left;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s ease;
+}
+
+.section-title-wrap:hover .section-title-line {
+  transform: scaleX(1.08);
+  box-shadow: 0 0 12px rgba(239, 68, 68, 0.5);
+}
+
+.section-title-wrap .section-title-line.section-title-line-center {
+  transform-origin: center;
+}
+
+/* GSAP scroll targets: prevent flash before animation */
+[data-gsap="fade-up"],
+[data-gsap="scale-in"] {
+  opacity: 0;
+}
+
+[data-gsap="stagger"] [data-gsap-item] {
+  opacity: 0;
+}

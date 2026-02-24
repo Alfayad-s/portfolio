@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
+import { Mail, Phone } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 
 function ContactPageContent() {
@@ -419,14 +420,14 @@ This message was sent from your portfolio contact form.
                       href="mailto:alfayadshameer056@gmail.com" 
                       className="flex items-center text-gray-300 hover:text-red-400 transition-colors"
                     >
-                      <span className="w-6 h-6 mr-3">📧</span>
+                      <Mail className="w-6 h-6 mr-3 shrink-0 text-red-400" aria-hidden />
                       <span className="text-sm sm:text-base">alfayadshameer056@gmail.com</span>
                     </a>
                     <a 
                       href="tel:9074575374" 
                       className="flex items-center text-gray-300 hover:text-red-400 transition-colors"
                     >
-                      <span className="w-6 h-6 mr-3">📱</span>
+                      <Phone className="w-6 h-6 mr-3 shrink-0 text-red-400" aria-hidden />
                       <span className="text-sm sm:text-base">+91 9074575374</span>
                     </a>
                   </div>

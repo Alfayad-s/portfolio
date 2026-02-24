@@ -52,6 +52,7 @@ export const LanguageProvider = ({ children }) => {
       
       // Skills
       skillsTitle: 'SKILLS VISUALIZATION',
+      techStackTitle: 'TECH STACK',
       skillsSubtitle: 'Technical Proficiency',
       skillsRadar: 'Skills Radar',
       skillsSummary: 'Expertise Summary',
@@ -261,6 +262,7 @@ export const LanguageProvider = ({ children }) => {
       
       // Skills
       skillsTitle: 'कौशल विज़ुअलाइज़ेशन',
+      techStackTitle: 'टेक स्टैक',
       skillsSubtitle: 'तकनीकी दक्षता',
       skillsRadar: 'कौशल रडार',
       skillsSummary: 'विशेषज्ञता सारांश',
@@ -470,6 +472,7 @@ export const LanguageProvider = ({ children }) => {
       
       // Skills
       skillsTitle: 'تصور المهارات',
+      techStackTitle: 'المكدس التقني',
       skillsSubtitle: 'الكفاءة التقنية',
       skillsRadar: 'رادار المهارات',
       skillsSummary: 'ملخص الخبرة',

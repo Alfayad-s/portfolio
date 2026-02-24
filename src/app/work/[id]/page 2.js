@@ -4,8 +4,11 @@ import { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
+import { Bot, Plane, Flower2, Headphones, Glasses, FolderOpen, Receipt, Car, Package } from 'lucide-react';
 import { getProjectById } from '@/data/projectsData';
 import { useLanguage } from '@/context/LanguageContext';
+
+const PROJECT_ICONS = { Bot, Plane, Flower2, Headphones, Glasses, FolderOpen, Receipt, Car, Package };
 
 export default function ProjectDetailPage() {
   const params = useParams();
@@ -118,7 +121,10 @@ export default function ProjectDetailPage() {
                   }}
                 />
                 <div className={`w-full h-full bg-gradient-to-br ${project.gradient} flex items-center justify-center absolute inset-0`} style={{display: 'none'}}>
-                  <div className="text-9xl">{project.fallbackEmoji}</div>
+                  {project.fallbackIcon && (() => {
+                    const Icon = PROJECT_ICONS[project.fallbackIcon];
+                    return Icon ? <Icon className="w-32 h-32 sm:w-40 sm:h-40 text-white/90" aria-hidden /> : null;
+                  })()}
                 </div>
               </div>
             </div>

@@ -1,328 +1,201 @@
 'use client';
 
-import { useState, useRef, useEffect, useCallback } from 'react';
+import { useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useLanguage } from '@/context/LanguageContext';
-import { getAllProjects } from '@/data/projectsData';
+import ScrollTriggerAnimations from '@/components/ScrollTriggerAnimations';
+
+const WORK_PROJECTS = [
+  {
+    title: 'Fayad AI',
+    subtitle: 'Personal AI Assistant',
+    description: 'My AI counterpart—a conversational assistant built with Next.js and Gemini. Chat, get code help, and explore ideas. Fully responsive with streaming responses.',
+    thumbnail: '/project-thumbnail/fayad-ai.jpg',
+    href: 'https://fayad-ai.vercel.app',
+    badge: 'LIVE',
+    badgeClass: 'bg-red-500/20 text-red-400',
+    tech: ['Next.js', 'Gemini API', 'Vercel', 'Tailwind'],
+  },
+  {
+    title: 'FD-Postman-CLI',
+    subtitle: 'NPM Package',
+    description: 'Use Postman from the terminal. Send requests, manage collections, and test APIs without leaving the CLI. Install: npm i -g fd-postman-cli.',
+    thumbnail: '/project-thumbnail/fd-postman-cli.jpg',
+    href: 'https://www.npmjs.com/package/fd-postman-cli',
+    badge: 'NPM',
+    badgeClass: 'bg-amber-500/20 text-amber-400',
+    tech: ['Node.js', 'CLI', 'NPM'],
+  },
+  {
+    title: 'Redux Auto Slice',
+    subtitle: 'NPM Package',
+    description: 'Automatic Redux slice creation. Reduces boilerplate and speeds up state setup in Redux projects. Install from npm.',
+    thumbnail: '/project-thumbnail/redux-auto-slice.jpg',
+    href: 'https://www.npmjs.com/package/redux-auto-slice',
+    badge: 'NPM',
+    badgeClass: 'bg-purple-500/20 text-purple-400',
+    tech: ['Redux', 'NPM', 'JavaScript'],
+  },
+  {
+    title: 'TraceX',
+    subtitle: 'Expense Tracking',
+    description: 'Personal expense tracking app. Log spending, categorize transactions, and keep your finances in one place with a clean, simple interface.',
+    thumbnail: '/project-thumbnail/tracex.jpg',
+    href: 'https://tracexx.vercel.app',
+    badge: 'LIVE',
+    badgeClass: 'bg-emerald-500/20 text-emerald-400',
+    tech: ['Next.js', 'Vercel', 'Full Stack'],
+  },
+  {
+    title: 'Codeteak',
+    subtitle: 'Company Website',
+    description: 'Official company website for Codeteak. Showcases services, team, and brand with a professional, modern look.',
+    thumbnail: '/project-thumbnail/codeteak.jpg',
+    href: 'https://codeteak.com',
+    badge: 'LIVE',
+    badgeClass: 'bg-blue-500/20 text-blue-400',
+    tech: ['Next.js', 'Tailwind', 'Vercel'],
+  },
+  {
+    title: 'Yaadro',
+    subtitle: 'Codeteak Product',
+    description: "Full application and website for Codeteak. Full-stack development and design—architecture, frontend, backend, and UI/UX. Live at yaadro.ae.",
+    thumbnail: '/project-thumbnail/yaadro.jpg',
+    href: 'https://yaadro.ae',
+    badge: 'LIVE',
+    badgeClass: 'bg-cyan-500/20 text-cyan-400',
+    tech: ['Full Stack', 'Design', 'Codeteak'],
+  },
+  {
+    title: 'QH Valet',
+    subtitle: 'Freelance',
+    description: 'Valet parking business website with booking, real-time availability, and a modern UI. Built for client delivery.',
+    thumbnail: '/project-thumbnail/qhvalet.jpg',
+    href: 'https://qhvalet.com',
+    badge: 'LIVE',
+    badgeClass: 'bg-green-500/20 text-green-400',
+    tech: ['Next.js', 'Redux', 'Tailwind'],
+  },
+  {
+    title: 'Chaise',
+    subtitle: 'Restaurant & Cafe',
+    description: 'Freelance website for a restaurant and cafe. Menu, ambiance, and contact in one place. Designed for the brand with focus on atmosphere.',
+    thumbnail: '/project-thumbnail/chaise.jpg',
+    href: 'https://chaise.vercel.app',
+    badge: 'LIVE',
+    badgeClass: 'bg-rose-500/20 text-rose-400',
+    tech: ['Next.js', 'Vercel', 'Restaurant'],
+  },
+];
 
 export default function WorkPage() {
-  const [isVisible, setIsVisible] = useState(false);
-  const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const sectionRef = useRef(null);
   const { t } = useLanguage();
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    const currentRef = sectionRef.current;
-    if (currentRef) {
-      observer.observe(currentRef);
-    }
-
-    return () => {
-      if (currentRef) {
-        observer.unobserve(currentRef);
-      }
-    };
-  }, []);
-
-  const projects = getAllProjects();
-
-  const testimonials = [
-    {
-      id: 1,
-      name: "Sarah Johnson",
-      role: "CEO, TechStart Solutions",
-      content: "Alfayad delivered an exceptional web application that exceeded our expectations. His attention to detail and modern development practices made our project a huge success.",
-      rating: 5,
-      project: "Custom Web Application"
-    },
-    {
-      id: 2,
-      name: "Michael Chen",
-      role: "Founder, TravelCo",
-      content: "Working with Alfayad was a pleasure. He understood our vision perfectly and brought it to life with cutting-edge technology. Highly recommended for any development project.",
-      rating: 5,
-      project: "Luxigoo Travel Platform"
-    },
-    {
-      id: 3,
-      name: "Emily Rodriguez",
-      role: "Marketing Director, FloraPlus",
-      content: "The e-commerce platform Alfayad built for us is outstanding. The user experience is smooth, and the backend is rock-solid. Our sales increased by 40% since launch.",
-      rating: 5,
-      project: "Florawy E-commerce"
-    },
-    {
-      id: 4,
-      name: "David Kim",
-      role: "Product Manager, AudioTech",
-      content: "Alfayad's AI integration in our e-commerce platform was game-changing. The personalized recommendations he implemented have significantly improved customer engagement.",
-      rating: 5,
-      project: "Yadro E-commerce with AI"
-    },
-    {
-      id: 5,
-      name: "Lisa Thompson",
-      role: "Owner, VisionCare",
-      content: "The website Alfayad created for our optical store is beautiful and functional. The responsive design works perfectly on all devices, and our online presence has never been better.",
-      rating: 5,
-      project: "Optical World Website"
-    },
-    {
-      id: 6,
-      name: "James Wilson",
-      role: "IT Director, CorpSolutions",
-      content: "The file organization tool Alfayad developed has streamlined our document management process. It's intuitive, efficient, and has saved us countless hours of manual work.",
-      rating: 5,
-      project: "File Organizer Desktop App"
-    }
-  ];
-
-  // Testimonial carousel functions
-  const nextTestimonial = useCallback(() => {
-    setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
-  }, [testimonials.length]);
-
-  const prevTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-  };
-
-  const goToTestimonial = (index) => {
-    setCurrentTestimonial(index);
-  };
-
-  // Auto-rotate testimonials
-  useEffect(() => {
-    const interval = setInterval(nextTestimonial, 5000);
-    return () => clearInterval(interval);
-  }, [nextTestimonial]);
-
   return (
-    <div ref={sectionRef} className="min-h-screen bg-black">
-      {/* Hero Section */}
-      <div className="py-20 sm:py-24 bg-gradient-to-br ">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center">
-          <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 tracking-wide">
-              MY <span className="text-red-500">{t('work')}</span>
+    <ScrollTriggerAnimations isActive={true}>
+      <div ref={sectionRef} className="min-h-screen bg-black">
+        {/* Hero */}
+        <header className="pt-16 sm:pt-24 pb-12 sm:pb-16 px-4 sm:px-6">
+          <div className="max-w-7xl mx-auto text-center" data-gsap="fade-up">
+            <p className="text-red-400 text-sm sm:text-base font-semibold tracking-widest uppercase mb-4">
+              Portfolio
+            </p>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight mb-6">
+              My <span className="text-red-500">Work</span>
             </h1>
-            <div className="w-24 h-1 bg-red-500 mx-auto mb-8"></div>
-            <p className="text-gray-300 text-lg sm:text-xl max-w-3xl mx-auto leading-relaxed">
-              A showcase of my recent projects and client testimonials. Each project represents a unique challenge solved with creativity, technical expertise, and attention to detail.
+            <div className="w-20 h-1 bg-red-500 rounded-full mx-auto mb-8" />
+            <p className="text-gray-400 text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed">
+              Selected projects—from AI apps and npm packages to company sites and freelance work. Each built with modern stack and attention to detail.
             </p>
           </div>
-        </div>
-      </div>
+        </header>
 
-      {/* Projects Section */}
-      <div className="py-16 sm:py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-12 sm:mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6 tracking-wide">
-              {t('featuredProjects')}
-            </h2>
-            <div className="w-20 h-1 bg-red-500 mx-auto mb-8"></div>
-            <p className="text-gray-300 text-lg max-w-2xl mx-auto">
-              From AI-powered applications to e-commerce platforms, explore the diverse range of projects I&apos;ve delivered.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10">
-            {projects.map((project, index) => (
-              <div 
-                key={project.id}
-                className={`bg-black/50 border border-red-500/20 rounded-xl p-6 sm:p-8 hover:border-red-500/40 transition-all duration-500 group ${
-                  isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-                }`}
-                style={{ transitionDelay: `${index * 100}ms` }}
-              >
-                <Link href={`/work/${project.id}`}>
-                  {/* Project Image */}
-                  <div className="relative mb-6 cursor-pointer">
-                    <div className={`w-full h-48 sm:h-56 bg-gradient-to-br ${project.gradient} rounded-lg flex items-center justify-center relative overflow-hidden`}>
-                      <Image 
-                        src={project.image}
+        {/* Projects grid */}
+        <section className="pb-20 sm:pb-28 px-4 sm:px-6">
+          <div className="max-w-7xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8" data-gsap="stagger">
+              {WORK_PROJECTS.map((project, index) => (
+                <article
+                  key={project.title}
+                  className="group rounded-2xl overflow-hidden bg-zinc-900/40 border border-zinc-800/80 hover:border-zinc-700/80 transition-all duration-500"
+                  data-gsap-item
+                >
+                  <Link href={project.href} target="_blank" rel="noopener noreferrer" className="block">
+                    {/* Image */}
+                    <div className="relative aspect-video overflow-hidden bg-zinc-900">
+                      <Image
+                        src={project.thumbnail}
                         alt={project.title}
-                        width={400}
-                        height={224}
-                        className="w-full h-full object-cover rounded-lg transition-transform duration-500 group-hover:scale-110"
-                        onError={(e) => {
-                          e.target.style.display = 'none';
-                          e.target.nextSibling.style.display = 'flex';
-                        }}
+                        fill
+                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                        sizes="(max-width: 768px) 100vw, 50vw"
                       />
-                      <div className={`w-full h-full bg-gradient-to-br ${project.gradient} rounded-lg flex items-center justify-center absolute inset-0`} style={{display: 'none'}}>
-                        <div className="text-6xl sm:text-7xl">{project.fallbackEmoji}</div>
-                      </div>
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                    </div>
-                    <div className={`absolute top-3 right-3 ${project.badgeColor} text-white px-3 py-1 rounded-full text-xs font-semibold`}>
-                      {project.badge}
-                    </div>
-                  </div>
-
-                  {/* Project Content */}
-                  <div className="space-y-4">
-                    <div>
-                      <h3 className="font-bold text-white text-lg sm:text-xl mb-1 group-hover:text-red-400 transition-colors">{project.title}</h3>
-                      <p className="text-red-400 text-sm font-semibold">{project.subtitle}</p>
-                    </div>
-                    
-                    <p className="text-gray-300 text-sm leading-relaxed">
-                      {project.description}
-                    </p>
-                    
-                    {/* Technologies */}
-                    <div className="flex flex-wrap gap-2">
-                      {project.technologies.map((tech, techIndex) => (
-                        <span key={techIndex} className="bg-red-600/20 text-red-400 px-2 py-1 rounded text-xs">
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                    
-                    {/* View Details Link */}
-                    <div className="pt-2">
-                      <span className="inline-flex items-center text-red-400 hover:text-red-300 text-sm font-semibold transition-all group-hover:translate-x-1 duration-300">
-                        View Details →
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                      <span className={`absolute top-4 right-4 px-3 py-1 rounded-lg text-xs font-semibold backdrop-blur-sm ${project.badgeClass}`}>
+                        {project.badge}
                       </span>
                     </div>
-                  </div>
-                </Link>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
 
-      {/* Testimonials Section */}
-      <div className="py-16 sm:py-20 bg-black">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-12 sm:mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6 tracking-wide">
-              {t('clientTestimonials')}
-            </h2>
-            <div className="w-20 h-1 bg-red-500 mx-auto mb-8"></div>
-            <p className="text-gray-300 text-lg max-w-2xl mx-auto">
-              Hear what my clients have to say about working with me and the quality of my deliverables.
-            </p>
-          </div>
-
-          {/* Carousel Container */}
-          <div className="relative">
-            {/* Main Carousel */}
-            <div className="overflow-hidden rounded-2xl">
-              <div 
-                className="flex transition-transform duration-500 ease-in-out"
-                style={{ transform: `translateX(-${currentTestimonial * 100}%)` }}
-              >
-                {testimonials.map((testimonial, index) => (
-                  <div 
-                    key={testimonial.id}
-                    className="w-full flex-shrink-0 bg-black/80 border border-red-500/20 rounded-2xl p-8 sm:p-12"
-                  >
-                    <div className="max-w-4xl mx-auto text-center">
-                      {/* Rating */}
-                      <div className="flex items-center justify-center mb-6">
-                        {[...Array(testimonial.rating)].map((_, i) => (
-                          <span key={i} className="text-yellow-400 text-2xl mx-1">★</span>
+                    {/* Content */}
+                    <div className="p-6 sm:p-8">
+                      <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight mb-2 group-hover:text-red-400 transition-colors">
+                        {project.title}
+                      </h2>
+                      <p className="text-red-400/90 text-sm font-medium mb-4">
+                        {project.subtitle}
+                      </p>
+                      <p className="text-gray-400 text-sm sm:text-base leading-relaxed mb-6 line-clamp-2">
+                        {project.description}
+                      </p>
+                      <div className="flex flex-wrap gap-2 mb-6">
+                        {project.tech.map((techName) => (
+                          <span key={techName} className="px-2.5 py-1 rounded-md bg-zinc-800/80 text-gray-400 text-xs font-medium">
+                            {techName}
+                          </span>
                         ))}
                       </div>
-
-                      {/* Testimonial Content */}
-                      <blockquote className="text-gray-300 text-lg sm:text-xl md:text-2xl leading-relaxed mb-8 italic">
-                        &ldquo;{testimonial.content}&rdquo;
-                      </blockquote>
-
-                      {/* Client Info */}
-                      <div className="flex items-center justify-center">
-                        <div className="w-16 h-16 bg-gradient-to-br from-red-600/20 to-red-800/20 rounded-full flex items-center justify-center mr-4 border border-red-500/20">
-                          <span className="text-red-400 font-bold text-lg">
-                            {testimonial.name.split(' ').map(n => n[0]).join('')}
-                          </span>
-                        </div>
-                        <div className="text-left">
-                          <h4 className="text-white font-semibold text-lg">{testimonial.name}</h4>
-                          <p className="text-gray-400 text-sm">{testimonial.role}</p>
-                          <p className="text-red-400 text-sm font-medium">{testimonial.project}</p>
-                        </div>
-                      </div>
+                      <span className="inline-flex items-center gap-2 text-red-400 text-sm font-semibold group-hover:gap-3 transition-all">
+                        View project
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                      </span>
                     </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Navigation Arrows */}
-            <button
-              onClick={prevTestimonial}
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 border border-red-500/20 rounded-full p-3 text-white hover:text-red-400 transition-all duration-300"
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-            <button
-              onClick={nextTestimonial}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 border border-red-500/20 rounded-full p-3 text-white hover:text-red-400 transition-all duration-300"
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-
-            {/* Dots Indicator */}
-            <div className="flex justify-center mt-8 space-x-2">
-              {testimonials.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => goToTestimonial(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                    index === currentTestimonial 
-                      ? 'bg-red-500 scale-125' 
-                      : 'bg-red-500/30 hover:bg-red-500/50'
-                  }`}
-                />
+                  </Link>
+                </article>
               ))}
             </div>
           </div>
-        </div>
-      </div>
+        </section>
 
-      {/* Call to Action */}
-      <div className="py-16 sm:py-20 bg-black">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6 tracking-wide">
-            READY TO START YOUR <span className="text-red-500">PROJECT?</span>
-          </h2>
-          <p className="text-gray-300 text-lg mb-8 leading-relaxed">
-            Let&apos;s discuss how we can bring your ideas to life with cutting-edge technology and creative solutions.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a 
-              href="mailto:alfayadshameer056@gmail.com"
-              className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-red-500/25 border border-red-500/20"
-            >
-              GET IN TOUCH
-            </a>
-            <Link 
-              href="/"
-              className="bg-transparent border border-red-500/20 text-red-400 hover:text-white hover:bg-red-500/10 px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300"
-            >
-              BACK TO HOME
-            </Link>
+        {/* CTA */}
+        <section className="py-16 sm:py-24 border-t border-zinc-800/80">
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center" data-gsap="fade-up">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">
+              Start a project
+            </h2>
+            <p className="text-gray-400 text-base sm:text-lg mb-8 leading-relaxed">
+              Have an idea? Let&apos;s build it with a modern stack and clear process.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href="mailto:alfayadshameer056@gmail.com"
+                className="inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-500 text-white px-8 py-4 rounded-xl font-semibold text-base transition-all duration-300 hover:shadow-lg hover:shadow-red-500/20 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-black"
+              >
+                Get in touch
+              </a>
+              <Link
+                href="/"
+                className="inline-flex items-center justify-center gap-2 bg-transparent border border-zinc-600 text-gray-300 hover:text-white hover:border-zinc-500 px-8 py-4 rounded-xl font-semibold text-base transition-all duration-300"
+              >
+                Back to home
+              </Link>
+            </div>
           </div>
-        </div>
+        </section>
       </div>
-    </div>
+    </ScrollTriggerAnimations>
   );
 }

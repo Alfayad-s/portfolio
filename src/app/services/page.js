@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
+import { Monitor, Server, Rocket, Code, Database, Palette, FileCode, Zap, Cloud, Box, CreditCard, Flame } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 
 export default function ServicesPage() {
@@ -111,18 +112,18 @@ export default function ServicesPage() {
   ];
 
   const technologies = [
-    { name: 'React', category: 'Frontend', icon: '⚛️' },
-    { name: 'Next.js', category: 'Framework', icon: '▲' },
-    { name: 'Node.js', category: 'Backend', icon: '🟢' },
-    { name: 'MongoDB', category: 'Database', icon: '🍃' },
-    { name: 'Tailwind CSS', category: 'Styling', icon: '🎨' },
-    { name: 'TypeScript', category: 'Language', icon: '📘' },
-    { name: 'Express.js', category: 'Backend', icon: '🚀' },
-    { name: 'PostgreSQL', category: 'Database', icon: '🐘' },
-    { name: 'AWS', category: 'Cloud', icon: '☁️' },
-    { name: 'Docker', category: 'DevOps', icon: '🐳' },
-    { name: 'Stripe', category: 'Payments', icon: '💳' },
-    { name: 'Firebase', category: 'Backend', icon: '🔥' }
+    { name: 'React', category: 'Frontend', icon: Code },
+    { name: 'Next.js', category: 'Framework', icon: Zap },
+    { name: 'Node.js', category: 'Backend', icon: Server },
+    { name: 'MongoDB', category: 'Database', icon: Database },
+    { name: 'Tailwind CSS', category: 'Styling', icon: Palette },
+    { name: 'TypeScript', category: 'Language', icon: FileCode },
+    { name: 'Express.js', category: 'Backend', icon: Server },
+    { name: 'PostgreSQL', category: 'Database', icon: Database },
+    { name: 'AWS', category: 'Cloud', icon: Cloud },
+    { name: 'Docker', category: 'DevOps', icon: Box },
+    { name: 'Stripe', category: 'Payments', icon: CreditCard },
+    { name: 'Firebase', category: 'Backend', icon: Flame }
   ];
 
   const handleContactClick = (planId) => {
@@ -173,8 +174,8 @@ export default function ServicesPage() {
           {/* Service Categories */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-12">
             <div className="text-center">
-              <div className="w-20 h-20  rounded-full flex items-center justify-center mx-auto mb-6 border border-blue-500/20">
-                <span className="text-3xl">💻</span>
+              <div className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 border border-blue-500/20 text-red-400">
+                <Monitor className="w-10 h-10" />
               </div>
               <h3 className="text-xl font-bold text-white mb-4">Frontend Development</h3>
               <p className="text-gray-300 text-sm leading-relaxed">
@@ -183,8 +184,8 @@ export default function ServicesPage() {
             </div>
             
             <div className="text-center">
-              <div className="w-20 h-20  rounded-full flex items-center justify-center mx-auto mb-6 border border-green-500/20">
-                <span className="text-3xl">⚙️</span>
+              <div className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 border border-green-500/20 text-red-400">
+                <Server className="w-10 h-10" />
               </div>
               <h3 className="text-xl font-bold text-white mb-4">Backend Development</h3>
               <p className="text-gray-300 text-sm leading-relaxed">
@@ -193,8 +194,8 @@ export default function ServicesPage() {
             </div>
             
             <div className="text-center">
-              <div className="w-20 h-20  rounded-full flex items-center justify-center mx-auto mb-6 border border-purple-500/20">
-                <span className="text-3xl">🚀</span>
+              <div className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 border border-purple-500/20 text-red-400">
+                <Rocket className="w-10 h-10" />
               </div>
               <h3 className="text-xl font-bold text-white mb-4">Full-Stack Solutions</h3>
               <p className="text-gray-300 text-sm leading-relaxed">
@@ -227,7 +228,12 @@ export default function ServicesPage() {
                 }`}
                 style={{ transitionDelay: `${index * 50}ms` }}
               >
-                <div className="text-2xl sm:text-3xl mb-2">{tech.icon}</div>
+                <div className="flex justify-center mb-2 text-red-400">
+                  {(() => {
+                    const Icon = tech.icon;
+                    return <Icon className="w-8 h-8 sm:w-10 sm:h-10" />;
+                  })()}
+                </div>
                 <h4 className="text-white font-semibold text-sm sm:text-base mb-1">{tech.name}</h4>
                 <p className="text-gray-400 text-xs">{tech.category}</p>
               </div>

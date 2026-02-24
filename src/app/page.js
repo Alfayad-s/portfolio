@@ -5,7 +5,8 @@ import HeroSection from "@/sections/HeroSection";
 import SplashScreen from "@/sections/SplashScreen";
 import AboutSection from "@/sections/AboutSection";
 import ResumeSection from "@/sections/ResumeSection";
-import SkillsVisualization from "@/components/SkillsVisualization";
+import TechStackMarquee from "@/components/TechStackMarquee";
+import ScrollTriggerAnimations from "@/components/ScrollTriggerAnimations";
 
 export default function Home() {
   const [showSplash, setShowSplash] = useState(true);
@@ -16,18 +17,16 @@ export default function Home() {
 
   return (
     <div className="overflow-hidden font-sans">
-     
       {showSplash ? (
         <SplashScreen onComplete={handleSplashComplete} />
-              ) : (
-                <div>
-                  <HeroSection />
-                  <AboutSection />
-                  <SkillsVisualization />
-                  <ResumeSection />
-                </div>
-              )}
-     
+      ) : (
+        <ScrollTriggerAnimations isActive={true}>
+          <HeroSection />
+          <AboutSection />
+          <TechStackMarquee />
+          <ResumeSection />
+        </ScrollTriggerAnimations>
+      )}
     </div>
   );
 }

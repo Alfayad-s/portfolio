@@ -124,7 +124,7 @@ export default function ProjectDetailPage() {
                 <div className={`inline-block ${project.badgeColor} text-white px-4 py-1 rounded-full text-sm font-semibold mb-4`}>
                   {project.badge}
                 </div>
-                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4 tracking-wide">
+                <h1 className="font-offbit text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4 tracking-wide">
                   {project.title}
                 </h1>
                 <p className="text-red-400 text-xl sm:text-2xl font-semibold mb-4">{project.subtitle}</p>
@@ -194,7 +194,7 @@ export default function ProjectDetailPage() {
       {/* Technologies */}
       <div className="py-12 sm:py-16 bg-black/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-8 text-center">
+          <h2 className="font-offbit text-3xl sm:text-4xl font-bold text-white mb-8 text-center">
             Technologies Used
           </h2>
           <div className="flex flex-wrap justify-center gap-4">
@@ -217,7 +217,7 @@ export default function ProjectDetailPage() {
       <div className="py-12 sm:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className={`bg-black/50 border border-red-500/20 rounded-2xl p-8 sm:p-12 transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
+            <h2 className="font-offbit text-3xl sm:text-4xl font-bold text-white mb-6">
               Project Overview
             </h2>
             <div className="w-20 h-1 bg-red-500 mb-8"></div>
@@ -231,7 +231,7 @@ export default function ProjectDetailPage() {
       {/* Features */}
       <div className="py-12 sm:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-12 text-center">
+          <h2 className="font-offbit text-3xl sm:text-4xl font-bold text-white mb-12 text-center">
             Key Features
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -263,7 +263,7 @@ export default function ProjectDetailPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12">
             {/* Challenges */}
             <div className={`transition-all duration-1000 delay-700 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
-              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-8">
+              <h2 className="font-offbit text-3xl sm:text-4xl font-bold text-white mb-8">
                 Challenges
               </h2>
               <div className="space-y-6">
@@ -282,7 +282,7 @@ export default function ProjectDetailPage() {
 
             {/* Solutions */}
             <div className={`transition-all duration-1000 delay-800 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}>
-              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-8">
+              <h2 className="font-offbit text-3xl sm:text-4xl font-bold text-white mb-8">
                 Solutions
               </h2>
               <div className="space-y-6">
@@ -305,7 +305,7 @@ export default function ProjectDetailPage() {
       {/* Results */}
       <div className="py-12 sm:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-12 text-center">
+          <h2 className="font-offbit text-3xl sm:text-4xl font-bold text-white mb-12 text-center">
             Results & Impact
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -334,7 +334,7 @@ export default function ProjectDetailPage() {
       {/* Call to Action */}
       <div className="py-16 sm:py-20 bg-black/50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6 tracking-wide">
+          <h2 className="font-offbit text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6 tracking-wide">
             INTERESTED IN A <span className="text-red-500">SIMILAR PROJECT?</span>
           </h2>
           <p className="text-gray-300 text-lg mb-8 leading-relaxed">

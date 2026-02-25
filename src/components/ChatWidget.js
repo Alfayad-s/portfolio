@@ -260,23 +260,22 @@ function ChatWidgetContent() {
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}
-        className="animate-chat-in-delay fixed bottom-6 right-6 z-[99999] flex items-center gap-2 rounded-full bg-white px-4 py-3 text-black shadow-xl transition hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-white/50"
+        className="animate-chat-in-delay fixed bottom-6 right-6 z-[99999] flex flex-col items-center gap-2 bg-transparent sm:bg-black/95 px-3 py-3 text-white sm:shadow-xl transition focus:outline-none focus:ring-2 focus:ring-white/40"
         aria-label={open ? "Close chat" : "Start chat with Fayad"}
         style={{
           position: "fixed",
           bottom: "24px",
           right: "24px",
           zIndex: 99999,
-          background: "#fff",
-          color: "#000",
-          padding: "12px 16px",
-          borderRadius: "9999px",
-          border: "none",
+          background: "transparent",
+          color: "#fff",
+          padding: "10px 12px",
+      
           cursor: "pointer",
-          boxShadow: "0 10px 40px rgba(0,0,0,0.3)",
+          boxShadow: "0 10px 40px rgba(0,0,0,0.6)",
           display: "flex",
           alignItems: "center",
-          gap: "8px",
+          gap: "6px",
           fontSize: "14px",
           fontWeight: 500,
         }}
@@ -285,8 +284,38 @@ function ChatWidgetContent() {
           <X className="h-5 w-5" />
         ) : (
           <>
-            <MessageCircle className="h-5 w-5" />
-            <span className="text-sm font-medium">Start chat with Fayad</span>
+            {/* Mobile: bubble itself acts as the button */}
+            <div className="sm:hidden">
+              <div className="rounded-2xl bg-red-700 px-4 py-2 shadow-[0_0_18px_rgba(4,10,110,0.7)]">
+                <span className="text-sm text-white font-bold font-offbit whitespace-nowrap">
+                  Start chat with Fayad
+                </span>
+              </div>
+            </div>
+
+            {/* Desktop / tablet: bubble + GIF */}
+            <div className="relative mt-1 hidden sm:block sm:h-32 sm:w-32">
+              {/* Message bubble floating above orb, with tail pointing to the orb */}
+              <div className="pointer-events-none absolute -top-9 right-0">
+                <div className="relative rounded-2xl bg-red-700 px-4 py-2 shadow-[0_0_18px_rgba(4,10,110,0.7)]">
+                  <span className="text-lg text-white font-bold font-offbit whitespace-nowrap">
+                    Start chat with Fayad
+                  </span>
+                  {/* Tail on bottom edge, pointing toward the GIF */}
+                  <div className="absolute -bottom-1 right-3 h-3 w-3 bg-red-700 rotate-45" />
+                </div>
+              </div>
+
+              {/* AI orb gif */}
+              <div className="flex h-32 w-32 rounded-lg bg-black items-center justify-center overflow-hidden">
+                <img
+                  src="/ai-red-1.gif"
+                  alt=""
+                  className="h-full w-full rounded-lg object-cover"
+                  loading="lazy"
+                />
+              </div>
+            </div>
           </>
         )}
       </button>

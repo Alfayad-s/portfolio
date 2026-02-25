@@ -1,5 +1,13 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "OffBit-DotBold";
+  src: url("/font/OffBit-DotBold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --background: #000;
   --foreground: #ededed;
@@ -183,7 +191,13 @@ button {
 }
 
 .section-title-wrap .section-title-text {
+  font-family: "OffBit-DotBold", sans-serif;
   transition: text-shadow 0.5s ease, letter-spacing 0.5s ease, transform 0.4s ease;
+}
+
+/* OffBit font for any section or page title */
+.font-offbit {
+  font-family: "OffBit-DotBold", sans-serif;
 }
 
 .section-title-wrap:hover .section-title-text {

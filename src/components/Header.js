@@ -5,6 +5,24 @@ import Link from 'next/link';
 import { useLanguage } from '@/context/LanguageContext';
 import LanguageToggle, { CompactLanguageToggle } from './LanguageToggle';
 
+function VerticalNavItem({ href, label, onClick }) {
+  return (
+    <Link
+      href={href}
+      onClick={onClick}
+      className="group relative flex items-center justify-center w-8"
+    >
+      {/* Slim vertical pill */}
+      <span className="h-8 w-[3px] rounded-full bg-white/25 group-hover:bg-red-500 group-hover:shadow-[0_0_16px_rgba(239,68,68,0.9)] transition-all duration-300" />
+
+      {/* Label that smoothly slides out on hover without increasing base width */}
+      <span className="pointer-events-none absolute left-full ml-3 rounded-full bg-black/90 px-3 py-1 text-xs tracking-wide text-white opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 whitespace-nowrap transition-all duration-300">
+        {label}
+      </span>
+    </Link>
+  );
+}
+
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -40,7 +58,7 @@ export default function Header() {
         <nav 
           className={`flex items-center transition-all duration-500 ease-in-out ${
             isScrolled
-              ? 'bg-black/20 backdrop-blur-md rounded-full px-4 sm:px-6 py-2 sm:py-3 shadow-xl mx-auto w-auto justify-center'
+              ? 'bg-black/20 backdrop-blur-md rounded-full px-4 sm:px-6 py-2 sm:py-3 shadow-xl mx-auto w-auto justify-center md:bg-transparent md:backdrop-blur-none md:shadow-none md:px-0 md:py-0 md:w-full md:mx-0 md:opacity-0 md:pointer-events-none'
               : 'bg-transparent justify-between w-full'
           }`}
         >
@@ -57,8 +75,12 @@ export default function Header() {
             <span className="text-white text-xs sm:text-sm hidden md:block">alfayadshameer056@gmail.com</span>
           </div>
 
-          {/* Center - Navigation (hidden on mobile, shown on desktop) */}
-          <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
+          {/* Center - Navigation (hidden on mobile, fades out when scrolled because we show vertical nav) */}
+          <div
+            className={`hidden md:flex items-center space-x-6 lg:space-x-8 transition-opacity duration-300 ${
+              isScrolled ? 'opacity-0 pointer-events-none' : 'opacity-100'
+            }`}
+          >
             <Link 
               href="/" 
               className={`text-sm transition-colors duration-300 ${
@@ -80,17 +102,6 @@ export default function Header() {
               onClick={closeMobileMenu}
             >
               {t('work')}
-            </Link>
-            <Link 
-              href="/#resume" 
-              className={`text-sm transition-colors duration-300 ${
-                isScrolled 
-                  ? 'text-white hover:text-red-400' 
-                  : 'text-white hover:text-gray-300'
-              }`}
-              onClick={closeMobileMenu}
-            >
-              {t('resume')}
             </Link>
             <a 
               href="/services" 
@@ -116,8 +127,8 @@ export default function Header() {
             </a>
           </div>
 
-          {/* Language Toggle */}
-          <LanguageToggle className={`hidden sm:block ${isScrolled ? 'ml-6 lg:ml-8' : ''}`} />
+          {/* Language Toggle (desktop) – main icon will live in vertical navbar when scrolled */}
+          <LanguageToggle className="hidden sm:block md:hidden" />
 
           {/* Mobile menu button */}
           <button 
@@ -165,13 +176,6 @@ export default function Header() {
               >
                 {t('work')}
               </Link>
-              <Link 
-                href="/#resume" 
-                className="text-white hover:text-red-400 transition-colors duration-300 py-2 text-lg font-medium"
-                onClick={closeMobileMenu}
-              >
-                {t('resume')}
-              </Link>
               <a 
                 href="/services" 
                 className="text-white hover:text-red-400 transition-colors duration-300 py-2 text-lg font-medium"
@@ -206,6 +210,25 @@ export default function Header() {
           </div>
         </div>
       </div>
+
+      {/* Vertical navbar on the left when scrolled (desktop only) */}
+      {isScrolled && (
+        <div className="hidden md:flex fixed left-4 top-1/2 -translate-y-1/2 z-50">
+          <div className="flex flex-col items-center gap-3 rounded-full bg-black/70/80 border border-white/10 px-2 py-4 shadow-2xl backdrop-blur-md">
+            <VerticalNavItem href="/" label={t('home')} onClick={closeMobileMenu} />
+            <VerticalNavItem href="/work" label={t('work')} onClick={closeMobileMenu} />
+            <VerticalNavItem href="/services" label={t('services')} onClick={closeMobileMenu} />
+            <VerticalNavItem href="/contact" label={t('contact')} onClick={closeMobileMenu} />
+
+            <div className="h-px w-6 bg-white/15 my-1" />
+
+            {/* Language icon / toggle lives only in this vertical navbar on desktop */}
+            <div className="mt-1">
+              <CompactLanguageToggle />
+            </div>
+          </div>
+        </div>
+      )}
     </header>
   );
 }

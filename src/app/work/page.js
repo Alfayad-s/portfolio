@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useLanguage } from '@/context/LanguageContext';
@@ -92,23 +92,52 @@ const WORK_PROJECTS = [
 export default function WorkPage() {
   const sectionRef = useRef(null);
   const { t } = useLanguage();
+  const [typedTitle, setTypedTitle] = useState('');
+
+  useEffect(() => {
+    const fullTitle = 'My Work';
+    let index = 0;
+
+    const interval = setInterval(() => {
+      index += 1;
+      if (index > fullTitle.length) {
+        clearInterval(interval);
+        return;
+      }
+      setTypedTitle(fullTitle.slice(0, index));
+    }, 120);
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <ScrollTriggerAnimations isActive={true}>
       <div ref={sectionRef} className="min-h-screen bg-black">
         {/* Hero */}
-        <header className="pt-16 sm:pt-24 pb-12 sm:pb-16 px-4 sm:px-6">
-          <div className="max-w-7xl mx-auto text-center" data-gsap="fade-up">
-            <p className="text-red-400 text-sm sm:text-base font-semibold tracking-widest uppercase mb-4">
-              Portfolio
-            </p>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight mb-6">
-              My <span className="text-red-500">Work</span>
-            </h1>
-            <div className="w-20 h-1 bg-red-500 rounded-full mx-auto mb-8" />
-            <p className="text-gray-400 text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed">
-              Selected projects—from AI apps and npm packages to company sites and freelance work. Each built with modern stack and attention to detail.
-            </p>
+        <header className="pt-24 sm:pt-32 pb-20 sm:pb-24 px-4 sm:px-6">
+          <div className="max-w-7xl mx-auto" data-gsap="fade-up">
+            <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-8 md:gap-12">
+              {/* Left: title */}
+              <div className="w-full md:w-auto text-center md:text-left">
+                <p className="text-red-400 text-sm sm:text-base font-semibold tracking-widest uppercase mb-3 md:mb-4">
+                  Portfolio
+                </p>
+                <h1 className="font-offbit text-5xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] font-bold text-white tracking-tight">
+                  {typedTitle.slice(0, 3)}
+                  <span className="text-red-500">
+                    {typedTitle.length > 3 ? typedTitle.slice(3) : ''}
+                  </span>
+                </h1>
+                <div className="w-20 h-1 bg-red-500 rounded-full mt-4 md:mt-6 mx-auto md:mx-0" />
+              </div>
+
+              {/* Right: description */}
+              <div className="w-full md:max-w-xl text-center md:text-left md:ml-auto">
+                <p className="text-gray-400 text-base sm:text-lg md:text-xl leading-relaxed">
+                  Selected projects from AI apps and npm packages to company sites and freelance work. Each built with a modern stack and a lot of attention to detail.
+                </p>
+              </div>
+            </div>
           </div>
         </header>
 
@@ -173,7 +202,7 @@ export default function WorkPage() {
         {/* CTA */}
         <section className="py-16 sm:py-24 border-t border-zinc-800/80">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center" data-gsap="fade-up">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">
+            <h2 className="font-offbit text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">
               Start a project
             </h2>
             <p className="text-gray-400 text-base sm:text-lg mb-8 leading-relaxed">

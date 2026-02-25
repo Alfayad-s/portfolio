@@ -39,7 +39,7 @@ export default function AboutSection() {
         <div className={`text-center mb-12 sm:mb-16 md:mb-20 transition-all duration-1000 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
-          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4 tracking-wider">
+          <h2 className="font-offbit text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4 tracking-wider">
             {t('aboutTitle')}
           </h2>
           <div className="w-16 sm:w-20 md:w-24 h-1 bg-red-500 mx-auto"></div>

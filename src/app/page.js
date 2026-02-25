@@ -14,6 +14,8 @@ export default function Home() {
   const handleSplashComplete = () => {
     setShowSplash(false);
     if (typeof window !== "undefined") {
+      // Ensure we start at the top of the page after the splash finishes
+      window.scrollTo(0, 0);
       window.dispatchEvent(new CustomEvent("splashComplete"));
     }
   };

@@ -94,7 +94,7 @@ export default function HeroSection() {
             <div className="space-y-6 sm:space-y-8 text-center lg:text-left">
               {/* Main heading */}
               <div className="space-y-1 sm:space-y-2">
-                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white leading-tight">
+                <h1 className="font-offbit text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold text-white leading-tight">
                   <span className="block">{t('HELLO')}</span>
                   <span className="block">I&apos;M</span>
                   <span className="block">{t('heroTitle')}</span>

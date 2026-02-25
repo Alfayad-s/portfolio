@@ -9,6 +9,20 @@ export default function SplashScreen({ onComplete }) {
   const [animateOut, setAnimateOut] = useState(false);
   const { t } = useLanguage();
 
+  // Lock scroll and keep viewport at the top while the splash is visible
+  useEffect(() => {
+    if (typeof window === 'undefined' || typeof document === 'undefined') return;
+
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    window.scrollTo(0, 0);
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+      window.scrollTo(0, 0);
+    };
+  }, []);
+
   useEffect(() => {
     // Start intro animation
     const introTimer = setTimeout(() => {
@@ -58,7 +72,7 @@ export default function SplashScreen({ onComplete }) {
         <div className={`mb-4 transition-all duration-1000 delay-500 ${
           showContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
-          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white uppercase tracking-wider">
+          <h1 className="font-offbit text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white uppercase tracking-wider">
             {t('heroTitle')}
           </h1>
         </div>

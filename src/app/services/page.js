@@ -137,7 +137,7 @@ export default function ServicesPage() {
       <div className="py-16 sm:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center">
           <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 tracking-wide">
+            <h1 className="font-offbit text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 tracking-wide">
               {t('servicesTitle')}
             </h1>
             <div className="w-24 h-1 bg-red-500 mx-auto mb-8"></div>
@@ -162,7 +162,7 @@ export default function ServicesPage() {
       <div className="py-16 sm:py-20 ">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-12 sm:mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6 tracking-wide">
+            <h2 className="font-offbit text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6 tracking-wide">
               WHAT I <span className="text-red-500">OFFER</span>
             </h2>
             <div className="w-20 h-1 bg-red-500 mx-auto mb-8"></div>
@@ -210,7 +210,7 @@ export default function ServicesPage() {
       <div className="py-16 sm:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-12 sm:mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6 tracking-wide">
+            <h2 className="font-offbit text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6 tracking-wide">
               {t('technologyStack')}
             </h2>
             <div className="w-20 h-1 bg-red-500 mx-auto mb-8"></div>
@@ -246,7 +246,7 @@ export default function ServicesPage() {
       <div className="py-16 sm:py-20 ">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-12 sm:mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6 tracking-wide">
+            <h2 className="font-offbit text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6 tracking-wide">
               SERVICE <span className="text-red-500">PACKAGES</span>
             </h2>
             <div className="w-20 h-1 bg-red-500 mx-auto mb-8"></div>
@@ -311,7 +311,7 @@ export default function ServicesPage() {
       <div className="py-16 sm:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-12 sm:mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6 tracking-wide">
+            <h2 className="font-offbit text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6 tracking-wide">
               {t('developmentProcess')}
             </h2>
             <div className="w-20 h-1 bg-red-500 mx-auto mb-8"></div>
@@ -348,7 +348,7 @@ export default function ServicesPage() {
       {/* Call to Action */}
       <div className="py-16 sm:py-20 ">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6 tracking-wide">
+          <h2 className="font-offbit text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6 tracking-wide">
             {t('readyToStart')}
           </h2>
           <p className="text-gray-300 text-lg mb-8 leading-relaxed">

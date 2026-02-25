@@ -7,6 +7,7 @@ import GoogleAnalytics from "@/components/GoogleAnalytics";
 import Script from "next/script";
 import { Analytics } from "@vercel/analytics/next";
 import ChatWidget from "@/components/ChatWidget";
+import Footer from "@/components/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -170,6 +171,7 @@ export default function RootLayout({ children }) {
           >
             <Header />
             {children}
+            <Footer />
           </ClickSpark>
           <ChatWidget />
         </LanguageProvider>

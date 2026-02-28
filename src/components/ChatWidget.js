@@ -5,7 +5,7 @@ import { DefaultChatTransport } from "ai";
 import { useState, useRef, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { useRouter, usePathname } from "next/navigation";
-import { X, Send, Loader2, ExternalLink, Maximize2, Minimize2, MessageSquare, ChevronRight } from "lucide-react";
+import { X, Send, Loader2, ExternalLink, Maximize2, Minimize2, MessageSquare, ChevronRight, Trash2 } from "lucide-react";
 
 const chatTransport = new DefaultChatTransport({ api: "/api/chat" });
 const URL_REGEX = /https?:\/\/[^\s<>"']+/gi;
@@ -124,9 +124,9 @@ const styles = `
   .cw-panel.normal { bottom: 88px; width: 360px; height: 480px; max-width: calc(100vw - 3rem); }
   .cw-panel.expanded { bottom: 24px; width: min(50vw, 720px); height: 85vh; min-width: 360px; }
 
-  /* Mobile: full-page chat when open */
+  /* Mobile: full-page only when expanded; normal = floating panel */
   @media (max-width: 768px) {
-    .cw-panel.normal,
+    .cw-panel.normal { bottom: 88px; width: calc(100vw - 3rem); height: 480px; right: 24px; left: auto; }
     .cw-panel.expanded {
       top: 0; right: 0; bottom: 0; left: 0;
       width: 100%; height: 100%;
@@ -191,6 +191,7 @@ const styles = `
     color: var(--cw-gray); transition: all 0.2s;
   }
   .cw-header-btn:hover { border-color: var(--cw-red-border); color: var(--cw-white); }
+  .cw-header-btn:disabled { opacity: 0.4; cursor: not-allowed; pointer-events: none; }
 
   /* messages area */
   .cw-messages {
@@ -424,7 +425,7 @@ function ChatWidgetContent() {
   const [input, setInput] = useState("");
   const messagesEndRef = useRef(null);
 
-  const { messages, sendMessage, status } = useChat({ transport: chatTransport });
+  const { messages, sendMessage, setMessages, status } = useChat({ transport: chatTransport });
   const isLoading = status === "streaming" || status === "submitted";
 
   useEffect(() => {
@@ -529,6 +530,15 @@ function ChatWidgetContent() {
               </div>
             </div>
             <div className="cw-header-actions">
+              <button
+                className="cw-header-btn"
+                onClick={() => { setMessages([]); setInput(""); }}
+                aria-label="Clear chat"
+                disabled={isLoading || messages.length === 0}
+                title="Clear chat"
+              >
+                <Trash2 size={14} />
+              </button>
               <button
                 className="cw-header-btn"
                 onClick={() => setExpanded(v => !v)}

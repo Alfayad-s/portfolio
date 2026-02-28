@@ -44,44 +44,43 @@ function MarqueeRow({ images, direction }) {
   );
 }
 
-export default function TechStackMarquee() {
+export default function TechStackMarquee({ showTitle = true, id = 'tech-stack', className = '' }) {
   const { t } = useLanguage();
   const title = t('techStackTitle') || 'TECH STACK';
 
+  const maskStyle = {
+    maskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)',
+    WebkitMaskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)',
+  };
+
   return (
-    <section id="tech-stack" className="py-16 sm:py-20 bg-black scroll-mt-20" data-gsap="fade-up">
+    <section
+      id={id}
+      className={showTitle ? 'py-16 sm:py-20 bg-black scroll-mt-20' : `py-6 sm:py-8 ${className}`.trim()}
+      data-gsap="fade-up"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="text-center mb-12 sm:mb-14">
-          <div className="section-title-wrap inline-block">
-            <h2 className="section-title-text text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 tracking-wide">
-              {title}
-            </h2>
-            <div className="section-title-line section-title-line-center w-20 h-1 bg-red-500 mx-auto mb-6 rounded-full" />
+        {showTitle && (
+          <div className="text-center mb-12 sm:mb-14">
+            <div className="section-title-wrap inline-block">
+              <h2 className="section-title-text text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 tracking-wide">
+                {title}
+              </h2>
+              <div className="section-title-line section-title-line-center w-20 h-1 bg-red-500 mx-auto mb-6 rounded-full" />
+            </div>
+            <p className="text-gray-300 text-lg sm:text-xl max-w-3xl mx-auto leading-relaxed">
+              Technologies & tools I work with
+            </p>
           </div>
-          <p className="text-gray-300 text-lg sm:text-xl max-w-3xl mx-auto leading-relaxed">
-            Technologies & tools I work with
-          </p>
-        </div>
+        )}
 
         {/* Row 1: scrolls left */}
-        <div
-          className="overflow-hidden"
-          style={{
-            maskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)',
-            WebkitMaskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)',
-          }}
-        >
+        <div className="overflow-hidden" style={maskStyle}>
           <MarqueeRow images={LANGUAGE_IMAGES} direction="left" />
         </div>
 
         {/* Row 2: scrolls right */}
-        <div
-          className="overflow-hidden"
-          style={{
-            maskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)',
-            WebkitMaskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)',
-          }}
-        >
+        <div className="overflow-hidden" style={maskStyle}>
           <MarqueeRow images={LANGUAGE_IMAGES} direction="right" />
         </div>
       </div>

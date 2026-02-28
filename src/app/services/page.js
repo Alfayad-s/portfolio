@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Monitor, Server, Rocket, Code, Database, Palette, FileCode, Zap, Cloud, Box, CreditCard, Flame, ArrowLeft, Check, ChevronRight, ArrowRight } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
+import TechStackMarquee from '@/components/TechStackMarquee';
 
 const styles = `
   @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap');
@@ -452,6 +453,7 @@ export default function ServicesPage() {
               <h2 className="sp-sec-h2">The <span style={{color:'var(--red)'}}>Stack</span></h2>
               <p className="sp-sec-sub">{t('technologyDescription')}</p>
             </div>
+            <TechStackMarquee showTitle={false} className="mb-10" />
             <div className="sp-tech-grid">
               {technologies.map(({ name, category, icon: Icon }, i) => (
                 <div

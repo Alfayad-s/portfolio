@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useLanguage } from '@/context/LanguageContext';
 import ScrollTriggerAnimations from '@/components/ScrollTriggerAnimations';
+import { ArrowLeft, ArrowUpRight, ExternalLink } from 'lucide-react';
 
 const WORK_PROJECTS = [
   {
@@ -14,7 +15,7 @@ const WORK_PROJECTS = [
     thumbnail: '/project-thumbnail/fayad-ai.jpg',
     href: 'https://fayad-ai.vercel.app',
     badge: 'LIVE',
-    badgeClass: 'bg-red-500/20 text-red-400',
+    index: '01',
     tech: ['Next.js', 'Gemini API', 'Vercel', 'Tailwind'],
   },
   {
@@ -24,7 +25,7 @@ const WORK_PROJECTS = [
     thumbnail: '/project-thumbnail/fd-postman-cli.jpg',
     href: 'https://www.npmjs.com/package/fd-postman-cli',
     badge: 'NPM',
-    badgeClass: 'bg-amber-500/20 text-amber-400',
+    index: '02',
     tech: ['Node.js', 'CLI', 'NPM'],
   },
   {
@@ -34,7 +35,7 @@ const WORK_PROJECTS = [
     thumbnail: '/project-thumbnail/redux-auto-slice.jpg',
     href: 'https://www.npmjs.com/package/redux-auto-slice',
     badge: 'NPM',
-    badgeClass: 'bg-purple-500/20 text-purple-400',
+    index: '03',
     tech: ['Redux', 'NPM', 'JavaScript'],
   },
   {
@@ -44,7 +45,7 @@ const WORK_PROJECTS = [
     thumbnail: '/project-thumbnail/tracex.jpg',
     href: 'https://tracexx.vercel.app',
     badge: 'LIVE',
-    badgeClass: 'bg-emerald-500/20 text-emerald-400',
+    index: '04',
     tech: ['Next.js', 'Vercel', 'Full Stack'],
   },
   {
@@ -54,17 +55,17 @@ const WORK_PROJECTS = [
     thumbnail: '/project-thumbnail/codeteak.jpg',
     href: 'https://codeteak.com',
     badge: 'LIVE',
-    badgeClass: 'bg-blue-500/20 text-blue-400',
+    index: '05',
     tech: ['Next.js', 'Tailwind', 'Vercel'],
   },
   {
     title: 'Yaadro',
     subtitle: 'Codeteak Product',
-    description: "Full application and website for Codeteak. Full-stack development and design—architecture, frontend, backend, and UI/UX. Live at yaadro.ae.",
+    description: 'Full application and website for Codeteak. Full-stack development and design—architecture, frontend, backend, and UI/UX. Live at yaadro.ae.',
     thumbnail: '/project-thumbnail/yaadro.jpg',
     href: 'https://yaadro.ae',
     badge: 'LIVE',
-    badgeClass: 'bg-cyan-500/20 text-cyan-400',
+    index: '06',
     tech: ['Full Stack', 'Design', 'Codeteak'],
   },
   {
@@ -74,7 +75,7 @@ const WORK_PROJECTS = [
     thumbnail: '/project-thumbnail/qhvalet.jpg',
     href: 'https://qhvalet.com',
     badge: 'LIVE',
-    badgeClass: 'bg-green-500/20 text-green-400',
+    index: '07',
     tech: ['Next.js', 'Redux', 'Tailwind'],
   },
   {
@@ -84,146 +85,456 @@ const WORK_PROJECTS = [
     thumbnail: '/project-thumbnail/chaise.jpg',
     href: 'https://chaise.vercel.app',
     badge: 'LIVE',
-    badgeClass: 'bg-rose-500/20 text-rose-400',
+    index: '08',
     tech: ['Next.js', 'Vercel', 'Restaurant'],
   },
 ];
 
+const styles = `
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap');
+
+  :root {
+    --red: #e01c1c;
+    --red-dim: rgba(224,28,28,0.10);
+    --red-border: rgba(224,28,28,0.22);
+    --white: #f5f5f0;
+    --gray: #888;
+    --gray-light: #aaa;
+    --black: #080808;
+    --black2: #0f0f0f;
+  }
+
+  .wp-root {
+    background: var(--black);
+    min-height: 100vh;
+    font-family: 'OffBit-DotBold', sans-serif;
+    color: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* noise */
+  .wp-root::before {
+    content: '';
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    background-size: 200px; opacity: 0.35;
+  }
+  .wp-root::after {
+    content: '';
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(224,28,28,0.012) 2px, rgba(224,28,28,0.012) 4px);
+  }
+
+  .wp-inner { position: relative; z-index: 1; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity:0; transform: translateY(28px); }
+    to   { opacity:1; transform: translateY(0); }
+  }
+  @keyframes lineExpand {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
+  }
+
+  /* ── HERO ── */
+  .wp-hero {
+    padding: 7rem 2rem 5rem;
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 4rem; align-items: end;
+  }
+  @media(max-width:760px){ .wp-hero { grid-template-columns:1fr; gap:2.5rem; padding:5rem 1.5rem 3rem; } }
+
+  .wp-eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--red); font-weight: 500; margin-bottom: 1.5rem;
+    opacity: 0; animation: fadeUp 0.6s 0.1s forwards;
+  }
+  .wp-eyebrow::before { content:''; width:32px; height:1px; background:var(--red); }
+
+  .wp-h1 {
+    font-family: 'OffBit-DotBold', sans-serif;
+    font-size: clamp(5rem, 12vw, 10rem);
+    line-height: 0.88; letter-spacing: 0.02em; margin: 0;
+    opacity: 0; animation: fadeUp 0.8s 0.2s forwards;
+  }
+  .wp-h1 span { color: var(--red); }
+
+  .wp-hero-right {
+    padding-bottom: 0.5rem;
+    opacity: 0; animation: fadeUp 0.8s 0.35s forwards;
+  }
+  .wp-hero-count {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 5rem; line-height: 1; color: rgba(224,28,28,0.15);
+    margin-bottom: 1rem; letter-spacing: 0.02em;
+  }
+  .wp-hero-desc { color: var(--gray); font-size: 1.05rem; line-height: 1.8; font-weight: 300; margin-bottom: 2rem; }
+
+  .wp-nav-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 0.7rem 1.5rem; border: 1px solid var(--red-border);
+    color: var(--gray); font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
+    text-decoration: none; transition: all 0.3s; font-family: 'DM Sans', sans-serif;
+    position: relative; overflow: hidden;
+  }
+  .wp-nav-btn::before {
+    content:''; position:absolute; inset:0; background:var(--red-dim);
+    transform:scaleX(0); transform-origin:left; transition:transform 0.3s;
+  }
+  .wp-nav-btn:hover::before { transform:scaleX(1); }
+  .wp-nav-btn:hover { color:var(--white); border-color:var(--red); }
+
+  /* ── DIVIDER ── */
+  .wp-divider {
+    max-width: 1100px; margin: 0 auto; padding: 0 2rem;
+    display: flex; align-items: center; gap: 1.5rem;
+  }
+  .wp-divider-line { flex:1; height:1px; background:var(--red-border); }
+  .wp-divider-dot { width:6px; height:6px; background:var(--red); transform:rotate(45deg); flex-shrink:0; }
+
+  /* ── PROJECT GRID ── */
+  .wp-list-section { max-width: 1100px; margin: 0 auto; padding: 5rem 2rem; }
+
+  .wp-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px; background: var(--red-border);
+  }
+  @media(max-width:640px){ .wp-grid { grid-template-columns: 1fr; } }
+
+  .wp-project-card {
+    background: var(--black);
+    text-decoration: none; color: inherit;
+    display: flex; flex-direction: column;
+    position: relative; overflow: hidden;
+    opacity: 0; animation: fadeUp 0.65s forwards;
+    transition: background 0.3s;
+  }
+  .wp-project-card:hover { background: var(--black2); }
+
+  /* full-width image */
+  .wp-card-img {
+    position: relative;
+    width: 100%; aspect-ratio: 16/9;
+    overflow: hidden; flex-shrink: 0;
+  }
+  .wp-card-img-overlay {
+    position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(to top, rgba(8,8,8,0.7) 0%, transparent 50%);
+    opacity: 0; transition: opacity 0.4s;
+  }
+  .wp-project-card:hover .wp-card-img-overlay { opacity: 1; }
+  .wp-card-img img { transition: transform 0.6s ease !important; }
+  .wp-project-card:hover .wp-card-img img { transform: scale(1.04) !important; }
+
+  /* badge on image */
+  .wp-card-badge {
+    position: absolute; top: 1rem; left: 1rem; z-index: 2;
+    font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--red); background: rgba(8,8,8,0.85);
+    border: 1px solid var(--red-border); padding: 0.3rem 0.7rem;
+    backdrop-filter: blur(4px);
+  }
+  .wp-card-num {
+    position: absolute; top: 1rem; right: 1rem; z-index: 2;
+    font-family: 'Bebas Neue', sans-serif; font-size: 1rem;
+    color: rgba(245,245,240,0.3); letter-spacing: 0.08em;
+  }
+
+  /* content below image */
+  .wp-card-body {
+    padding: 1.75rem 2rem 2rem;
+    display: flex; flex-direction: column; flex: 1;
+    border-top: 1px solid var(--red-border);
+  }
+
+  .wp-card-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem; letter-spacing: 0.04em; line-height: 1;
+    margin-bottom: 0.3rem; transition: color 0.3s;
+  }
+  .wp-project-card:hover .wp-card-title { color: var(--red); }
+
+  .wp-card-sub {
+    font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--red); margin-bottom: 1rem; opacity: 0.8;
+  }
+
+  .wp-card-desc {
+    color: var(--gray); font-size: 0.88rem; line-height: 1.7;
+    font-weight: 300; margin-bottom: 1.5rem; flex: 1;
+  }
+
+  .wp-card-footer {
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem;
+  }
+  .wp-card-tech { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+  .wp-tech-tag {
+    font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--gray); border: 1px solid var(--red-border); padding: 0.2rem 0.5rem;
+    transition: all 0.3s;
+  }
+  .wp-project-card:hover .wp-tech-tag { border-color: rgba(224,28,28,0.4); color: var(--gray-light); }
+
+  .wp-card-arrow {
+    color: var(--gray); transition: all 0.35s; flex-shrink: 0;
+  }
+  .wp-project-card:hover .wp-card-arrow { color: var(--red); transform: translate(3px, -3px); }
+
+  /* ── FEATURED PROJECT (large card at top) ── */
+  .wp-featured {
+    max-width: 1100px; margin: 0 auto; padding: 5rem 2rem 0;
+  }
+  .wp-featured-card {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+    background: var(--red-border);
+    opacity: 0; animation: fadeUp 0.8s 0.5s forwards;
+  }
+  @media(max-width:760px){ .wp-featured-card { grid-template-columns: 1fr; } }
+
+  .wp-featured-img {
+    position: relative; aspect-ratio: 4/3; overflow: hidden; background: var(--black2);
+  }
+  .wp-featured-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(224,28,28,0.15) 0%, transparent 60%);
+    z-index: 1; pointer-events: none;
+  }
+
+  .wp-featured-content {
+    background: var(--black); padding: 3.5rem 3rem;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  @media(max-width:760px){ .wp-featured-content { padding: 2.5rem 2rem; } }
+
+  .wp-featured-label {
+    font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--red); margin-bottom: 1rem;
+  }
+  .wp-featured-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4rem); line-height: 0.95; letter-spacing: 0.03em;
+    margin-bottom: 1rem;
+  }
+  .wp-featured-sub { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--red); margin-bottom: 1.5rem; }
+  .wp-featured-desc { color: var(--gray); font-size: 0.92rem; line-height: 1.75; font-weight: 300; flex: 1; margin-bottom: 2rem; }
+
+  .wp-featured-tech { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 2.5rem; }
+  .wp-featured-tag {
+    font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--gray); border: 1px solid var(--red-border); padding: 0.25rem 0.6rem;
+  }
+
+  .wp-featured-link {
+    display: inline-flex; align-items: center; justify-content: space-between;
+    padding: 1rem 1.5rem; border: 1px solid var(--red-border);
+    color: var(--white); font-family: 'Bebas Neue', sans-serif;
+    font-size: 1rem; letter-spacing: 0.1em; text-decoration: none;
+    transition: all 0.3s; position: relative; overflow: hidden;
+  }
+  .wp-featured-link::before {
+    content:''; position:absolute; inset:0; background:var(--red);
+    transform:scaleX(0); transform-origin:left; transition:transform 0.35s; z-index:0;
+  }
+  .wp-featured-link:hover::before { transform:scaleX(1); }
+  .wp-featured-link span, .wp-featured-link svg { position:relative; z-index:1; }
+  .wp-featured-link:hover { border-color: var(--red); }
+
+  /* ── CTA ── */
+  .wp-cta { padding: 6rem 2rem; text-align: center; }
+  .wp-cta-inner { max-width: 700px; margin: 0 auto; }
+  .wp-cta-h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3rem, 7vw, 6rem);
+    line-height: 0.95; letter-spacing: 0.02em; margin: 0 0 1.5rem;
+  }
+  .wp-cta-h2 span { color: var(--red); }
+  .wp-cta-sub { color: var(--gray); font-size: 1rem; font-weight: 300; line-height: 1.8; margin-bottom: 3rem; }
+
+  .wp-cta-btns { display: flex; gap: 1px; justify-content: center; flex-wrap: wrap; }
+  .wp-cta-primary {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 1.1rem 2.5rem; background: var(--red); color: var(--white);
+    font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; letter-spacing: 0.12em;
+    text-decoration: none; transition: background 0.3s; position: relative; overflow: hidden;
+  }
+  .wp-cta-primary::before {
+    content:''; position:absolute; inset:0; background:rgba(255,255,255,0.1);
+    transform:translateX(-100%); transition:transform 0.4s;
+  }
+  .wp-cta-primary:hover::before { transform:translateX(0); }
+  .wp-cta-primary:hover { background: #c01818; }
+  .wp-cta-secondary {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 1.1rem 2.5rem; background: transparent;
+    border: 1px solid var(--red-border); color: var(--gray);
+    font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; letter-spacing: 0.12em;
+    text-decoration: none; transition: all 0.3s;
+  }
+  .wp-cta-secondary:hover { color: var(--white); border-color: var(--red); background: var(--red-dim); }
+
+  /* strip */
+  .wp-strip {
+    border-top: 1px solid var(--red-border);
+    padding: 1.5rem 2rem; display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: #333;
+    max-width: 1100px; margin: 0 auto;
+  }
+`;
+
 export default function WorkPage() {
-  const sectionRef = useRef(null);
   const { t } = useLanguage();
-  const [typedTitle, setTypedTitle] = useState('');
+  const [visibleRows, setVisibleRows] = useState({});
+  const rowRefs = useRef([]);
 
   useEffect(() => {
-    const fullTitle = 'My Work';
-    let index = 0;
-
-    const interval = setInterval(() => {
-      index += 1;
-      if (index > fullTitle.length) {
-        clearInterval(interval);
-        return;
-      }
-      setTypedTitle(fullTitle.slice(0, index));
-    }, 120);
-
-    return () => clearInterval(interval);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const idx = entry.target.dataset.rowIndex;
+            setVisibleRows(prev => ({ ...prev, [idx]: true }));
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+    rowRefs.current.forEach(el => el && observer.observe(el));
+    return () => observer.disconnect();
   }, []);
+
+  const featured = WORK_PROJECTS[0];
+  const rest = WORK_PROJECTS.slice(1);
 
   return (
     <ScrollTriggerAnimations isActive={true}>
-      <div ref={sectionRef} className="min-h-screen bg-black">
-        {/* Hero */}
-        <header className="pt-24 sm:pt-32 pb-20 sm:pb-24 px-4 sm:px-6">
-          <div className="max-w-7xl mx-auto" data-gsap="fade-up">
-            <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-8 md:gap-12">
-              {/* Left: title */}
-              <div className="w-full md:w-auto text-center md:text-left">
-                <p className="text-red-400 text-sm sm:text-base font-semibold tracking-widest uppercase mb-3 md:mb-4">
-                  Portfolio
-                </p>
-                <h1 className="font-offbit text-5xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] font-bold text-white tracking-tight">
-                  {typedTitle.slice(0, 3)}
-                  <span className="text-red-500">
-                    {typedTitle.length > 3 ? typedTitle.slice(3) : ''}
-                  </span>
-                </h1>
-                <div className="w-20 h-1 bg-red-500 rounded-full mt-4 md:mt-6 mx-auto md:mx-0" />
-              </div>
+      <style>{styles}</style>
+      <div className="wp-root">
+        <div className="wp-inner">
 
-              {/* Right: description */}
-              <div className="w-full md:max-w-xl text-center md:text-left md:ml-auto">
-                <p className="text-gray-400 text-base sm:text-lg md:text-xl leading-relaxed">
-                  Selected projects from AI apps and npm packages to company sites and freelance work. Each built with a modern stack and a lot of attention to detail.
-                </p>
-              </div>
+          {/* ── HERO ── */}
+          <section className="wp-hero">
+            <div>
+              <div className="wp-eyebrow">Portfolio</div>
+              <h1 className="wp-h1">
+                My<br /><span>Work.</span>
+              </h1>
             </div>
-          </div>
-        </header>
-
-        {/* Projects grid */}
-        <section className="pb-20 sm:pb-28 px-4 sm:px-6">
-          <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8" data-gsap="stagger">
-              {WORK_PROJECTS.map((project, index) => (
-                <article
-                  key={project.title}
-                  className="group rounded-2xl overflow-hidden bg-zinc-900/40 border border-zinc-800/80 hover:border-zinc-700/80 transition-all duration-500"
-                  data-gsap-item
-                >
-                  <Link href={project.href} target="_blank" rel="noopener noreferrer" className="block">
-                    {/* Image */}
-                    <div className="relative aspect-video overflow-hidden bg-zinc-900">
-                      <Image
-                        src={project.thumbnail}
-                        alt={project.title}
-                        fill
-                        className="object-cover transition-transform duration-700 group-hover:scale-105"
-                        sizes="(max-width: 768px) 100vw, 50vw"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                      <span className={`absolute top-4 right-4 px-3 py-1 rounded-lg text-xs font-semibold backdrop-blur-sm ${project.badgeClass}`}>
-                        {project.badge}
-                      </span>
-                    </div>
-
-                    {/* Content */}
-                    <div className="p-6 sm:p-8">
-                      <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight mb-2 group-hover:text-red-400 transition-colors">
-                        {project.title}
-                      </h2>
-                      <p className="text-red-400/90 text-sm font-medium mb-4">
-                        {project.subtitle}
-                      </p>
-                      <p className="text-gray-400 text-sm sm:text-base leading-relaxed mb-6 line-clamp-2">
-                        {project.description}
-                      </p>
-                      <div className="flex flex-wrap gap-2 mb-6">
-                        {project.tech.map((techName) => (
-                          <span key={techName} className="px-2.5 py-1 rounded-md bg-zinc-800/80 text-gray-400 text-xs font-medium">
-                            {techName}
-                          </span>
-                        ))}
-                      </div>
-                      <span className="inline-flex items-center gap-2 text-red-400 text-sm font-semibold group-hover:gap-3 transition-all">
-                        View project
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                        </svg>
-                      </span>
-                    </div>
-                  </Link>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* CTA */}
-        <section className="py-16 sm:py-24 border-t border-zinc-800/80">
-          <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center" data-gsap="fade-up">
-            <h2 className="font-offbit text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">
-              Start a project
-            </h2>
-            <p className="text-gray-400 text-base sm:text-lg mb-8 leading-relaxed">
-              Have an idea? Let&apos;s build it with a modern stack and clear process.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="mailto:alfayadshameer056@gmail.com"
-                className="inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-500 text-white px-8 py-4 rounded-xl font-semibold text-base transition-all duration-300 hover:shadow-lg hover:shadow-red-500/20 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-black"
-              >
-                Get in touch
-              </a>
-              <Link
-                href="/"
-                className="inline-flex items-center justify-center gap-2 bg-transparent border border-zinc-600 text-gray-300 hover:text-white hover:border-zinc-500 px-8 py-4 rounded-xl font-semibold text-base transition-all duration-300"
-              >
-                Back to home
+            <div className="wp-hero-right">
+              <div className="wp-hero-count">0{WORK_PROJECTS.length}</div>
+              <p className="wp-hero-desc">
+                Selected projects spanning AI apps, npm packages, company sites, and freelance work. Each built with a modern stack and meticulous attention to detail.
+              </p>
+              <Link href="/" className="wp-nav-btn">
+                <ArrowLeft size={13} /> Back to Home
               </Link>
             </div>
+          </section>
+
+          <div className="wp-divider">
+            <div className="wp-divider-line" />
+            <div className="wp-divider-dot" />
+            <div className="wp-divider-line" />
           </div>
-        </section>
+
+          {/* ── FEATURED PROJECT ── */}
+          <div className="wp-featured">
+            <div style={{ marginBottom: '1rem' }}>
+              <div className="wp-eyebrow" style={{ opacity: 1, animation: 'none' }}>Featured Project</div>
+            </div>
+            <div className="wp-featured-card">
+              <div className="wp-featured-img">
+                <Image src={featured.thumbnail} alt={featured.title} fill className="object-cover" sizes="(max-width:760px) 100vw, 50vw" />
+                <div className="wp-featured-overlay" />
+              </div>
+              <div className="wp-featured-content">
+                <div>
+                  <div className="wp-featured-label">Project {featured.index} · {featured.badge}</div>
+                  <div className="wp-featured-title">{featured.title}</div>
+                  <div className="wp-featured-sub">{featured.subtitle}</div>
+                  <p className="wp-featured-desc">{featured.description}</p>
+                  <div className="wp-featured-tech">
+                    {featured.tech.map(t => <span key={t} className="wp-featured-tag">{t}</span>)}
+                  </div>
+                </div>
+                <a href={featured.href} target="_blank" rel="noopener noreferrer" className="wp-featured-link">
+                  <span>View Project</span>
+                  <ExternalLink size={14} />
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* ── PROJECT GRID ── */}
+          <section className="wp-list-section">
+            <div className="wp-grid">
+              {rest.map((project, i) => (
+                <a
+                  key={project.title}
+                  href={project.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="wp-project-card"
+                  ref={el => rowRefs.current[i] = el}
+                  data-row-index={i}
+                  style={visibleRows[i] ? { animationDelay: `${i * 0.08}s` } : { opacity: 0, animationPlayState: 'paused' }}
+                >
+                  {/* Big image */}
+                  <div className="wp-card-img">
+                    <Image src={project.thumbnail} alt={project.title} fill className="object-cover" sizes="(max-width:640px) 100vw, 50vw" />
+                    <div className="wp-card-img-overlay" />
+                    <span className="wp-card-badge">{project.badge}</span>
+                    <span className="wp-card-num">{project.index}</span>
+                  </div>
+
+                  {/* Content */}
+                  <div className="wp-card-body">
+                    <div className="wp-card-title">{project.title}</div>
+                    <div className="wp-card-sub">{project.subtitle}</div>
+                    <p className="wp-card-desc">{project.description}</p>
+                    <div className="wp-card-footer">
+                      <div className="wp-card-tech">
+                        {project.tech.map(t => <span key={t} className="wp-tech-tag">{t}</span>)}
+                      </div>
+                      <ArrowUpRight size={18} className="wp-card-arrow" />
+                    </div>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </section>
+
+          <div className="wp-divider">
+            <div className="wp-divider-line" />
+            <div className="wp-divider-dot" />
+            <div className="wp-divider-line" />
+          </div>
+
+          {/* ── CTA ── */}
+          <section className="wp-cta">
+            <div className="wp-cta-inner">
+              <h2 className="wp-cta-h2">Start a<br /><span>Project.</span></h2>
+              <p className="wp-cta-sub">Have an idea? Let&apos;s build it together with a modern stack and a clear, honest process.</p>
+              <div className="wp-cta-btns">
+                <a href="mailto:alfayadshameer056@gmail.com" className="wp-cta-primary">
+                  Get in Touch <ArrowUpRight size={15} />
+                </a>
+                <Link href="/" className="wp-cta-secondary">
+                  Back to Home <ArrowLeft size={14} />
+                </Link>
+              </div>
+            </div>
+          </section>
+
+          <div className="wp-strip">
+            <span>© 2025 — All rights reserved</span>
+            <span>{WORK_PROJECTS.length} Projects</span>
+          </div>
+
+        </div>
       </div>
     </ScrollTriggerAnimations>
   );

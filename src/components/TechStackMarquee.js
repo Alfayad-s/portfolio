@@ -16,27 +16,95 @@ const LANGUAGE_IMAGES = [
   'xcode.png',
 ];
 
-function MarqueeRow({ images, direction }) {
+const MARQUEE_STYLES = `
+  @keyframes tsm-marquee-left {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  @keyframes tsm-marquee-right {
+    0% { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
+  }
+  .tsm-animate-left {
+    animation: tsm-marquee-left 45s linear infinite;
+  }
+  .tsm-animate-right {
+    animation: tsm-marquee-right 45s linear infinite;
+  }
+  .tsm-row-outer {
+    overflow: hidden;
+    padding: 1rem 0;
+    min-height: 88px;
+    display: flex;
+    width: 100%;
+  }
+  .tsm-row-inner {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    gap: 3rem;
+  }
+  .tsm-logo-box {
+    flex-shrink: 0;
+    width: 56px;
+    height: 56px;
+    min-width: 56px;
+    min-height: 56px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(224,28,28,0.25);
+    transition: transform 0.3s, filter 0.3s;
+  }
+  /* Mobile: always coloured (no hover) */
+  @media (max-width: 767px) {
+    .tsm-logo-box { filter: grayscale(0); }
+  }
+  /* Desktop: grayscale, coloured on hover */
+  @media (min-width: 768px) {
+    .tsm-logo-box { filter: grayscale(1); }
+    .tsm-logo-box:hover {
+      filter: grayscale(0);
+      transform: scale(1.1);
+    }
+  }
+  .tsm-logo-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  @media (min-width: 640px) {
+    .tsm-logo-box { width: 64px; height: 64px; min-width: 64px; min-height: 64px; }
+  }
+  @media (min-width: 768px) {
+    .tsm-logo-box { width: 80px; height: 80px; min-width: 80px; min-height: 80px; }
+  }
+`;
+
+function MarqueeRow({ images, direction, useImg = false }) {
   const duplicated = useMemo(() => [...images, ...images], [images]);
-  const animateClass = direction === 'left' ? 'animate-marquee-left' : 'animate-marquee-right';
+  const animateClass = direction === 'left' ? 'tsm-animate-left' : 'tsm-animate-right';
 
   return (
-    <div className="overflow-hidden py-4 flex">
-      <div className={`flex shrink-0 gap-12 items-center ${animateClass}`}>
+    <div className="tsm-row-outer">
+      <div className={`tsm-row-inner ${animateClass}`}>
         {duplicated.map((src, i) => (
-          <div
-            key={`${src}-${i}`}
-            className="flex shrink-0 w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-lg bg-white/5 flex items-center justify-center p-2 grayscale hover:grayscale-0 transition-all duration-300 hover:scale-110"
-            title={src.replace('.png', '')}
-          >
-            <Image
-              src={`/languages/${src}`}
-              alt={src.replace('.png', '')}
-              width={80}
-              height={80}
-              className="object-contain w-full h-full"
-              unoptimized
-            />
+          <div key={`${src}-${i}`} className="tsm-logo-box" title={src.replace('.png', '')}>
+            {useImg ? (
+              <img src={`/languages/${src}`} alt={src.replace('.png', '')} />
+            ) : (
+              <Image
+                src={`/languages/${src}`}
+                alt={src.replace('.png', '')}
+                width={80}
+                height={80}
+                className="object-contain w-full h-full"
+                unoptimized
+              />
+            )}
           </div>
         ))}
       </div>
@@ -53,13 +121,24 @@ export default function TechStackMarquee({ showTitle = true, id = 'tech-stack', 
     WebkitMaskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)',
   };
 
+  const isEmbedded = !showTitle;
+
   return (
     <section
       id={id}
       className={showTitle ? 'py-16 sm:py-20 bg-black scroll-mt-20' : `py-6 sm:py-8 ${className}`.trim()}
       data-gsap="fade-up"
+      style={
+        isEmbedded
+          ? { position: 'relative', zIndex: 1, width: '100%', minHeight: 200 }
+          : undefined
+      }
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+      <style dangerouslySetInnerHTML={{ __html: MARQUEE_STYLES }} />
+      <div
+        className="max-w-7xl mx-auto px-4 sm:px-6"
+        style={{ width: '100%', maxWidth: isEmbedded ? '100%' : undefined }}
+      >
         {showTitle && (
           <div className="text-center mb-12 sm:mb-14">
             <div className="section-title-wrap inline-block">
@@ -75,13 +154,27 @@ export default function TechStackMarquee({ showTitle = true, id = 'tech-stack', 
         )}
 
         {/* Row 1: scrolls left */}
-        <div className="overflow-hidden" style={maskStyle}>
-          <MarqueeRow images={LANGUAGE_IMAGES} direction="left" />
+        <div
+          style={{
+            overflow: 'hidden',
+            minHeight: 88,
+            width: '100%',
+            ...(isEmbedded ? {} : maskStyle),
+          }}
+        >
+          <MarqueeRow images={LANGUAGE_IMAGES} direction="left" useImg={isEmbedded} />
         </div>
 
         {/* Row 2: scrolls right */}
-        <div className="overflow-hidden" style={maskStyle}>
-          <MarqueeRow images={LANGUAGE_IMAGES} direction="right" />
+        <div
+          style={{
+            overflow: 'hidden',
+            minHeight: 88,
+            width: '100%',
+            ...(isEmbedded ? {} : maskStyle),
+          }}
+        >
+          <MarqueeRow images={LANGUAGE_IMAGES} direction="right" useImg={isEmbedded} />
         </div>
       </div>
     </section>

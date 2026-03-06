@@ -56,11 +56,11 @@ export default function AboutSection() {
               {/* Main image container */}
               <div className="relative w-64 h-80 sm:w-72 sm:h-96 md:w-80 md:h-[400px] lg:w-full lg:h-[500px] overflow-hidden flex items-center justify-center">
                 <Image 
-                  src="/fayad-2-black.png" 
+                  src="/about1.png" 
                   alt="Fayad Profile" 
                   width={350} 
                   height={400}
-                  className="object-cover w-52 md:w-80"
+                  className="object-cover w-52 md:w-80 mt-28"
                 />
                 {/* Red overlay filter */}
                 <div className="absolute inset-0 bg-red-600/30 mix-blend-multiply"></div>

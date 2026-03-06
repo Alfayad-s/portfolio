@@ -240,6 +240,157 @@ const styles = `
   }
   .sp-pkg-popular .sp-pkg-btn::before { background: #c01818; }
 
+  /* ── BOOKING PREVIEW ── */
+  .sp-preview-section {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .sp-preview-header {
+    text-align: center;
+  }
+
+  .sp-preview-container {
+    position: relative;
+    border: 1px solid var(--red-border);
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--black2);
+  }
+
+  .sp-preview-browser-bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    background: var(--black);
+    border-bottom: 1px solid var(--red-border);
+  }
+
+  .sp-preview-dots {
+    display: flex;
+    gap: 6px;
+  }
+
+  .sp-preview-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--red-border);
+  }
+  .sp-preview-dot:first-child { background: #ff5f57; }
+  .sp-preview-dot:nth-child(2) { background: #ffbd2e; }
+  .sp-preview-dot:nth-child(3) { background: #28ca41; }
+
+  .sp-preview-url {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    background: var(--black2);
+    border-radius: 6px;
+    font-size: 0.75rem;
+    color: var(--gray);
+    font-family: 'DM Sans', monospace;
+  }
+
+  .sp-preview-url-icon { color: var(--red); flex-shrink: 0; }
+
+  .sp-preview-iframe-wrapper {
+    position: relative;
+    height: 600px;
+    overflow: hidden;
+  }
+  @media(max-width:760px) { .sp-preview-iframe-wrapper { height: 450px; } }
+
+  .sp-preview-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: #fff;
+  }
+
+  .sp-preview-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 120px;
+    background: linear-gradient(to top, var(--black) 0%, transparent 100%);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 24px;
+    pointer-events: none;
+  }
+
+  .sp-preview-cta {
+    pointer-events: all;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 1rem 2.5rem;
+    background: var(--red);
+    color: var(--white);
+    font-family: 'OffBit-DotBold', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 0.12em;
+    text-decoration: none;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .sp-preview-cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0.15);
+    transform: translateX(-100%);
+    transition: transform 0.4s;
+  }
+  .sp-preview-cta:hover::before { transform: translateX(0); }
+  .sp-preview-cta:hover { background: #c01818; }
+
+  .sp-preview-info {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--red-border);
+    margin-top: 2rem;
+  }
+  @media(max-width:640px) { .sp-preview-info { grid-template-columns: 1fr; } }
+
+  .sp-preview-info-card {
+    background: var(--black);
+    padding: 2rem;
+    text-align: center;
+    transition: background 0.3s;
+  }
+  .sp-preview-info-card:hover { background: var(--black2); }
+
+  .sp-preview-info-icon {
+    color: var(--red);
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+  }
+
+  .sp-preview-info-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3rem;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+  }
+
+  .sp-preview-info-desc {
+    color: var(--gray);
+    font-size: 0.85rem;
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
   /* ── PROCESS ── */
   .sp-process { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: var(--red-border); }
   @media(max-width:760px){ .sp-process { grid-template-columns: repeat(2,1fr); } }
@@ -322,42 +473,6 @@ export default function ServicesPage() {
     return () => observer.disconnect();
   }, []);
 
-  const packages = [
-    {
-      id: 'basic',
-      name: t('basicPlan'),
-      subtitle: t('basicSubtitle'),
-      price: '$80',
-      delivery: t('tenDayDelivery'),
-      revisions: t('twoRevisions'),
-      popular: false,
-      features: [t('functionalWebsite'), t('onePage'), t('contentUpload'), t('onePlugin'), t('speedOptimization'), t('hostingSetup'), t('socialMediaIcons')],
-      description: t('basicDescription'),
-    },
-    {
-      id: 'standard',
-      name: t('standardPlan'),
-      subtitle: t('standardSubtitle'),
-      price: '$150',
-      delivery: t('sixtyDayDelivery'),
-      revisions: t('threeRevisions'),
-      popular: true,
-      features: [t('functionalWebsite'), t('fivePages'), t('contentUpload'), t('twoPlugins'), t('speedOptimization'), t('hostingSetup'), t('socialMediaIcons'), t('optInForm')],
-      description: t('standardDescription'),
-    },
-    {
-      id: 'premium',
-      name: t('premiumPlan'),
-      subtitle: t('premiumSubtitle'),
-      price: '$450',
-      delivery: t('ninetyDayDelivery'),
-      revisions: t('fiveRevisions'),
-      popular: false,
-      features: [t('functionalWebsite'), t('tenPages'), t('contentUpload'), t('threePlugins'), t('ecommerceFunctionality'), t('twentyProducts'), t('paymentIntegration'), t('optInForm'), t('autoresponderIntegration'), t('speedOptimization'), t('hostingSetup'), t('socialMediaIcons')],
-      description: t('premiumDescription'),
-    }
-  ];
-
   const technologies = [
     { name: 'React', category: 'Frontend', icon: Code },
     { name: 'Next.js', category: 'Framework', icon: Zap },
@@ -402,11 +517,11 @@ export default function ServicesPage() {
             </div>
             <div className="sp-hero-right">
               <p className="sp-hero-desc">
-                Comprehensive development solutions built with modern technologies. From landing pages to full-stack applications — delivered clean, fast, and on time.
+                Looking for a professional website? Visit my dedicated booking platform at <a href="https://hirefayad.vercel.app" target="_blank" rel="noopener noreferrer" style={{color:'var(--red)', textDecoration:'underline'}}>hirefayad.vercel.app</a> for budget-friendly solutions, quick enquiries, and fast delivery.
               </p>
-              <Link href="/" className="sp-nav-btn">
-                <ArrowLeft size={13} /> Back to Home
-              </Link>
+              <a href="https://hirefayad.vercel.app" target="_blank" rel="noopener noreferrer" className="sp-nav-btn" style={{borderColor:'var(--red)', color:'var(--white)'}}>
+                <Rocket size={13} /> Book Your Website
+              </a>
             </div>
           </section>
 
@@ -445,6 +560,73 @@ export default function ServicesPage() {
             <div className="sp-divider-line" />
           </div>
 
+          {/* ── BOOKING PREVIEW ── */}
+          <section className="sp-section sp-preview-section" data-section="booking">
+            <div className="sp-sec-header sp-preview-header anim" style={visibleSections.booking ? {animation:'fadeUp 0.75s forwards'} : {}}>
+              <div className="sp-sec-eyebrow">Book Your Website</div>
+              <h2 className="sp-sec-h2">Budget-Friendly <span style={{color:'var(--red)'}}>Solutions</span></h2>
+              <p className="sp-sec-sub" style={{margin:'1rem auto 0', textAlign:'center'}}>
+                Explore my dedicated booking platform below. Scroll through and book your budget website today!
+              </p>
+            </div>
+
+            <div className="sp-preview-container anim" style={visibleSections.booking ? {animation:'fadeUp 0.75s 0.2s forwards'} : {}}>
+              <div className="sp-preview-browser-bar">
+                <div className="sp-preview-dots">
+                  <div className="sp-preview-dot" />
+                  <div className="sp-preview-dot" />
+                  <div className="sp-preview-dot" />
+                </div>
+                <div className="sp-preview-url">
+                  <Rocket size={12} className="sp-preview-url-icon" />
+                  hirefayad.vercel.app
+                </div>
+              </div>
+              <div className="sp-preview-iframe-wrapper">
+                <iframe 
+                  src="https://hirefayad.vercel.app" 
+                  className="sp-preview-iframe"
+                  title="Hire Fayad - Book Your Website"
+                  loading="lazy"
+                />
+                <div className="sp-preview-overlay">
+                  <a 
+                    href="https://hirefayad.vercel.app" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="sp-preview-cta"
+                  >
+                    Open Full Site <ArrowRight size={16} />
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div className="sp-preview-info anim" style={visibleSections.booking ? {animation:'fadeUp 0.75s 0.4s forwards'} : {}}>
+              <div className="sp-preview-info-card">
+                <div className="sp-preview-info-icon"><CreditCard size={28} /></div>
+                <div className="sp-preview-info-title">Budget Friendly</div>
+                <p className="sp-preview-info-desc">Affordable packages designed for startups and small businesses</p>
+              </div>
+              <div className="sp-preview-info-card">
+                <div className="sp-preview-info-icon"><Zap size={28} /></div>
+                <div className="sp-preview-info-title">Quick Turnaround</div>
+                <p className="sp-preview-info-desc">Fast delivery without compromising on quality</p>
+              </div>
+              <div className="sp-preview-info-card">
+                <div className="sp-preview-info-icon"><Rocket size={28} /></div>
+                <div className="sp-preview-info-title">Easy Booking</div>
+                <p className="sp-preview-info-desc">Simple enquiry process to get started immediately</p>
+              </div>
+            </div>
+          </section>
+
+          <div className="sp-divider">
+            <div className="sp-divider-line" />
+            <div className="sp-divider-dot" />
+            <div className="sp-divider-line" />
+          </div>
+
           {/* ── TECH STACK ── */}
           <section className="sp-section" data-section="tech">
             <div className="sp-sec-header anim" style={visibleSections.tech ? {animation:'fadeUp 0.75s forwards'} : {}}>
@@ -462,53 +644,6 @@ export default function ServicesPage() {
                   <div className="sp-tech-icon"><Icon size={26} /></div>
                   <span className="sp-tech-name">{name}</span>
                   <span className="sp-tech-cat">{category}</span>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          <div className="sp-divider">
-            <div className="sp-divider-line" />
-            <div className="sp-divider-dot" />
-            <div className="sp-divider-line" />
-          </div>
-
-          {/* ── PRICING ── */}
-          <section className="sp-section" data-section="pricing">
-            <div className="sp-sec-header anim" style={visibleSections.pricing ? {animation:'fadeUp 0.75s forwards'} : {}}>
-              <div className="sp-sec-eyebrow">Packages</div>
-              <h2 className="sp-sec-h2">Service <span style={{color:'var(--red)'}}>Plans</span></h2>
-              <p className="sp-sec-sub">{t('choosePerfectPackage')}</p>
-            </div>
-            <div className="sp-pricing-grid">
-              {packages.map((pkg, i) => (
-                <div
-                  key={pkg.id}
-                  className={`sp-pkg anim ${pkg.popular ? 'sp-pkg-popular' : ''}`}
-                  style={visibleSections.pricing ? { animation: `fadeUp 0.75s ${i * 0.15}s forwards` } : {}}
-                >
-                  {pkg.popular && <div className="sp-pkg-badge">Most Popular</div>}
-                  <div className="sp-pkg-label">Plan 0{i + 1}</div>
-                  <div className="sp-pkg-name">{pkg.name}</div>
-                  <div className="sp-pkg-subtitle">{pkg.subtitle}</div>
-                  <div className="sp-pkg-price">{pkg.price}</div>
-                  <div className="sp-pkg-meta">{pkg.delivery} · {pkg.revisions}</div>
-                  <div className="sp-pkg-divider" />
-                  <ul className="sp-pkg-features">
-                    {pkg.features.map((f, fi) => (
-                      <li key={fi} className="sp-pkg-feature">
-                        <Check size={13} className="sp-pkg-check" />
-                        {f}
-                      </li>
-                    ))}
-                  </ul>
-                  <button
-                    className="sp-pkg-btn"
-                    onClick={() => window.location.href = `/contact?plan=${pkg.id}`}
-                  >
-                    <span>Get Started</span>
-                    <ArrowRight size={14} />
-                  </button>
                 </div>
               ))}
             </div>
@@ -553,10 +688,10 @@ export default function ServicesPage() {
           <section className="sp-cta" data-section="cta">
             <div className="sp-cta-inner anim" style={visibleSections.cta ? {animation:'fadeUp 0.75s forwards'} : {}}>
               <h2 className="sp-cta-h2">Ready to<br /><span>Start Building?</span></h2>
-              <p className="sp-cta-sub">{t('ctaDescription')}</p>
+              <p className="sp-cta-sub">Book your budget-friendly website today. Quick enquiry, fast delivery, professional results.</p>
               <div className="sp-cta-btns">
-                <a href="mailto:alfayadshameer056@gmail.com" className="sp-cta-primary">
-                  {t('getFreeConsultation')} <ArrowRight size={15} />
+                <a href="https://hirefayad.vercel.app" target="_blank" rel="noopener noreferrer" className="sp-cta-primary">
+                  Book Now <ArrowRight size={15} />
                 </a>
                 <Link href="/work" className="sp-cta-secondary">
                   {t('viewAllServices')} <ChevronRight size={14} />

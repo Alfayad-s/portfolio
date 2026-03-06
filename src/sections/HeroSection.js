@@ -121,11 +121,11 @@ export default function HeroSection() {
                   <div className="w-full h-full bg-gradient-to-br from-red-600 to-red-800 flex items-center justify-center relative">
                     
                       <Image 
-                        src="/black-fayad.png" 
+                        src="/hero2.png" 
                         alt="Profile" 
                         width={330} 
                         height={450}
-                        className="w-52 md:w-80 object-cover"
+                        className="w-52 md:w-80 object-cover mt-18"
                       />
                     
                     

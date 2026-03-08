@@ -112,31 +112,24 @@ export default function HeroSection() {
               </div>
             </div>
 
-            {/* Right side - Portrait with red filter */}
+            {/* Right side - Portrait */}
             <div className="relative flex justify-center lg:justify-end mt-8 lg:mt-0">
               <div className="relative">
-                {/* Portrait container with red filter */}
-                <div className="relative w-64 h-80 sm:w-72 sm:h-96 md:w-80 md:h-[400px] lg:w-96 lg:h-[500px] overflow-hidden">
-                  {/* Portrait placeholder with red filter */}
-                  <div className="w-full h-full bg-gradient-to-br from-red-600 to-red-800 flex items-center justify-center relative">
-                    
-                      <Image 
-                        src="/hero2.png" 
-                        alt="Profile" 
-                        width={330} 
-                        height={450}
-                        className="w-52 md:w-80 object-cover mt-18"
-                      />
-                    
-                    
-                    {/* Red overlay filter */}
-                    <div className="absolute inset-0 bg-red-600/40 mix-blend-multiply"></div>
-                  </div>
-                </div>
+                {/* Layered frame effect - behind image */}
+                <div className="absolute -top-2 -left-2 sm:-top-4 sm:-left-4 w-full h-full border-2 border-red-500/20 transform rotate-1 z-0"></div>
+                <div className="absolute -bottom-2 -right-2 sm:-bottom-4 sm:-right-4 w-full h-full border-2 border-red-500/30 transform -rotate-1 z-0"></div>
 
-                {/* Layered frame effect */}
-                <div className="absolute -top-2 -left-2 sm:-top-4 sm:-left-4 w-full h-full border-2 border-red-500/20 transform rotate-1"></div>
-                <div className="absolute -bottom-2 -right-2 sm:-bottom-4 sm:-right-4 w-full h-full border-2 border-red-500/30 transform -rotate-1"></div>
+                <div className="relative w-64 h-80 sm:w-72 sm:h-96 md:w-80 md:h-[400px] lg:w-96 lg:h-[500px] overflow-hidden flex items-center justify-center z-10">
+                  <Image 
+                    src="/hero2.png" 
+                    alt="Profile" 
+                    width={330} 
+                    height={450}
+                    className="w-52 md:w-80 object-cover mt-18"
+                  />
+                  {/* Black shade at bottom */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none"></div>
+                </div>
               </div>
             </div>
           </div>

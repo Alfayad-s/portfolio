@@ -397,8 +397,8 @@ function getNavigationForMessage(text) {
   if (/resume|experience|education|skill|cv/.test(lower)) return { path: "/", hash: "resume" };
   if (/about/.test(lower)) return { path: "/", hash: "about" };
   if (/tech|stack|tools/.test(lower)) return { path: "/", hash: "tech-stack" };
-  if (/contact|email|hire|reach/.test(lower)) return { path: "/contact" };
-  if (/service|offer|pricing/.test(lower)) return { path: "/services" };
+  if (/contact|email|reach/.test(lower)) return { path: "/contact" };
+  if (/service|offer|pricing|book|booking|budget website|hire fayad|enquiry|enquire|how to hire|where to book/.test(lower)) return { path: "/services" };
   return null;
 }
 

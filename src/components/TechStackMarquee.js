@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import Image from 'next/image';
 import { useLanguage } from '@/context/LanguageContext';
 
@@ -30,6 +30,9 @@ const MARQUEE_STYLES = `
   }
   .tsm-animate-right {
     animation: tsm-marquee-right 45s linear infinite;
+  }
+  .tsm-animate-reverse {
+    animation-direction: reverse;
   }
   .tsm-row-outer {
     overflow: hidden;
@@ -84,13 +87,13 @@ const MARQUEE_STYLES = `
   }
 `;
 
-function MarqueeRow({ images, direction, useImg = false }) {
+function MarqueeRow({ images, direction, useImg = false, reverse = false }) {
   const duplicated = useMemo(() => [...images, ...images], [images]);
   const animateClass = direction === 'left' ? 'tsm-animate-left' : 'tsm-animate-right';
 
   return (
     <div className="tsm-row-outer">
-      <div className={`tsm-row-inner ${animateClass}`}>
+      <div className={`tsm-row-inner ${animateClass} ${reverse ? 'tsm-animate-reverse' : ''}`}>
         {duplicated.map((src, i) => (
           <div key={`${src}-${i}`} className="tsm-logo-box" title={src.replace('.png', '')}>
             {useImg ? (
@@ -115,6 +118,34 @@ function MarqueeRow({ images, direction, useImg = false }) {
 export default function TechStackMarquee({ showTitle = true, id = 'tech-stack', className = '' }) {
   const { t } = useLanguage();
   const title = t('techStackTitle') || 'TECH STACK';
+  const [scrollDirection, setScrollDirection] = useState('down'); // 'down' | 'up'
+
+  useEffect(() => {
+    let lastScrollY = typeof window !== 'undefined' ? window.scrollY : 0;
+    let ticking = false;
+
+    const updateScrollDirection = () => {
+      const scrollY = window.scrollY;
+      if (scrollY !== lastScrollY) {
+        setScrollDirection(scrollY > lastScrollY ? 'down' : 'up');
+        lastScrollY = scrollY;
+      }
+      ticking = false;
+    };
+
+    const onScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(updateScrollDirection);
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  // When scrolling down: row1 left, row2 right. When scrolling up: reverse both.
+  const reversed = scrollDirection === 'up';
 
   const maskStyle = {
     maskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)',
@@ -153,7 +184,7 @@ export default function TechStackMarquee({ showTitle = true, id = 'tech-stack', 
           </div>
         )}
 
-        {/* Row 1: scrolls left */}
+        {/* Row 1: direction follows scroll (down = left, up = right) */}
         <div
           style={{
             overflow: 'hidden',
@@ -162,10 +193,10 @@ export default function TechStackMarquee({ showTitle = true, id = 'tech-stack', 
             ...(isEmbedded ? {} : maskStyle),
           }}
         >
-          <MarqueeRow images={LANGUAGE_IMAGES} direction="left" useImg={isEmbedded} />
+          <MarqueeRow images={LANGUAGE_IMAGES} direction="left" reverse={reversed} useImg={isEmbedded} />
         </div>
 
-        {/* Row 2: scrolls right */}
+        {/* Row 2: scrolls right (reverses when scroll up) */}
         <div
           style={{
             overflow: 'hidden',
@@ -174,7 +205,7 @@ export default function TechStackMarquee({ showTitle = true, id = 'tech-stack', 
             ...(isEmbedded ? {} : maskStyle),
           }}
         >
-          <MarqueeRow images={LANGUAGE_IMAGES} direction="right" useImg={isEmbedded} />
+          <MarqueeRow images={LANGUAGE_IMAGES} direction="right" reverse={reversed} useImg={isEmbedded} />
         </div>
       </div>
     </section>

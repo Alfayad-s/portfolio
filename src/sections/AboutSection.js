@@ -53,8 +53,12 @@ export default function AboutSection() {
             isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
           }`}>
             <div className="relative flex justify-center lg:justify-start">
+              {/* Decorative frames - behind image (same as hero) */}
+              <div className="absolute -top-2 -left-2 sm:-top-4 sm:-left-4 w-full h-full border-2 border-red-500/20 transform rotate-1 z-0"></div>
+              <div className="absolute -bottom-2 -right-2 sm:-bottom-4 sm:-right-4 w-full h-full border-2 border-red-500/30 transform -rotate-1 z-0"></div>
+
               {/* Main image container */}
-              <div className="relative w-64 h-80 sm:w-72 sm:h-96 md:w-80 md:h-[400px] lg:w-full lg:h-[500px] overflow-hidden flex items-center justify-center">
+              <div className="relative w-64 h-80 sm:w-72 sm:h-96 md:w-80 md:h-[400px] lg:w-full lg:h-[500px] overflow-hidden flex items-center justify-center z-10">
                 <Image 
                   src="/about1.png" 
                   alt="Fayad Profile" 
@@ -62,18 +66,10 @@ export default function AboutSection() {
                   height={400}
                   className="object-cover w-52 md:w-80 mt-28"
                 />
-                {/* Red overlay filter */}
-                <div className="absolute inset-0 bg-red-600/30 mix-blend-multiply"></div>
+                {/* Black shade at bottom */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none"></div>
               </div>
-              
-              {/* Decorative frames */}
-              <div className="absolute -top-3 -left-3 sm:-top-6 sm:-left-6 w-full h-full border-2 border-red-500/20 transform rotate-2"></div>
-              <div className="absolute -bottom-3 -right-3 sm:-bottom-6 sm:-right-6 w-full h-full border-2 border-red-500/30 transform -rotate-2"></div>
             </div>
-
-            {/* Floating elements */}
-            <div className="absolute -top-4 -right-4 sm:-top-8 sm:-right-8 w-12 h-12 sm:w-16 sm:h-16 bg-red-500/20 rounded-full blur-xl animate-pulse"></div>
-            <div className="absolute -bottom-4 -left-4 sm:-bottom-8 sm:-left-8 w-8 h-8 sm:w-12 sm:h-12 bg-red-500/30 rounded-full blur-lg animate-pulse delay-1000"></div>
           </div>
 
           {/* Right - About Content */}

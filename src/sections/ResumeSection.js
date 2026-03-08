@@ -63,10 +63,6 @@ const calculateExperienceDuration = (startDate, endDate = null) => {
   } else if (months > 0) {
     duration += `${months} month${months > 1 ? 's' : ''}`;
   }
-  if (days > 0 && months < 12) {
-    if (duration) duration += ' ';
-    duration += `${days} day${days > 1 ? 's' : ''}`;
-  }
   return duration || 'Just started';
 };
 
@@ -150,7 +146,7 @@ export default function ResumeSection() {
                   durationColor: 'text-green-400',
                   description: t('codeTeakDescription'),
                   bullets: null,
-                  logo: '/codeteak-logo.png',
+                  logo: '/codeteak-logo.jpg',
                   logoBg: 'bg-blue-600/20 border-blue-500/20',
                   fallback: 'CT',
                   fallbackBg: 'bg-blue-600',
@@ -214,7 +210,7 @@ export default function ResumeSection() {
                     </div>
                     {/* Logo / visual block — right on even index, left on odd (no bg) */}
                     <div className={`flex justify-center ${isLeft ? 'lg:order-2 lg:justify-end' : 'lg:order-1 lg:justify-start'}`}>
-                      <div className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 flex items-center justify-center overflow-hidden shrink-0">
+                      <div className={`w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 flex items-center justify-center shrink-0 ${job.company === 'CODETEAK PRIVATE LIMITED' ? 'bg-white rounded-xl p-4 sm:p-5 md:p-6' : 'overflow-hidden'}`}>
                         <Image
                           src={job.logo}
                           alt={job.company}

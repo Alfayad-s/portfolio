@@ -140,8 +140,8 @@ export default function ResumeSection() {
             <div className="space-y-0">
               {[
                 {
-                  company: 'CODETEAK PRIVATE LIMITED',
-                  period: 'Apr 2025 – Present · Remote',
+                  company: 'CODETEAK TECHNOLOGIES',
+                  period: 'Apr 2025 – Present · On-site',
                   duration: calculateExperienceDuration('2025-04-10'),
                   durationColor: 'text-green-400',
                   description: t('codeTeakDescription'),
@@ -210,7 +210,7 @@ export default function ResumeSection() {
                     </div>
                     {/* Logo / visual block — right on even index, left on odd (no bg) */}
                     <div className={`flex justify-center ${isLeft ? 'lg:order-2 lg:justify-end' : 'lg:order-1 lg:justify-start'}`}>
-                      <div className={`w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 flex items-center justify-center shrink-0 ${job.company === 'CODETEAK PRIVATE LIMITED' ? 'bg-white rounded-xl p-4 sm:p-5 md:p-6' : 'overflow-hidden'}`}>
+                      <div className={`w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 flex items-center justify-center shrink-0 ${job.company === 'CODETEAK TECHNOLOGIES' ? 'bg-white rounded-xl p-4 sm:p-5 md:p-6' : 'overflow-hidden'}`}>
                         <Image
                           src={job.logo}
                           alt={job.company}

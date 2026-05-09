@@ -6,8 +6,8 @@ import { LanguageProvider } from "@/context/LanguageContext";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import Script from "next/script";
 import { Analytics } from "@vercel/analytics/next";
-import ChatWidget from "@/components/ChatWidget";
 import Footer from "@/components/Footer";
+import FloatingDockNav from "@/components/FloatingDockNav";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -173,7 +173,7 @@ export default function RootLayout({ children }) {
             {children}
             <Footer />
           </ClickSpark>
-          <ChatWidget />
+          <FloatingDockNav />
         </LanguageProvider>
       </body>
     </html>

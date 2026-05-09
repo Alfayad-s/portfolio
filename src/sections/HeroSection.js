@@ -4,10 +4,15 @@ import { useState, useEffect } from "react";
 import { useLanguage } from '@/context/LanguageContext';
 import Image from "next/image";
 
+const TYPING_WORDS = ["Alfayad", "Designer", "Developer"];
+
 export default function HeroSection() {
   const [currentTime, setCurrentTime] = useState('');
   const [batteryLevel, setBatteryLevel] = useState(0);
   const [isCharging, setIsCharging] = useState(false);
+  const [typedText, setTypedText] = useState(TYPING_WORDS[0]);
+  const [wordIndex, setWordIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
   const { t } = useLanguage();
 
   useEffect(() => {
@@ -78,6 +83,41 @@ export default function HeroSection() {
     };
   }, []);
 
+  useEffect(() => {
+    const currentWord = TYPING_WORDS[wordIndex];
+    const isWordComplete = typedText === currentWord;
+    const isWordEmpty = typedText.length === 0;
+
+    let delay = isDeleting ? 70 : 140;
+
+    if (isWordComplete && !isDeleting) {
+      delay = 900;
+    } else if (isWordEmpty && isDeleting) {
+      delay = 250;
+    }
+
+    const timer = setTimeout(() => {
+      if (isWordComplete && !isDeleting) {
+        setIsDeleting(true);
+        return;
+      }
+
+      if (isWordEmpty && isDeleting) {
+        setIsDeleting(false);
+        setWordIndex((prev) => (prev + 1) % TYPING_WORDS.length);
+        return;
+      }
+
+      const nextText = isDeleting
+        ? currentWord.slice(0, typedText.length - 1)
+        : currentWord.slice(0, typedText.length + 1);
+
+      setTypedText(nextText);
+    }, delay);
+
+    return () => clearTimeout(timer);
+  }, [typedText, wordIndex, isDeleting]);
+
   return (
     <div className="relative min-h-screen bg-black flex flex-col" data-gsap="fade-up">
       {/* Background silhouette */}
@@ -86,52 +126,32 @@ export default function HeroSection() {
       </div>
 
       {/* Main content */}
-      <div className="relative z-10 flex-1 flex items-center px-4 sm:px-6 md:px-16 py-16 sm:py-20">
+      <div className="relative z-10 flex-1 flex items-end justify-center px-4 sm:px-6 md:px-16 pt-6 sm:pt-8 pb-8">
         <div className="max-w-7xl mx-auto w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            
-            {/* Left side - Text content */}
-            <div className="space-y-6 sm:space-y-8 text-center lg:text-left">
-              {/* Main heading */}
-              <div className="space-y-1 sm:space-y-2">
-                <h1 className="font-offbit text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold text-white leading-tight">
-                  <span className="block">{t('HELLO')}</span>
-                  <span className="block">I&apos;M</span>
-                  <span className="block">{t('heroTitle')}</span>
+          <div className="flex flex-col items-center justify-end gap-6 sm:gap-8">
+            <div className="relative flex justify-center items-end w-full mt-24 sm:mt-28 md:mt-32">
+              {/* Name text behind image */}
+              <div className="absolute -top-24 sm:-top-28 md:-top-32 left-1/2 -translate-x-1/2 z-0 pointer-events-none">
+                <h1 className="font-offbit text-[8rem] sm:text-[12rem] md:text-[16rem] lg:text-[20rem] xl:text-[24rem] font-bold text-white/10 leading-none whitespace-nowrap">
+                  {typedText}
                 </h1>
               </div>
 
-              {/* Descriptive tagline */}
-              <div className="space-y-1 sm:space-y-2 max-w-lg mx-auto lg:mx-0">
-                <p className="text-white text-sm sm:text-base md:text-lg font-light leading-relaxed">
-                  {t('heroSubtitle')}
-                </p>
-                <p className="text-white text-sm sm:text-base md:text-lg font-light leading-relaxed">
-                  {t('heroDescription')}
-                </p>
-              </div>
-            </div>
-
-            {/* Right side - Portrait */}
-            <div className="relative flex justify-center lg:justify-end mt-8 lg:mt-0">
               <div className="relative">
-                {/* Layered frame effect - behind image */}
-                <div className="absolute -top-2 -left-2 sm:-top-4 sm:-left-4 w-full h-full border-2 border-red-500/20 transform rotate-1 z-0"></div>
-                <div className="absolute -bottom-2 -right-2 sm:-bottom-4 sm:-right-4 w-full h-full border-2 border-red-500/30 transform -rotate-1 z-0"></div>
-
-                <div className="relative w-64 h-80 sm:w-72 sm:h-96 md:w-80 md:h-[400px] lg:w-96 lg:h-[500px] overflow-hidden flex items-center justify-center z-10">
+                <div className="relative w-72 h-[420px] sm:w-80 sm:h-[470px] md:w-[420px] md:h-[540px] lg:w-[460px] lg:h-[590px] overflow-hidden flex items-end justify-center z-10">
                   <Image 
                     src="/hero2.png" 
                     alt="Profile" 
-                    width={330} 
-                    height={450}
-                    className="w-52 md:w-80 object-cover mt-18"
+                    width={460} 
+                    height={590}
+                    className="w-full h-full object-contain"
                   />
                   {/* Black shade at bottom */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none"></div>
                 </div>
               </div>
             </div>
+
           </div>
         </div>
       </div>

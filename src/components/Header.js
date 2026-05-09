@@ -1,9 +1,9 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { useLanguage } from '@/context/LanguageContext';
-import LanguageToggle, { CompactLanguageToggle } from './LanguageToggle';
+import LanguageToggle from './LanguageToggle';
+import AiAskInput from "@/components/ui/ai-ask-input";
 
 const styles = `
   @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap');
@@ -28,7 +28,7 @@ const styles = `
     background: rgba(8,8,8,0.92);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--red-border);
+    border-bottom: 1px solid transparent;
     box-shadow: 0 4px 40px rgba(0,0,0,0.6);
   }
   .hdr-bar.top {
@@ -37,7 +37,7 @@ const styles = `
   }
 
   .hdr-inner {
-    max-width: 1100px; margin: 0 auto;
+    width: 100%;
     display: flex; align-items: center; justify-content: space-between;
     height: 72px;
     transition: height 0.5s ease;
@@ -249,10 +249,7 @@ const styles = `
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
-  const [activeSection, setActiveSection] = useState('home');
-  const { t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -266,21 +263,6 @@ export default function Header() {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  // Lock body scroll when mobile menu open
-  useEffect(() => {
-    document.body.style.overflow = isMobileMenuOpen ? 'hidden' : '';
-    return () => { document.body.style.overflow = ''; };
-  }, [isMobileMenuOpen]);
-
-  const closeMobileMenu = () => setIsMobileMenuOpen(false);
-
-  const navLinks = [
-    { href: '/', label: t('home'), key: 'home' },
-    { href: '/work', label: t('work'), key: 'work' },
-    { href: '/services', label: t('services'), key: 'services' },
-    { href: '/contact', label: t('contact'), key: 'contact' },
-  ];
 
   return (
     <>
@@ -296,82 +278,24 @@ export default function Header() {
           />
         )}
 
-        <div className="hdr-inner">
+        <div className="hdr-inner relative">
           {/* Logo */}
-          <Link href="/" className="hdr-logo" onClick={closeMobileMenu}>
+          <Link href="/" className="hdr-logo relative z-10">
             FD<span className="hdr-logo-dot">.</span>
           </Link>
 
-          {/* Desktop nav */}
-          <nav className="hdr-nav">
-            {navLinks.map((link, i) => (
-              <React.Fragment key={link.key}>
-                {i > 0 && <div className="hdr-sep" />}
-                <Link href={link.href} className="hdr-nav-link">
-                  {link.label}
-                </Link>
-              </React.Fragment>
-            ))}
-            <a href="mailto:alfayadshameer056@gmail.com" className="hdr-nav-cta">
-              <span>Hire Me</span>
-            </a>
-          </nav>
-
-          {/* Email (desktop wide) */}
-          <a href="mailto:alfayadshameer056@gmail.com" className="hdr-email">
-            <div className="hdr-email-icon">
-              <svg width="12" height="12" fill="currentColor" viewBox="0 0 20 20" style={{color:'var(--red)'}}>
-                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-              </svg>
+          {/* Viewport-centered AI input (independent of logo / language widths) */}
+          <div className="pointer-events-none absolute inset-x-0 top-1/2 z-0 hidden -translate-y-1/2 md:flex md:justify-center md:px-6 lg:px-10">
+            <div className="pointer-events-auto w-full max-w-[620px]">
+              <AiAskInput className="w-full max-w-[620px]" />
             </div>
-            alfayadshameer056@gmail.com
-          </a>
+          </div>
 
-          {/* Mobile burger */}
-          <button
-            className={`hdr-burger ${isMobileMenuOpen ? 'open' : ''}`}
-            onClick={() => setIsMobileMenuOpen(v => !v)}
-            aria-label="Toggle menu"
-          >
-            <div className="hdr-burger-line" />
-            <div className="hdr-burger-line" />
-            <div className="hdr-burger-line" />
-          </button>
+          <div className="relative z-10 ml-auto shrink-0">
+            <LanguageToggle />
+          </div>
         </div>
       </header>
-
-      {/* ── MOBILE FULLSCREEN MENU ── */}
-      <div className={`hdr-mobile ${isMobileMenuOpen ? 'open' : ''}`}>
-        {/* close button top-right */}
-        <div style={{ display:'flex', justifyContent:'flex-end', padding:'1.5rem 2rem 0' }}>
-          <button
-            onClick={closeMobileMenu}
-            style={{ background:'transparent', border:'1px solid var(--red-border)', width:40, height:40, color:'var(--white)', cursor:'pointer', display:'flex', alignItems:'center', justifyContent:'center' }}
-          >
-            <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-              <path strokeLinecap="round" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
-        </div>
-
-        <div className="hdr-mobile-inner">
-          {navLinks.map((link, i) => (
-            <div key={link.key}>
-              <div className="hdr-mobile-num">0{i + 1}</div>
-              <Link href={link.href} className="hdr-mobile-link" onClick={closeMobileMenu}>
-                {link.label}
-              </Link>
-              {i < navLinks.length - 1 && <div className="hdr-mobile-divider" />}
-            </div>
-          ))}
-        </div>
-
-        <div className="hdr-mobile-footer">
-          <span className="hdr-mobile-email">alfayadshameer056@gmail.com</span>
-          <CompactLanguageToggle />
-        </div>
-      </div>
 
       {/* ── SIDE NAV (desktop, visible when scrolled) ── */}
       

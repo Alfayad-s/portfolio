@@ -29,7 +29,7 @@ export default function LanguageToggle({ className = '' }) {
       {/* Toggle Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center space-x-2 px-3 py-2 bg-black/20 border border-red-500/20 rounded-lg text-white hover:bg-red-500/10 hover:border-red-500/40 transition-all duration-300"
+        className="flex items-center space-x-2 px-3 py-2 rounded-lg text-white bg-transparent hover:bg-white/5 transition-all duration-300 border-0 shadow-none outline-none focus-visible:ring-2 focus-visible:ring-red-500/40 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
       >
         <span className="text-lg">{currentLanguage.flag}</span>
         <span className="text-sm font-medium hidden sm:block">{currentLanguage.name}</span>
@@ -45,7 +45,7 @@ export default function LanguageToggle({ className = '' }) {
 
       {/* Dropdown Menu */}
       {isOpen && (
-        <div className="absolute top-full right-0 mt-2 w-48 bg-black/90 backdrop-blur-md border border-red-500/20 rounded-lg shadow-xl z-50 overflow-hidden">
+        <div className="absolute top-full right-0 mt-2 w-48 bg-black/90 backdrop-blur-md border border-red-500/20 rounded-lg z-50 overflow-hidden shadow-none">
           {Object.entries(languages).map(([code, lang]) => (
             <button
               key={code}
@@ -96,14 +96,14 @@ export function CompactLanguageToggle({ className = '' }) {
       {/* Compact Toggle Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center justify-center w-10 h-10 bg-black/20 border border-red-500/20 rounded-lg text-white hover:bg-red-500/10 hover:border-red-500/40 transition-all duration-300"
+        className="flex items-center justify-center w-10 h-10 rounded-lg text-white bg-transparent hover:bg-white/5 transition-all duration-300 border-0 shadow-none outline-none focus-visible:ring-2 focus-visible:ring-red-500/40 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
       >
         <span className="text-lg">{currentLanguage.flag}</span>
       </button>
 
       {/* Compact Dropdown Menu */}
       {isOpen && (
-        <div className="absolute top-full right-0 mt-2 w-32 bg-black/90 backdrop-blur-md border border-red-500/20 rounded-lg shadow-xl z-50 overflow-hidden">
+        <div className="absolute top-full right-0 mt-2 w-32 bg-black/90 backdrop-blur-md border border-red-500/20 rounded-lg z-50 overflow-hidden shadow-none">
           {Object.entries(languages).map(([code, lang]) => (
             <button
               key={code}

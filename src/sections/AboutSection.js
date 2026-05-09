@@ -53,18 +53,14 @@ export default function AboutSection() {
             isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
           }`}>
             <div className="relative flex justify-center lg:justify-start">
-              {/* Decorative frames - behind image (same as hero) */}
-              <div className="absolute -top-2 -left-2 sm:-top-4 sm:-left-4 w-full h-full border-2 border-red-500/20 transform rotate-1 z-0"></div>
-              <div className="absolute -bottom-2 -right-2 sm:-bottom-4 sm:-right-4 w-full h-full border-2 border-red-500/30 transform -rotate-1 z-0"></div>
-
               {/* Main image container */}
-              <div className="relative w-64 h-80 sm:w-72 sm:h-96 md:w-80 md:h-[400px] lg:w-full lg:h-[500px] overflow-hidden flex items-center justify-center z-10">
+              <div className="relative w-72 h-[420px] sm:w-80 sm:h-[470px] md:w-[420px] md:h-[540px] lg:w-[460px] lg:h-[590px] overflow-hidden flex items-end justify-center z-10">
                 <Image 
                   src="/about1.png" 
                   alt="Fayad Profile" 
-                  width={350} 
-                  height={400}
-                  className="object-cover w-52 md:w-80 mt-28"
+                  width={460} 
+                  height={590}
+                  className="w-full h-full object-contain"
                 />
                 {/* Black shade at bottom */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none"></div>

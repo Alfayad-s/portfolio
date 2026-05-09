@@ -1,11 +1,18 @@
+@import url("https://fonts.googleapis.com/css2?family=DotGothic16&display=swap");
 @import "tailwindcss";
 
 @font-face {
   font-family: "OffBit-DotBold";
   src: url("/font/OffBit-DotBold.ttf") format("truetype");
-  font-weight: bold;
+  font-weight: 700;
   font-style: normal;
   font-display: swap;
+}
+
+/** Overlay AI replies: OffBit-DotBold (`public/font/OffBit-DotBold.ttf`). DotGothic16 only if the file is missing. */
+.font-overlay-chat-dotted {
+  font-family: "OffBit-DotBold", "DotGothic16", ui-sans-serif, system-ui, sans-serif;
+  font-weight: 700;
 }
 
 :root {

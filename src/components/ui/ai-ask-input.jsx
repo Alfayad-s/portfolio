@@ -701,10 +701,7 @@ export default function AiAskInput({
                     Enter
                   </kbd>{" "}
                   or send — or tap the{" "}
-                  <span className="text-neutral-400">mic</span> to speak. Use{" "}
-                  <span className="text-neutral-400">Read reply</span> for audio
-                  (Shift+click reads once without auto). Fayad on the left, you on
-                  the right.
+                  <span className="text-neutral-400">mic</span> to speak.
                 </p>
               ) : (
                 <div className="flex flex-col gap-10 pb-6 sm:gap-12">

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useCallback, useRef } from "react";
 import {
   motion,
   useAnimationFrame,
@@ -29,16 +29,25 @@ export function MovingBorder({
     progress.set((time * pxPerMillisecond) % length);
   });
 
-  const x = useTransform(progress, (val) => {
+  const pointOnPath = useCallback((val) => {
     const node = pathRef.current;
-    if (!node) return 0;
-    return node.getPointAtLength(val).x;
-  });
-  const y = useTransform(progress, (val) => {
-    const node = pathRef.current;
-    if (!node) return 0;
-    return node.getPointAtLength(val).y;
-  });
+    if (!node || typeof node.getTotalLength !== "function") {
+      return { x: 0, y: 0 };
+    }
+    const len = node.getTotalLength();
+    if (!Number.isFinite(len) || len <= 0) {
+      return { x: 0, y: 0 };
+    }
+    const t = Math.min(Math.max(0, val), len);
+    try {
+      return node.getPointAtLength(t);
+    } catch {
+      return { x: 0, y: 0 };
+    }
+  }, []);
+
+  const x = useTransform(progress, (val) => pointOnPath(val).x);
+  const y = useTransform(progress, (val) => pointOnPath(val).y);
 
   const transform = useMotionTemplate`translateX(${x}px) translateY(${y}px) translateX(-50%) translateY(-50%)`;
 

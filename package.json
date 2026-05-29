@@ -4,15 +4,20 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build --turbopack",
+    "build": "node scripts/copy-human-models.mjs && next build --turbopack",
+    "postinstall": "node scripts/copy-human-models.mjs",
     "start": "next start",
     "lint": "eslint"
   },
   "dependencies": {
     "@ai-sdk/groq": "^3.0.24",
     "@ai-sdk/react": "^3.0.99",
+    "@mediapipe/camera_utils": "^0.3.1675466862",
+    "@mediapipe/drawing_utils": "^0.3.1675466124",
+    "@mediapipe/hands": "^0.4.1675469240",
     "@tabler/icons-react": "^3.43.0",
     "@vercel/analytics": "^1.5.0",
+    "@vladmandic/human": "^3.3.6",
     "ai": "^6.0.97",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -22,6 +27,7 @@
     "next": "^15.5.12",
     "react": "19.1.0",
     "react-dom": "19.1.0",
+    "react-webcam": "^7.2.0",
     "tailwind-merge": "^3.3.1",
     "zod": "^4.3.6"
   },

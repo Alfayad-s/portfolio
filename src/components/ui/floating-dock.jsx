@@ -8,8 +8,36 @@
 import { cn } from "@/lib/utils";
 import { IconLayoutNavbarCollapse } from "@tabler/icons-react";
 import { AnimatePresence, motion, useMotionValue, useSpring, useTransform } from "motion/react";
+import Link from "next/link";
 
 import { useRef, useState } from "react";
+
+function DockLink({ href, className, children, ...props }) {
+  const isExternal =
+    href.startsWith("http://") ||
+    href.startsWith("https://") ||
+    href.startsWith("mailto:");
+
+  if (isExternal) {
+    return (
+      <a
+        href={href}
+        className={className}
+        target="_blank"
+        rel="noopener noreferrer"
+        {...props}
+      >
+        {children}
+      </a>
+    );
+  }
+
+  return (
+    <Link href={href} className={className} {...props}>
+      {children}
+    </Link>
+  );
+}
 
 export const FloatingDock = ({
   items,
@@ -52,12 +80,13 @@ const FloatingDockMobile = ({
                   },
                 }}
                 transition={{ delay: (items.length - 1 - idx) * 0.05 }}>
-                <a
+                <DockLink
                   href={item.href}
                   key={item.title}
-                  className="flex h-10 w-10 items-center justify-center rounded-full bg-black">
+                  className="flex h-10 w-10 items-center justify-center rounded-full bg-black"
+                  onClick={() => setOpen(false)}>
                   <div className="h-4 w-4">{item.icon}</div>
-                </a>
+                </DockLink>
               </motion.div>
             ))}
           </motion.div>
@@ -137,7 +166,7 @@ function IconContainer({
   const [hovered, setHovered] = useState(false);
 
   return (
-    <a href={href}>
+    <DockLink href={href} className="block">
       <motion.div
         ref={ref}
         style={{ width, height }}
@@ -161,6 +190,6 @@ function IconContainer({
           {icon}
         </motion.div>
       </motion.div>
-    </a>
+    </DockLink>
   );
 }

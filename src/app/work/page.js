@@ -7,7 +7,34 @@ import { useLanguage } from '@/context/LanguageContext';
 import ScrollTriggerAnimations from '@/components/ScrollTriggerAnimations';
 import { ArrowLeft, ArrowUpRight, ExternalLink } from 'lucide-react';
 
+const FEATURED_SLUG = 'fd-postman-cli';
+
 const WORK_PROJECTS = [
+  {
+    slug: 'fd-postman-cli',
+    title: 'FD-Postman-CLI',
+    subtitle: 'NPM Package · Terminal API Client',
+    description:
+      'Use Postman from the terminal. Send requests, manage collections, and test APIs without leaving the CLI. Install globally: npm i -g fd-postman-cli.',
+    thumbnail: '/project-thumbnail/fd-postman-cli.jpg',
+    href: 'https://www.npmjs.com/package/fd-postman-cli',
+    badge: 'NPM',
+    index: '01',
+    tech: ['Node.js', 'CLI', 'NPM', 'API Testing'],
+  },
+  {
+    slug: 'vision-pro',
+    title: 'Vision Pro',
+    subtitle: 'Real-Time AI Vision Demo',
+    description:
+      'MediaPipe Hands 21-point tracking with elastic fingertip rubber bands—blue-to-red tension curves, depth-aware joints, and 60fps WASM inference.',
+    thumbnail: '/project-thumbnail/vision-pro.svg',
+    href: '/work/vision-pro',
+    internal: true,
+    badge: 'DEMO',
+    index: '02',
+    tech: ['MediaPipe', 'WebAssembly', 'Canvas', 'WebGL'],
+  },
   {
     title: 'Fayad AI',
     subtitle: 'Personal AI Assistant',
@@ -15,18 +42,8 @@ const WORK_PROJECTS = [
     thumbnail: '/project-thumbnail/fayad-ai.jpg',
     href: 'https://fayad-ai.vercel.app',
     badge: 'LIVE',
-    index: '01',
+    index: '03',
     tech: ['Next.js', 'Gemini API', 'Vercel', 'Tailwind'],
-  },
-  {
-    title: 'FD-Postman-CLI',
-    subtitle: 'NPM Package',
-    description: 'Use Postman from the terminal. Send requests, manage collections, and test APIs without leaving the CLI. Install: npm i -g fd-postman-cli.',
-    thumbnail: '/project-thumbnail/fd-postman-cli.jpg',
-    href: 'https://www.npmjs.com/package/fd-postman-cli',
-    badge: 'NPM',
-    index: '02',
-    tech: ['Node.js', 'CLI', 'NPM'],
   },
   {
     title: 'Redux Auto Slice',
@@ -35,7 +52,7 @@ const WORK_PROJECTS = [
     thumbnail: '/project-thumbnail/redux-auto-slice.jpg',
     href: 'https://www.npmjs.com/package/redux-auto-slice',
     badge: 'NPM',
-    index: '03',
+    index: '04',
     tech: ['Redux', 'NPM', 'JavaScript'],
   },
   {
@@ -45,7 +62,7 @@ const WORK_PROJECTS = [
     thumbnail: '/project-thumbnail/tracex.jpg',
     href: 'https://tracexx.vercel.app',
     badge: 'LIVE',
-    index: '04',
+    index: '05',
     tech: ['Next.js', 'Vercel', 'Full Stack'],
   },
   {
@@ -55,7 +72,7 @@ const WORK_PROJECTS = [
     thumbnail: '/project-thumbnail/codeteak.jpg',
     href: 'https://codeteak.com',
     badge: 'LIVE',
-    index: '05',
+    index: '06',
     tech: ['Next.js', 'Tailwind', 'Vercel'],
   },
   {
@@ -65,7 +82,7 @@ const WORK_PROJECTS = [
     thumbnail: '/project-thumbnail/yaadro.jpg',
     href: 'https://yaadro.ae',
     badge: 'LIVE',
-    index: '06',
+    index: '07',
     tech: ['Full Stack', 'Design', 'Codeteak'],
   },
   {
@@ -75,7 +92,7 @@ const WORK_PROJECTS = [
     thumbnail: '/project-thumbnail/qhvalet.jpg',
     href: 'https://qhvalet.com',
     badge: 'LIVE',
-    index: '07',
+    index: '08',
     tech: ['Next.js', 'Redux', 'Tailwind'],
   },
   {
@@ -85,10 +102,43 @@ const WORK_PROJECTS = [
     thumbnail: '/project-thumbnail/chaise.jpg',
     href: 'https://chaise.vercel.app',
     badge: 'LIVE',
-    index: '08',
+    index: '09',
     tech: ['Next.js', 'Vercel', 'Restaurant'],
   },
 ];
+
+function isInternalProject(project) {
+  return Boolean(project.internal || project.href?.startsWith('/'));
+}
+
+function ProjectCard({ project, className, style, cardRef, dataRowIndex, children }) {
+  if (isInternalProject(project)) {
+    return (
+      <Link
+        href={project.href}
+        className={className}
+        style={style}
+        ref={cardRef}
+        data-row-index={dataRowIndex}
+      >
+        {children}
+      </Link>
+    );
+  }
+  return (
+    <a
+      href={project.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={className}
+      style={style}
+      ref={cardRef}
+      data-row-index={dataRowIndex}
+    >
+      {children}
+    </a>
+  );
+}
 
 const styles = `
   @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap');
@@ -289,26 +339,34 @@ const styles = `
     max-width: 1100px; margin: 0 auto; padding: 5rem 2rem 0;
   }
   .wp-featured-card {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
-    background: var(--red-border);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+    background: var(--black);
+    align-items: start;
     opacity: 0; animation: fadeUp 0.8s 0.5s forwards;
   }
   @media(max-width:760px){ .wp-featured-card { grid-template-columns: 1fr; } }
 
   .wp-featured-img {
-    position: relative; aspect-ratio: 4/3; overflow: hidden; background: var(--black2);
+    position: relative;
+    overflow: hidden;
+    background: var(--black);
+    line-height: 0;
   }
-  .wp-featured-overlay {
-    position: absolute; inset: 0;
-    background: linear-gradient(135deg, rgba(224,28,28,0.15) 0%, transparent 60%);
-    z-index: 1; pointer-events: none;
+  .wp-featured-photo {
+    width: 100%;
+    height: auto;
+    display: block;
+    vertical-align: top;
   }
 
   .wp-featured-content {
     background: var(--black); padding: 3.5rem 3rem;
+    border-left: 1px solid var(--red-border);
     display: flex; flex-direction: column; justify-content: space-between;
   }
-  @media(max-width:760px){ .wp-featured-content { padding: 2.5rem 2rem; } }
+  @media(max-width:760px){
+    .wp-featured-content { padding: 2.5rem 2rem; border-left: none; border-top: 1px solid var(--red-border); }
+  }
 
   .wp-featured-label {
     font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase;
@@ -406,8 +464,9 @@ export default function WorkPage() {
     return () => observer.disconnect();
   }, []);
 
-  const featured = WORK_PROJECTS[0];
-  const rest = WORK_PROJECTS.slice(1);
+  const featured =
+    WORK_PROJECTS.find((p) => p.slug === FEATURED_SLUG) ?? WORK_PROJECTS[0];
+  const rest = WORK_PROJECTS.filter((p) => p !== featured);
 
   return (
     <ScrollTriggerAnimations isActive={true}>
@@ -447,8 +506,14 @@ export default function WorkPage() {
             </div>
             <div className="wp-featured-card">
               <div className="wp-featured-img">
-                <Image src={featured.thumbnail} alt={featured.title} fill className="object-cover" sizes="(max-width:760px) 100vw, 50vw" />
-                <div className="wp-featured-overlay" />
+                <Image
+                  src={featured.thumbnail}
+                  alt={featured.title}
+                  width={1200}
+                  height={900}
+                  className="wp-featured-photo"
+                  sizes="(max-width:760px) 100vw, 50vw"
+                />
               </div>
               <div className="wp-featured-content">
                 <div>
@@ -460,10 +525,17 @@ export default function WorkPage() {
                     {featured.tech.map(t => <span key={t} className="wp-featured-tag">{t}</span>)}
                   </div>
                 </div>
-                <a href={featured.href} target="_blank" rel="noopener noreferrer" className="wp-featured-link">
-                  <span>View Project</span>
-                  <ExternalLink size={14} />
-                </a>
+                {isInternalProject(featured) ? (
+                  <Link href={featured.href} className="wp-featured-link">
+                    <span>Launch Live Demo</span>
+                    <ArrowUpRight size={14} />
+                  </Link>
+                ) : (
+                  <a href={featured.href} target="_blank" rel="noopener noreferrer" className="wp-featured-link">
+                    <span>{featured.badge === 'NPM' ? 'View on NPM' : 'View Project'}</span>
+                    <ExternalLink size={14} />
+                  </a>
+                )}
               </div>
             </div>
           </div>
@@ -472,14 +544,12 @@ export default function WorkPage() {
           <section className="wp-list-section">
             <div className="wp-grid">
               {rest.map((project, i) => (
-                <a
+                <ProjectCard
                   key={project.title}
-                  href={project.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  project={project}
                   className="wp-project-card"
-                  ref={el => rowRefs.current[i] = el}
-                  data-row-index={i}
+                  cardRef={el => { rowRefs.current[i] = el; }}
+                  dataRowIndex={i}
                   style={visibleRows[i] ? { animationDelay: `${i * 0.08}s` } : { opacity: 0, animationPlayState: 'paused' }}
                 >
                   {/* Big image */}
@@ -502,7 +572,7 @@ export default function WorkPage() {
                       <ArrowUpRight size={18} className="wp-card-arrow" />
                     </div>
                   </div>
-                </a>
+                </ProjectCard>
               ))}
             </div>
           </section>

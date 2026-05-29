@@ -2,67 +2,46 @@
 
 import { FloatingDock } from "@/components/ui/floating-dock";
 import {
-  IconBrandGithub,
-  IconBrandLinkedin,
-  IconFileCv,
   IconBriefcase2,
+  IconFolder,
   IconHome,
   IconMail,
   IconUser,
 } from "@tabler/icons-react";
 
+const iconClass = "h-full w-full text-neutral-500 dark:text-neutral-300";
+
+/** Site pages + home sections (matches Footer / ChatWidget routes). */
+const NAV_LINKS = [
+  {
+    title: "Home",
+    icon: <IconHome className={iconClass} />,
+    href: "/",
+  },
+  {
+    title: "About",
+    icon: <IconUser className={iconClass} />,
+    href: "/#about",
+  },
+  {
+    title: "Work",
+    icon: <IconFolder className={iconClass} />,
+    href: "/work",
+  },
+  {
+    title: "Services",
+    icon: <IconBriefcase2 className={iconClass} />,
+    href: "/services",
+  },
+  {
+    title: "Contact",
+    icon: <IconMail className={iconClass} />,
+    href: "/contact",
+  },
+];
+
 export default function FloatingDockNav() {
-  const links = [
-    {
-      title: "Home",
-      icon: (
-        <IconHome className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-      ),
-      href: "#home",
-    },
-    {
-      title: "About",
-      icon: (
-        <IconUser className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-      ),
-      href: "#about",
-    },
-    {
-      title: "Projects",
-      icon: (
-        <IconFileCv className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-      ),
-      href: "#projects",
-    },
-    {
-      title: "Services",
-      icon: (
-        <IconBriefcase2 className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-      ),
-      href: "/services",
-    },
-    {
-      title: "Contact",
-      icon: (
-        <IconMail className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-      ),
-      href: "#contact",
-    },
-    {
-      title: "LinkedIn",
-      icon: (
-        <IconBrandLinkedin className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-      ),
-      href: "https://linkedin.com/in/alfayad",
-    },
-    {
-      title: "GitHub",
-      icon: (
-        <IconBrandGithub className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-      ),
-      href: "https://github.com/Alfayads",
-    },
-  ];
+  const links = NAV_LINKS;
 
   return (
     <div className="fixed inset-x-0 bottom-6 z-50 flex justify-center px-4 pointer-events-none">

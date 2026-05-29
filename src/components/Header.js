@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import LanguageToggle from './LanguageToggle';
 import AiAskInput from "@/components/ui/ai-ask-input";
+import HandCursorToggle from "@/components/HandCursorToggle";
 
 const styles = `
   @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap');
@@ -291,7 +292,8 @@ export default function Header() {
             </div>
           </div>
 
-          <div className="relative z-10 ml-auto shrink-0">
+          <div className="relative z-10 ml-auto flex shrink-0 items-center gap-2">
+            <HandCursorToggle />
             <LanguageToggle />
           </div>
         </div>

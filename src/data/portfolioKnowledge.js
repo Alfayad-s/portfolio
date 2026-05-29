@@ -90,6 +90,7 @@ ${projectsList}
 Key projects to mention when relevant:
 - **Fayad AI** — Your personal AI assistant (fayad-ai.vercel.app), built with Next.js and Gemini. Conversational AI with streaming.
 - **FD-Postman-CLI** — NPM package for API testing from the terminal (npm i -g fd-postman-cli).
+- **Vision Pro** — Live portfolio demo at /work/vision-pro: real-time face emotion detection and elastic thumb–index finger tracking using @vladmandic/human and react-webcam (client-side only).
 - **Redux Auto Slice** — NPM package for automatic Redux slice creation; reduces boilerplate in Redux projects.
 - **TraceX** — Personal expense tracking app (tracexx.vercel.app). Log spending, categorize transactions, clean interface.
 - **Codeteak** — Official company website (codeteak.com). Services, team, and brand. Next.js, Tailwind, Vercel. Company originated in Bengaluru, Karnataka, India; expanded with operations in Dubai, UAE.

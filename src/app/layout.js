@@ -3,6 +3,8 @@ import "./globals.css";
 import Header from "@/components/Header";
 import ClickSpark from "@/components/ClickSpark";
 import { LanguageProvider } from "@/context/LanguageContext";
+import { HandCursorProvider } from "@/context/HandCursorContext";
+import GlobalHandCursor from "@/components/GlobalHandCursor";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import Script from "next/script";
 import { Analytics } from "@vercel/analytics/next";
@@ -162,18 +164,21 @@ export default function RootLayout({ children }) {
         <GoogleAnalytics GA_MEASUREMENT_ID={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />
         <Analytics />
         <LanguageProvider>
-          <ClickSpark
-            sparkColor='#fff'
-            sparkSize={10}
-            sparkRadius={15}
-            sparkCount={8}
-            duration={400}
-          >
-            <Header />
-            {children}
-            <Footer />
-          </ClickSpark>
-          <FloatingDockNav />
+          <HandCursorProvider>
+            <ClickSpark
+              sparkColor='#fff'
+              sparkSize={10}
+              sparkRadius={15}
+              sparkCount={8}
+              duration={400}
+            >
+              <Header />
+              {children}
+              <Footer />
+            </ClickSpark>
+            <GlobalHandCursor />
+            <FloatingDockNav />
+          </HandCursorProvider>
         </LanguageProvider>
       </body>
     </html>

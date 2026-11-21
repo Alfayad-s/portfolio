@@ -3,7 +3,7 @@ export default function robots() {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: '/private/',
+      disallow: ['/private/', '/admin/'],
     },
     sitemap: 'https://alfayad.vercel.app/sitemap.xml',
   };

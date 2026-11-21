@@ -1,37 +1,13 @@
-'use client';
-
-import { useState } from 'react';
-import HeroSection from "@/sections/HeroSection";
-import SplashScreen from "@/sections/SplashScreen";
-import AboutSection from "@/sections/AboutSection";
-import ResumeSection from "@/sections/ResumeSection";
-import TechStackMarquee from "@/components/TechStackMarquee";
-import ScrollTriggerAnimations from "@/components/ScrollTriggerAnimations";
+import DynamicIsland from "@/components/smoothui/dynamic-island";
+import Landing from "@/components/home/landing";
 
 export default function Home() {
-  const [showSplash, setShowSplash] = useState(true);
-
-  const handleSplashComplete = () => {
-    setShowSplash(false);
-    if (typeof window !== "undefined") {
-      // Ensure we start at the top of the page after the splash finishes
-      window.scrollTo(0, 0);
-      window.dispatchEvent(new CustomEvent("splashComplete"));
-    }
-  };
-
   return (
-    <div className="overflow-hidden font-sans">
-      {showSplash ? (
-        <SplashScreen onComplete={handleSplashComplete} />
-      ) : (
-        <ScrollTriggerAnimations isActive={true}>
-          <HeroSection />
-          <AboutSection />
-          <TechStackMarquee />
-          <ResumeSection />
-        </ScrollTriggerAnimations>
-      )}
-    </div>
+    <main className="home-screen relative min-h-screen overflow-x-hidden lg:h-dvh lg:overflow-hidden">
+      <div className="fixed top-0 left-1/2 z-50 -translate-x-1/2">
+        <DynamicIsland />
+      </div>
+      <Landing />
+    </main>
   );
 }

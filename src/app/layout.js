@@ -1,15 +1,10 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/Header";
-import ClickSpark from "@/components/ClickSpark";
 import { LanguageProvider } from "@/context/LanguageContext";
-import { HandCursorProvider } from "@/context/HandCursorContext";
-import GlobalHandCursor from "@/components/GlobalHandCursor";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
+import TapSound from "@/components/TapSound";
 import Script from "next/script";
 import { Analytics } from "@vercel/analytics/next";
-import Footer from "@/components/Footer";
-import FloatingDockNav from "@/components/FloatingDockNav";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -21,16 +16,17 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+};
+
 export const metadata = {
   title: {
     default: "Alfayad | Full-Stack Developer & AI Specialist",
     template: "%s | Alfayad Portfolio"
-  },
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    maximumScale: 1,
-    userScalable: false,
   },
   description: "Professional Full-Stack Developer specializing in MERN stack, Next.js, and AI integration. Building modern web applications, e-commerce platforms, and intelligent solutions.",
   keywords: ["Full-Stack Developer", "MERN Stack", "React Developer", "Next.js", "AI Integration", "Web Development", "E-commerce", "Dubai Developer", "JavaScript", "Node.js", "MongoDB", "Express", "Tailwind CSS", "TypeScript", "Alfayad Shameer"],
@@ -82,16 +78,13 @@ export const metadata = {
     },
   },
   verification: {
-    google: "your-google-verification-code", // Add your Google Search Console verification code here
-    // yandex: "your-yandex-verification-code",
-    // bing: "your-bing-verification-code",
+    google: "your-google-verification-code",
   },
   category: "technology",
   applicationName: "Alfayad Portfolio",
 };
 
 export default function RootLayout({ children }) {
-  // Schema.org structured data for the website
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
@@ -139,9 +132,8 @@ export default function RootLayout({ children }) {
   };
 
   return (
-    <html lang="en" className="dark">
+    <html lang="en">
       <head>
-        {/* Schema.org Structured Data */}
         <Script
           id="website-schema"
           type="application/ld+json"
@@ -157,28 +149,12 @@ export default function RootLayout({ children }) {
           }}
         />
       </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black text-white`}
-      >
-        {/* Google Analytics */}
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <GoogleAnalytics GA_MEASUREMENT_ID={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />
         <Analytics />
+        <TapSound />
         <LanguageProvider>
-          <HandCursorProvider>
-            <ClickSpark
-              sparkColor='#fff'
-              sparkSize={10}
-              sparkRadius={15}
-              sparkCount={8}
-              duration={400}
-            >
-              <Header />
-              {children}
-              <Footer />
-            </ClickSpark>
-            <GlobalHandCursor />
-            <FloatingDockNav />
-          </HandCursorProvider>
+          {children}
         </LanguageProvider>
       </body>
     </html>

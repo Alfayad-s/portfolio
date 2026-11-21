@@ -1,238 +1,33 @@
-@import url("https://fonts.googleapis.com/css2?family=DotGothic16&display=swap");
 @import "tailwindcss";
 
-@font-face {
-  font-family: "OffBit-DotBold";
-  src: url("/font/OffBit-DotBold.ttf") format("truetype");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-/** Overlay AI replies: OffBit-DotBold (`public/font/OffBit-DotBold.ttf`). DotGothic16 only if the file is missing. */
-.font-overlay-chat-dotted {
-  font-family: "OffBit-DotBold", "DotGothic16", ui-sans-serif, system-ui, sans-serif;
-  font-weight: 700;
-}
-
 :root {
-  --background: #000;
-  --foreground: #ededed;
+  --background: #e6e6e6;
+  --foreground: #171717;
+  --primary: #171717;
+  --primary-foreground: #ffffff;
+  --border: #d0d0d0;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-border: var(--border);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
+html,
 body {
+  height: 100%;
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Chat widget entrance animation (after splash + delay) */
-@keyframes chat-in {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
+@media (min-width: 1024px) {
+  html:has(.home-screen),
+  html:has(.home-screen) body {
+    overflow: hidden;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-.animate-chat-in {
-  animation: chat-in 0.6s ease-out forwards;
-}
-.animate-chat-in-delay {
-  animation: chat-in 0.6s ease-out 0.15s forwards;
-  opacity: 0;
-}
-
-/* Mobile input fixes - Comprehensive approach */
-input, textarea, select {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  border-radius: 0.5rem;
-  font-size: 16px; /* Prevents zoom on iOS */
-  position: relative;
-  z-index: 10;
-  pointer-events: auto !important;
-  touch-action: manipulation;
-  -webkit-tap-highlight-color: transparent;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-/* Fix for mobile input focus */
-input:focus, textarea:focus, select:focus {
-  -webkit-tap-highlight-color: transparent;
-  outline: none;
-  -webkit-user-select: text;
-  -moz-user-select: text;
-  -ms-user-select: text;
-  user-select: text;
-  z-index: 20;
-  position: relative;
-}
-
-/* Allow text selection in input fields when focused */
-input:focus, textarea:focus {
-  -webkit-user-select: text;
-  -moz-user-select: text;
-  -ms-user-select: text;
-  user-select: text;
-}
-
-/* Ensure form elements are above everything */
-form {
-  position: relative;
-  z-index: 5;
-}
-
-form input, form textarea, form select {
-  position: relative;
-  z-index: 10;
-}
-
-/* Fix for iOS input zoom and mobile interactions */
-@media screen and (max-width: 768px) {
-  input, textarea, select {
-    font-size: 16px !important;
-    min-height: 44px; /* iOS minimum touch target */
-    padding: 12px 16px !important;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    border: 2px solid rgba(239, 68, 68, 0.2);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    border-radius: 8px;
-    width: 100%;
-    box-sizing: border-box;
-    position: relative;
-    z-index: 10;
-    pointer-events: auto !important;
-    touch-action: manipulation;
-  }
-  
-  input:focus, textarea:focus, select:focus {
-    border-color: #ef4444;
-    outline: none;
-    z-index: 20;
-    position: relative;
-  }
-  
-  /* Ensure labels don't interfere */
-  label {
-    position: relative;
-    z-index: 1;
-    pointer-events: none;
-  }
-  
-  /* Make sure form containers don't block touches */
-  .form-container, form > div {
-    position: relative;
-    z-index: 1;
-  }
-}
-
-/* Prevent double-tap zoom on buttons */
-button {
-  touch-action: manipulation;
-  -webkit-tap-highlight-color: transparent;
-  position: relative;
-  z-index: 10;
-}
-
-/* Additional mobile-specific fixes */
-@media (hover: none) and (pointer: coarse) {
-  /* This targets touch devices */
-  input, textarea, select {
-    font-size: 16px !important;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    pointer-events: auto !important;
-    touch-action: manipulation;
-    position: relative;
-    z-index: 10;
-  }
-  
-  input:focus, textarea:focus, select:focus {
-    z-index: 20;
-    position: relative;
-  }
-}
-
-/* Tech stack marquee */
-@keyframes marquee-left {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-@keyframes marquee-right {
-  0% { transform: translateX(-50%); }
-  100% { transform: translateX(0); }
-}
-
-.animate-marquee-left {
-  animation: marquee-left 45s linear infinite;
-}
-
-.animate-marquee-right {
-  animation: marquee-right 45s linear infinite;
-}
-
-/* Section title hover — smooth glow, letter-spacing, underline scale */
-.section-title-wrap {
-  cursor: default;
-}
-
-.section-title-wrap .section-title-text {
-  font-family: "OffBit-DotBold", sans-serif;
-  transition: text-shadow 0.5s ease, letter-spacing 0.5s ease, transform 0.4s ease;
-}
-
-/* OffBit font for any section or page title */
-.font-offbit {
-  font-family: "OffBit-DotBold", sans-serif;
-}
-
-.section-title-wrap:hover .section-title-text {
-  text-shadow: 0 0 24px rgba(239, 68, 68, 0.25);
-  letter-spacing: 0.02em;
-  transform: translateX(2px);
-}
-
-.section-title-wrap .section-title-line {
-  transform-origin: left;
-  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s ease;
-}
-
-.section-title-wrap:hover .section-title-line {
-  transform: scaleX(1.08);
-  box-shadow: 0 0 12px rgba(239, 68, 68, 0.5);
-}
-
-.section-title-wrap .section-title-line.section-title-line-center {
-  transform-origin: center;
-}
-
-/* GSAP scroll targets: prevent flash before animation */
-[data-gsap="fade-up"],
-[data-gsap="scale-in"] {
-  opacity: 0;
-}
-
-[data-gsap="stagger"] [data-gsap-item] {
-  opacity: 0;
 }

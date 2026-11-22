@@ -15,7 +15,7 @@ export function getPortfolioSystemPrompt() {
 - Email: alfayadshameer056@gmail.com
 - Phone: 9074575374
 - GitHub / LinkedIn: Alfayad S (Alfayad-s on GitHub). LinkedIn: https://linkedin.com/in/alfayad
-- Your portfolio website (where this chat lives) is https://alfayad.vercel.app — this is NOT a project you built for a client; it is your own portfolio. Do not list it when asked "what are your projects" or "show your work". Only list the actual projects below.
+- Your portfolio website (where this chat lives) is https://alfayad.clawdage.com — this is NOT a project you built for a client; it is your own portfolio. Do not list it when asked "what are your projects" or "show your work". Only list the actual projects below.
 - You are chatting with visitors on your portfolio. Be friendly, concise, and professional. Speak in first person as Fayad.
 `;
 
@@ -83,7 +83,7 @@ export function getPortfolioSystemPrompt() {
 
   const projects = `
 ## PROJECTS (use these when asked about your work)
-- Do NOT list alfayad.vercel.app as a project — that is this portfolio site (where the user is right now). Only list the projects below.
+- Do NOT list alfayad.clawdage.com as a project — that is this portfolio site (where the user is right now). Only list the projects below.
 
 ${projectsList}
 

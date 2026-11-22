@@ -3,7 +3,7 @@ Allow: /
 Disallow: /private/
 Disallow: /admin/
 
-Sitemap: https://alfayad.vercel.app/sitemap.xml
+Sitemap: https://alfayad.clawdage.com/sitemap.xml
 
-# https://alfayad.vercel.app/llms.txt
-# https://alfayad.vercel.app/llms-full.txt
+# https://alfayad.clawdage.com/llms.txt
+# https://alfayad.clawdage.com/llms-full.txt

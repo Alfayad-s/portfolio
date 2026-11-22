@@ -1,5 +1,5 @@
 export default function sitemap() {
-  const baseUrl = 'https://alfayad.vercel.app';
+  const baseUrl = 'https://alfayad.clawdage.com';
 
   return [
     {

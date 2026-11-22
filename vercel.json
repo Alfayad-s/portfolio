@@ -1,0 +1,15 @@
+{
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "alfayad.vercel.app"
+        }
+      ],
+      "destination": "https://alfayad.clawdage.com/:path*",
+      "permanent": true
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 # Alfayad Shameer
 
-Alfayad Shameer is a full-stack developer and UI/UX designer based in Alappuzha, Kerala, India. His portfolio is https://alfayad.vercel.app.
+Alfayad Shameer is a full-stack developer and UI/UX designer based in Alappuzha, Kerala, India. His portfolio is https://alfayad.clawdage.com.
 
 ## Work
 
@@ -31,4 +31,4 @@ Web apps, mobile apps, and AI products. Stack: JavaScript, TypeScript, React, Ne
 
 ## Short version
 
-https://alfayad.vercel.app/llms.txt
+https://alfayad.clawdage.com/llms.txt

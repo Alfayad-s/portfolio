@@ -5,6 +5,9 @@ import path from "path";
 const passwordPath = path.join(process.cwd(), "data", ".admin-password");
 
 export async function adminPassword() {
+  const fromEnv = process.env.ADMIN_PASSWORD?.trim();
+  if (fromEnv) return fromEnv;
+
   try {
     const value = (await fs.readFile(passwordPath, "utf8")).trim();
     return value;

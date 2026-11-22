@@ -152,13 +152,13 @@ export default function TechStack() {
 
   return (
     <div
-      className="relative w-[360px] cursor-grab touch-pan-y select-none self-center active:cursor-grabbing sm:w-[420px]"
+      className="relative mt-1 w-full min-w-0 cursor-grab touch-pan-y select-none self-center active:cursor-grabbing lg:mt-0 lg:w-[420px]"
       onMouseEnter={pause}
       onMouseLeave={resume}
       onPointerDown={() => setTip(null)}
     >
       <p
-        className="pointer-events-none absolute -top-10 left-1 flex items-end gap-1 text-neutral-400"
+        className="pointer-events-none mb-1 flex items-end gap-1 text-neutral-400 lg:absolute lg:-top-10 lg:left-1 lg:mb-0"
         style={{ fontFamily: '"Segoe Script", "Bradley Hand", "Comic Sans MS", cursive' }}
       >
         <span className="text-[15px] leading-none">I know these</span>

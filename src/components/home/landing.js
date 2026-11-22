@@ -165,7 +165,7 @@ export default async function Landing() {
 
       <section className="relative grid min-h-0 flex-1 grid-cols-1 items-stretch gap-8 lg:grid-cols-[minmax(0,1fr)_380px] lg:grid-rows-[minmax(0,1fr)_auto] lg:gap-x-10 lg:gap-y-0">
         <div className="flex min-h-0 w-full min-w-0 flex-col lg:col-start-1 lg:row-start-1 lg:h-full">
-        <div className="flex items-start gap-8 sm:flex-row sm:gap-10">
+        <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:gap-10">
         <div className="relative shrink-0">
           <Image
             src="/profile.png"
@@ -173,14 +173,14 @@ export default async function Landing() {
             width={1024}
             height={1536}
             priority
-            className="size-32 rounded-full object-cover object-[center_30%] shadow-[0_24px_40px_-24px_rgba(0,0,0,0.55)] ring-[5px] ring-white lg:size-36"
+            className="size-28 rounded-full object-cover object-[center_30%] shadow-[0_24px_40px_-24px_rgba(0,0,0,0.55)] ring-[5px] ring-white lg:size-36"
           />
-          <span className="absolute top-4 right-1 size-3.5 rounded-full bg-neutral-300 ring-[5px] ring-[#e6e6e6]" />
+          <span className="absolute top-3 right-1 size-3.5 rounded-full bg-neutral-300 ring-[5px] ring-[#e6e6e6] lg:top-4" />
         </div>
 
         <div className="min-w-0">
           <p className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm font-medium text-neutral-800">
-            <span className="inline-flex items-center gap-2 tracking-[0.04em]">
+            <span className="flex flex-wrap items-center gap-x-2 gap-y-1 tracking-[0.04em]">
               <span className="size-2 rounded-full bg-emerald-500 shadow-[0_0_0_4px_rgba(16,185,129,0.16)]" />
               <span>MERN</span>
               <span className="text-neutral-300" aria-hidden>|</span>
@@ -194,7 +194,7 @@ export default async function Landing() {
             </span>
           </p>
           <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-2">
-            <h1 className="text-5xl leading-[0.95] font-extrabold tracking-[-0.045em] text-neutral-950 lg:text-[3.4rem]">
+            <h1 className="text-4xl leading-[0.95] font-extrabold tracking-[-0.045em] text-neutral-950 sm:text-5xl lg:text-[3.4rem]">
               Hi, I’m Alfayad
             </h1>
             <nav aria-label="Social media" className="flex items-center gap-1">
@@ -232,23 +232,23 @@ export default async function Landing() {
               <Download className="size-4" />
               Download Resume
             </a>
-            <span className="hidden h-11 w-px bg-neutral-300 sm:block" aria-hidden />
+            <span className="hidden h-11 w-px bg-neutral-300 lg:block" aria-hidden />
             <TechStack />
           </div>
         </div>
         </div>
-        <p className="mt-6 flex h-8 flex-wrap items-center gap-x-2.5 text-sm leading-none text-neutral-600 lg:mt-auto lg:mb-3">
+        <p className="mt-6 flex flex-col items-start gap-2 text-sm leading-snug text-neutral-600 lg:mt-auto lg:mb-3 lg:h-8 lg:flex-row lg:flex-wrap lg:items-center lg:gap-x-2.5 lg:gap-y-0 lg:leading-none">
           <span className="inline-flex items-center gap-2 font-medium text-neutral-900">
             <span className="size-2 rounded-full bg-emerald-500 shadow-[0_0_0_3px_rgba(16,185,129,0.16)]" />
             Open for freelance
           </span>
-          <span className="text-neutral-300" aria-hidden>
+          <span className="hidden text-neutral-300 lg:inline" aria-hidden>
             ·
           </span>
-          <a href="mailto:alfayadshameer056@gmail.com" className="transition hover:text-neutral-950">
+          <a href="mailto:alfayadshameer056@gmail.com" className="break-all transition hover:text-neutral-950 lg:break-normal">
             alfayadshameer056@gmail.com
           </a>
-          <span className="text-neutral-300" aria-hidden>
+          <span className="hidden text-neutral-300 lg:inline" aria-hidden>
             ·
           </span>
           <a
@@ -278,7 +278,7 @@ export default async function Landing() {
             <br />
             Projects
           </h2>
-          <p className="mt-1.5 max-w-[190px] text-sm leading-snug text-neutral-500">
+          <p className="mt-1.5 max-w-xs text-sm leading-snug text-neutral-500 lg:max-w-[190px]">
             Some of my recent works built with passion.
           </p>
           <a

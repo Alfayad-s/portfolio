@@ -1,10 +1,6 @@
 import { uploadTestimonialPhoto } from "@/lib/cloudinary";
 import { consumeInviteLink, findInviteLink } from "@/lib/invite-links";
-import { randomUUID } from "crypto";
-import { promises as fs } from "fs";
-import path from "path";
-
-const filePath = path.join(process.cwd(), "data", "testimonials.json");
+import { getSupabase } from "@/lib/supabase";
 
 function clean(value, max) {
   return String(value ?? "")
@@ -14,10 +10,28 @@ function clean(value, max) {
     .slice(0, max);
 }
 
+function toTestimonial(row) {
+  return {
+    id: row.id,
+    name: row.name,
+    role: row.role,
+    message: row.message,
+    image: row.image || undefined,
+    createdAt: row.created_at,
+  };
+}
+
 export async function listTestimonials() {
-  const raw = await fs.readFile(filePath, "utf8");
-  const items = JSON.parse(raw);
-  return Array.isArray(items) ? items : [];
+  const supabase = getSupabase();
+  if (!supabase) return [];
+
+  const { data, error } = await supabase
+    .from("testimonials")
+    .select("id, name, role, message, image, created_at")
+    .order("created_at", { ascending: false });
+
+  if (error) throw error;
+  return (data ?? []).map(toTestimonial);
 }
 
 export async function addTestimonial({ name, role, message, companyWebsite, token, image }) {
@@ -25,16 +39,17 @@ export async function addTestimonial({ name, role, message, companyWebsite, toke
     return { error: "Could not save that testimonial.", status: 400 };
   }
 
+  const supabase = getSupabase();
+  if (!supabase) return { error: "Testimonial storage is not set up yet.", status: 500 };
+
   const existing = await findInviteLink(token);
   if (!existing) return { error: "This link is not valid.", status: 404 };
   if (existing.usedAt) return { error: "This link has already been used.", status: 410 };
 
   const entry = {
-    id: randomUUID(),
     name: clean(name, 60),
     role: clean(role, 80),
     message: clean(message, 400),
-    createdAt: new Date().toISOString(),
   };
 
   if (entry.name.length < 2) {
@@ -54,8 +69,16 @@ export async function addTestimonial({ name, role, message, companyWebsite, toke
   const invite = await consumeInviteLink(token);
   if (invite.error) return invite;
 
-  const items = await listTestimonials();
-  items.unshift(entry);
-  await fs.writeFile(filePath, JSON.stringify(items, null, 2));
-  return { testimonial: entry };
+  const { data, error } = await supabase
+    .from("testimonials")
+    .insert(entry)
+    .select("id, name, role, message, image, created_at")
+    .single();
+
+  if (error) {
+    await supabase.from("invite_links").update({ used_at: null }).eq("token", token);
+    throw error;
+  }
+
+  return { testimonial: toTestimonial(data) };
 }

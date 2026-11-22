@@ -1,6 +1,8 @@
 import DynamicIsland from "@/components/smoothui/dynamic-island";
 import Landing from "@/components/home/landing";
 
+export const dynamic = "force-dynamic";
+
 export default function Home() {
   return (
     <main className="home-screen relative min-h-screen overflow-x-hidden lg:h-dvh lg:overflow-hidden">

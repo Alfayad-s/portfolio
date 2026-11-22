@@ -1,0 +1,34 @@
+# Alfayad Shameer
+
+Alfayad Shameer is a full-stack developer and UI/UX designer based in Alappuzha, Kerala, India. His portfolio is https://alfayad.vercel.app.
+
+## Work
+
+- Codeteak (https://codeteak.com), Bengaluru and Dubai. Software engineer. He designs the interface and builds the web and mobile products with the team. Started April 2025.
+- Freelance full-stack product work, remote, from Alappuzha. Includes APIs and payments.
+- Brototype internship, MERN stack, January 2024 to December 2025.
+
+He is open for freelance work. Email alfayadshameer056@gmail.com or book at https://hirefayad.vercel.app.
+
+## What he builds
+
+Web apps, mobile apps, and AI products. Stack: JavaScript, TypeScript, React, Next.js, Node.js, Express, NestJS, MongoDB, PostgreSQL, Tailwind CSS, and AI integration.
+
+## Projects
+
+- FAYAD AI, a personal AI assistant: https://fayad-ai.vercel.app
+- TraceX, an expense tracking app: https://tracexx.vercel.app
+- Yaadro, supermarket delivery management for the UAE: https://yaadro.ae
+
+## Profiles
+
+- GitHub: https://github.com/Alfayad-s
+- LinkedIn: https://linkedin.com/in/alfayad
+- Upwork: https://www.upwork.com/freelancers/~01a7a783248f424c71
+- X: https://x.com/alfayad
+- Instagram: https://instagram.com/alfayads
+- Facebook: https://facebook.com/alfayad
+
+## Short version
+
+https://alfayad.vercel.app/llms.txt

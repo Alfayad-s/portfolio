@@ -25,11 +25,11 @@ export const viewport = {
 
 export const metadata = {
   title: {
-    default: "Alfayad | Full-Stack Developer & AI Specialist",
-    template: "%s | Alfayad Portfolio"
+    default: "Alfayad Shameer | Full-Stack Developer in Kerala",
+    template: "%s | Alfayad Shameer"
   },
-  description: "Professional Full-Stack Developer specializing in MERN stack, Next.js, and AI integration. Building modern web applications, e-commerce platforms, and intelligent solutions.",
-  keywords: ["Full-Stack Developer", "MERN Stack", "React Developer", "Next.js", "AI Integration", "Web Development", "E-commerce", "Dubai Developer", "JavaScript", "Node.js", "MongoDB", "Express", "Tailwind CSS", "TypeScript", "Alfayad Shameer"],
+  description: "Alfayad Shameer is a full-stack developer in Alappuzha, Kerala, India. He builds web, mobile, and AI products with the MERN stack and Next.js.",
+  keywords: ["Alfayad Shameer", "Alfayad", "Full-Stack Developer", "Full-Stack Developer Kerala", "MERN Developer Kerala", "React Developer", "Next.js", "AI Integration", "Web Development", "JavaScript", "Node.js", "MongoDB", "TypeScript"],
   authors: [{ name: "Alfayad Shameer", url: "https://alfayad.vercel.app" }],
   creator: "Alfayad Shameer",
   publisher: "Alfayad Shameer",
@@ -43,10 +43,10 @@ export const metadata = {
     canonical: "https://alfayad.vercel.app",
   },
   openGraph: {
-    title: "Alfayad | Full-Stack Developer & AI Specialist",
-    description: "Professional Full-Stack Developer specializing in MERN stack, Next.js, and AI integration. Building modern web applications, e-commerce platforms, and intelligent solutions.",
+    title: "Alfayad Shameer | Full-Stack Developer in Kerala",
+    description: "Alfayad Shameer is a full-stack developer in Alappuzha, Kerala, India. He builds web, mobile, and AI products with the MERN stack and Next.js.",
     url: "https://alfayad.vercel.app",
-    siteName: "Alfayad Portfolio",
+    siteName: "Alfayad Shameer",
     images: [
       {
         url: "https://alfayad.vercel.app/og-image.png",
@@ -61,8 +61,8 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Alfayad | Full-Stack Developer & AI Specialist",
-    description: "Professional Full-Stack Developer specializing in MERN stack, Next.js, and AI integration. Building modern web applications, e-commerce platforms, and intelligent solutions.",
+    title: "Alfayad Shameer | Full-Stack Developer in Kerala",
+    description: "Alfayad Shameer is a full-stack developer in Alappuzha, Kerala, India. He builds web, mobile, and AI products with the MERN stack and Next.js.",
     images: ["https://alfayad.vercel.app/og-image.png"],
     creator: "@alfayad",
   },
@@ -77,43 +77,38 @@ export const metadata = {
       "max-snippet": -1,
     },
   },
-  verification: {
-    google: "your-google-verification-code",
-  },
   category: "technology",
-  applicationName: "Alfayad Portfolio",
+  applicationName: "Alfayad Shameer",
 };
 
 export default function RootLayout({ children }) {
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: "Alfayad Portfolio",
+    name: "Alfayad Shameer",
     url: "https://alfayad.vercel.app",
-    description: "Professional portfolio showcasing full-stack development projects and AI integration expertise",
-    author: {
-      "@type": "Person",
-      name: "Alfayad Shameer",
-      jobTitle: "Full-Stack Developer & AI Specialist",
-      email: "alfayadshameer056@gmail.com",
-      url: "https://alfayad.vercel.app",
-      sameAs: [
-        "https://github.com/Alfayads",
-        "https://linkedin.com/in/alfayad"
-      ]
-    }
+    description: "Alfayad Shameer is a full-stack developer in Alappuzha, Kerala, India.",
+    author: { "@id": "https://alfayad.vercel.app/#person" },
   };
 
   const personSchema = {
     "@context": "https://schema.org",
     "@type": "Person",
+    "@id": "https://alfayad.vercel.app/#person",
     name: "Alfayad Shameer",
-    jobTitle: "Full-Stack Developer & AI Specialist",
+    jobTitle: "Full-Stack Developer",
     url: "https://alfayad.vercel.app",
     email: "alfayadshameer056@gmail.com",
-    description: "Professional Full-Stack Developer specializing in MERN stack, Next.js, and AI integration.",
+    description: "Alfayad Shameer is a full-stack developer in Alappuzha, Kerala, India. He builds web, mobile, and AI products with the MERN stack and Next.js.",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Alappuzha",
+      addressRegion: "Kerala",
+      addressCountry: "IN",
+    },
     knowsAbout: [
       "JavaScript",
+      "TypeScript",
       "React",
       "Node.js",
       "Next.js",
@@ -121,14 +116,25 @@ export default function RootLayout({ children }) {
       "Express",
       "AI Integration",
       "Web Development",
-      "E-commerce",
       "MERN Stack",
       "Tailwind CSS"
     ],
     sameAs: [
-      "https://github.com/Alfayads",
-      "https://linkedin.com/in/alfayad"
+      "https://github.com/Alfayad-s",
+      "https://linkedin.com/in/alfayad",
+      "https://www.upwork.com/freelancers/~01a7a783248f424c71",
+      "https://x.com/alfayad",
+      "https://instagram.com/alfayads",
+      "https://facebook.com/alfayad"
     ]
+  };
+
+  const profileSchema = {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    url: "https://alfayad.vercel.app",
+    name: "Alfayad Shameer",
+    mainEntity: { "@id": "https://alfayad.vercel.app/#person" },
   };
 
   return (
@@ -146,6 +152,13 @@ export default function RootLayout({ children }) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(personSchema),
+          }}
+        />
+        <Script
+          id="profile-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(profileSchema),
           }}
         />
       </head>

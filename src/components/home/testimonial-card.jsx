@@ -14,10 +14,20 @@ export default function TestimonialCard({ testimonials }) {
     setIndex((current) => (current + direction + count) % count);
   }
 
-  if (!item) return null;
+  if (!item) {
+    return (
+      <article className="flex h-full flex-col rounded-[24px] bg-white px-4 py-3 ring-1 ring-black/5">
+        <p className="flex items-center gap-2 text-[13px] font-semibold text-neutral-950">
+          <Quote className="size-3.5 text-violet-500" />
+          Testimonials
+        </p>
+        <p className="mt-auto text-xs leading-snug text-neutral-500">No testimonials yet.</p>
+      </article>
+    );
+  }
 
   return (
-    <article className="flex flex-col rounded-[24px] bg-white px-4 py-3 ring-1 ring-black/5">
+    <article className="flex h-full flex-col rounded-[24px] bg-white px-4 py-3 ring-1 ring-black/5">
       <p className="flex items-center justify-between gap-2 text-[13px] font-semibold text-neutral-950">
         <span className="inline-flex items-center gap-2">
           <Quote className="size-3.5 text-violet-500" />

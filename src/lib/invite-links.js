@@ -1,56 +1,81 @@
+import { getSupabase } from "@/lib/supabase";
 import { randomBytes } from "crypto";
-import { promises as fs } from "fs";
-import path from "path";
 
-const filePath = path.join(process.cwd(), "data", "invite-links.json");
-
-async function readLinks() {
-  try {
-    const items = JSON.parse(await fs.readFile(filePath, "utf8"));
-    return Array.isArray(items) ? items : [];
-  } catch {
-    return [];
-  }
-}
-
-async function writeLinks(items) {
-  await fs.writeFile(filePath, JSON.stringify(items, null, 2));
+function toLink(row) {
+  if (!row) return null;
+  return {
+    token: row.token,
+    label: row.label,
+    createdAt: row.created_at,
+    usedAt: row.used_at,
+  };
 }
 
 export async function listInviteLinks() {
-  const links = await readLinks();
-  return links.sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1));
+  const supabase = getSupabase();
+  if (!supabase) return [];
+
+  const { data, error } = await supabase
+    .from("invite_links")
+    .select("token, label, created_at, used_at")
+    .order("created_at", { ascending: false });
+
+  if (error) throw error;
+  return (data ?? []).map(toLink);
 }
 
 export async function createInviteLink(label) {
+  const supabase = getSupabase();
+  if (!supabase) return { error: "Testimonial storage is not set up yet.", status: 500 };
+
   const name = String(label ?? "")
     .replace(/[<>]/g, "")
     .replace(/\s+/g, " ")
     .trim()
     .slice(0, 80);
+
   const link = {
     token: randomBytes(18).toString("base64url"),
     label: name || "Customer",
-    createdAt: new Date().toISOString(),
-    usedAt: null,
+    created_at: new Date().toISOString(),
+    used_at: null,
   };
-  const links = await readLinks();
-  links.unshift(link);
-  await writeLinks(links);
-  return link;
+
+  const { data, error } = await supabase.from("invite_links").insert(link).select("token, label, created_at, used_at").single();
+  if (error) throw error;
+  return { link: toLink(data) };
 }
 
 export async function findInviteLink(token) {
-  const links = await readLinks();
-  return links.find((link) => link.token === token) ?? null;
+  const supabase = getSupabase();
+  if (!supabase || !token) return null;
+
+  const { data, error } = await supabase
+    .from("invite_links")
+    .select("token, label, created_at, used_at")
+    .eq("token", token)
+    .maybeSingle();
+
+  if (error) throw error;
+  return toLink(data);
 }
 
 export async function consumeInviteLink(token) {
-  const links = await readLinks();
-  const link = links.find((item) => item.token === token);
-  if (!link) return { error: "This link is not valid.", status: 404 };
-  if (link.usedAt) return { error: "This link has already been used.", status: 410 };
-  link.usedAt = new Date().toISOString();
-  await writeLinks(links);
-  return { link };
+  const supabase = getSupabase();
+  if (!supabase) return { error: "Testimonial storage is not set up yet.", status: 500 };
+
+  const { data, error } = await supabase
+    .from("invite_links")
+    .update({ used_at: new Date().toISOString() })
+    .eq("token", token)
+    .is("used_at", null)
+    .select("token, label, created_at, used_at")
+    .maybeSingle();
+
+  if (error) throw error;
+  if (data) return { link: toLink(data) };
+
+  const existing = await findInviteLink(token);
+  if (!existing) return { error: "This link is not valid.", status: 404 };
+  return { error: "This link has already been used.", status: 410 };
 }

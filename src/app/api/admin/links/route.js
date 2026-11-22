@@ -27,6 +27,9 @@ export async function POST(request) {
     body = {};
   }
 
-  const link = await createInviteLink(body.label);
-  return NextResponse.json({ link, links: await listInviteLinks() }, { status: 201 });
+  const created = await createInviteLink(body.label);
+  if (created.error) {
+    return NextResponse.json({ error: created.error }, { status: created.status });
+  }
+  return NextResponse.json({ link: created.link, links: await listInviteLinks() }, { status: 201 });
 }

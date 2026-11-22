@@ -13,7 +13,7 @@ const socials = [
   { name: "X", href: "https://x.com/alfayad", Icon: TbBrandX },
   { name: "Facebook", href: "https://facebook.com/alfayad", Icon: TbBrandFacebook },
   { name: "LinkedIn", href: "https://linkedin.com/in/alfayad", Icon: TbBrandLinkedin },
-  { name: "GitHub", href: "https://github.com/Alfayads", Icon: TbBrandGithub },
+  { name: "GitHub", href: "https://github.com/Alfayad-s", Icon: TbBrandGithub },
 ];
 
 const featured = [
@@ -164,7 +164,7 @@ export default async function Landing() {
       </div>
 
       <section className="relative grid min-h-0 flex-1 grid-cols-1 items-stretch gap-8 lg:grid-cols-[minmax(0,1fr)_380px] lg:grid-rows-[minmax(0,1fr)_auto] lg:gap-x-10 lg:gap-y-0">
-        <div className="flex min-h-0 w-full min-w-0 flex-col lg:col-start-1 lg:row-start-1">
+        <div className="flex min-h-0 w-full min-w-0 flex-col lg:col-start-1 lg:row-start-1 lg:h-full">
         <div className="flex items-start gap-8 sm:flex-row sm:gap-10">
         <div className="relative shrink-0">
           <Image
@@ -237,6 +237,29 @@ export default async function Landing() {
           </div>
         </div>
         </div>
+        <p className="mt-6 flex h-8 flex-wrap items-center gap-x-2.5 text-sm leading-none text-neutral-600 lg:mt-auto lg:mb-3">
+          <span className="inline-flex items-center gap-2 font-medium text-neutral-900">
+            <span className="size-2 rounded-full bg-emerald-500 shadow-[0_0_0_3px_rgba(16,185,129,0.16)]" />
+            Open for freelance
+          </span>
+          <span className="text-neutral-300" aria-hidden>
+            ·
+          </span>
+          <a href="mailto:alfayadshameer056@gmail.com" className="transition hover:text-neutral-950">
+            alfayadshameer056@gmail.com
+          </a>
+          <span className="text-neutral-300" aria-hidden>
+            ·
+          </span>
+          <a
+            href="https://hirefayad.vercel.app"
+            target="_blank"
+            rel="noreferrer"
+            className="font-medium text-neutral-950 underline decoration-neutral-300 underline-offset-4 transition hover:decoration-neutral-950"
+          >
+            Hire me
+          </a>
+        </p>
         </div>
         <div className="min-h-0 w-full lg:col-start-2 lg:row-start-1 lg:w-[380px]">
           <CurrentCompany />

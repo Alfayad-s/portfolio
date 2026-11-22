@@ -1,0 +1,9 @@
+User-Agent: *
+Allow: /
+Disallow: /private/
+Disallow: /admin/
+
+Sitemap: https://alfayad.vercel.app/sitemap.xml
+
+# https://alfayad.vercel.app/llms.txt
+# https://alfayad.vercel.app/llms-full.txt

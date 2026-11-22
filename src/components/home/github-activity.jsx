@@ -33,7 +33,7 @@ export default function GithubActivity() {
 
   return (
     <a
-      href="https://github.com/Alfayads"
+      href="https://github.com/Alfayad-s"
       target="_blank"
       rel="noreferrer"
       className="flex h-full flex-col justify-between rounded-[24px] bg-white px-4 py-3 ring-1 ring-black/5"

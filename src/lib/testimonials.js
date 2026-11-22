@@ -30,7 +30,7 @@ export async function listTestimonials() {
     .select("id, name, role, message, image, created_at")
     .order("created_at", { ascending: false });
 
-  if (error) throw error;
+  if (error) return [];
   return (data ?? []).map(toTestimonial);
 }
 
@@ -77,7 +77,7 @@ export async function addTestimonial({ name, role, message, companyWebsite, toke
 
   if (error) {
     await supabase.from("invite_links").update({ used_at: null }).eq("token", token);
-    throw error;
+    return { error: "Could not save that testimonial.", status: 500 };
   }
 
   return { testimonial: toTestimonial(data) };

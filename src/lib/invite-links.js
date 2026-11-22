@@ -20,7 +20,7 @@ export async function listInviteLinks() {
     .select("token, label, created_at, used_at")
     .order("created_at", { ascending: false });
 
-  if (error) throw error;
+  if (error) return [];
   return (data ?? []).map(toLink);
 }
 
@@ -41,8 +41,13 @@ export async function createInviteLink(label) {
     used_at: null,
   };
 
-  const { data, error } = await supabase.from("invite_links").insert(link).select("token, label, created_at, used_at").single();
-  if (error) throw error;
+  const { data, error } = await supabase
+    .from("invite_links")
+    .insert(link)
+    .select("token, label, created_at, used_at")
+    .single();
+
+  if (error) return { error: "Could not create a link.", status: 500 };
   return { link: toLink(data) };
 }
 
@@ -56,7 +61,7 @@ export async function findInviteLink(token) {
     .eq("token", token)
     .maybeSingle();
 
-  if (error) throw error;
+  if (error) return null;
   return toLink(data);
 }
 
@@ -72,7 +77,7 @@ export async function consumeInviteLink(token) {
     .select("token, label, created_at, used_at")
     .maybeSingle();
 
-  if (error) throw error;
+  if (error) return { error: "Could not use that link.", status: 500 };
   if (data) return { link: toLink(data) };
 
   const existing = await findInviteLink(token);

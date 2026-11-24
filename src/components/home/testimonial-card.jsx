@@ -1,11 +1,13 @@
 "use client";
 
+import TestimonialsOverlay from "@/components/home/testimonials-overlay";
 import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 
 export default function TestimonialCard({ testimonials }) {
   const [index, setIndex] = useState(0);
+  const [open, setOpen] = useState(false);
   const count = testimonials.length;
   const item = testimonials[index] ?? testimonials[0];
 
@@ -27,7 +29,10 @@ export default function TestimonialCard({ testimonials }) {
   }
 
   return (
-    <article className="flex h-full flex-col rounded-[24px] bg-white px-4 py-3 ring-1 ring-black/5">
+    <article
+      className="flex h-full cursor-pointer flex-col rounded-[24px] bg-white px-4 py-3 text-left ring-1 ring-black/5"
+      onClick={() => setOpen(true)}
+    >
       <p className="flex items-center justify-between gap-2 text-[13px] font-semibold text-neutral-950">
         <span className="inline-flex items-center gap-2">
           <Quote className="size-3.5 text-violet-500" />
@@ -60,7 +65,11 @@ export default function TestimonialCard({ testimonials }) {
           )}
           <span className="truncate">{item.name}</span>
         </p>
-        <div className="flex shrink-0 items-center gap-1 text-neutral-400">
+        <div
+          className="flex shrink-0 items-center gap-1 text-neutral-400"
+          onClick={(event) => event.stopPropagation()}
+          onKeyDown={(event) => event.stopPropagation()}
+        >
           <button type="button" aria-label="Previous testimonial" onClick={() => step(-1)} className="grid size-5 place-items-center">
             <ChevronLeft className="size-3.5" />
           </button>
@@ -77,6 +86,7 @@ export default function TestimonialCard({ testimonials }) {
           </span>
         </div>
       </div>
+      {open ? <TestimonialsOverlay testimonials={testimonials} onClose={() => setOpen(false)} /> : null}
     </article>
   );
 }

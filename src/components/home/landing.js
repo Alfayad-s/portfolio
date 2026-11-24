@@ -46,30 +46,35 @@ function fillet(origin) {
   return `radial-gradient(circle at ${origin}, transparent ${CUT}px, #fff ${CUT + 0.5}px)`;
 }
 
-function BottomCuts() {
+function DockShape() {
+  const cut = 28;
+  const top = 28;
+  const bodyW = 64;
+  const bodyH = top + cut;
+  const width = bodyW + cut * 2;
+  const side = bodyH - cut;
+
+  const d = [
+    `M 0 ${bodyH}`,
+    `H ${width}`,
+    `A ${cut} ${cut} 0 0 1 ${width - cut} ${side}`,
+    `A ${top} ${top} 0 0 0 ${width - cut - top} 0`,
+    `H ${cut + top}`,
+    `A ${top} ${top} 0 0 0 ${cut} ${side}`,
+    `A ${cut} ${cut} 0 0 1 0 ${bodyH}`,
+    "Z",
+  ].join(" ");
+
   return (
-    <>
-      <span
-        aria-hidden
-        className="pointer-events-none absolute bottom-0"
-        style={{
-          left: -CUT,
-          width: CUT + 1,
-          height: CUT + 1,
-          background: fillet("0 0"),
-        }}
-      />
-      <span
-        aria-hidden
-        className="pointer-events-none absolute bottom-0"
-        style={{
-          right: -CUT,
-          width: CUT + 1,
-          height: CUT + 1,
-          background: fillet("100% 0"),
-        }}
-      />
-    </>
+    <svg
+      aria-hidden
+      width={width}
+      height={bodyH}
+      viewBox={`0 0 ${width} ${bodyH}`}
+      className="absolute bottom-0 left-1/2 -translate-x-1/2"
+    >
+      <path d={d} fill="#fff" />
+    </svg>
   );
 }
 
@@ -306,15 +311,9 @@ export default async function Landing() {
       </section>
 
       <div className="fixed bottom-0 left-1/2 z-50 -translate-x-1/2">
-        <div
-          className="relative bg-white"
-          style={{
-            borderTopLeftRadius: CUT,
-            borderTopRightRadius: CUT,
-          }}
-        >
-          <BottomCuts />
-          <div className="relative z-10 flex items-center px-3 py-2">
+        <div className="relative h-14 w-[120px]">
+          <DockShape />
+          <div className="absolute inset-0 flex items-center justify-center">
             <ThemeToggle />
           </div>
         </div>

@@ -59,41 +59,53 @@ export default function TestimonialForm({ token }) {
 
   if (status === "saved") {
     return (
-      <p className="rounded-[28px] bg-white px-6 py-8 text-sm text-emerald-700 ring-1 ring-black/5">
-        Thanks. Your testimonial is saved.
-      </p>
+      <div className="rounded-[28px] bg-white px-5 py-8 ring-1 ring-black/5 sm:px-6" role="status">
+        <p className="text-lg font-semibold text-neutral-950">Testimonial added</p>
+        <p className="mt-2 text-base leading-relaxed text-neutral-600">
+          Thanks. Your note is saved and will show on Alfayad&apos;s site.
+        </p>
+      </div>
     );
   }
+
+  const field =
+    "w-full rounded-2xl border border-neutral-200 bg-neutral-50 px-4 py-3.5 text-base font-normal text-neutral-950 outline-none focus:border-neutral-400";
 
   return (
     <form
       onSubmit={submit}
-      className="rounded-[28px] bg-white p-6 ring-1 ring-black/5"
+      className="grid gap-5"
     >
-      <div className="grid gap-4">
-        <label className="grid gap-1.5 text-sm font-medium text-neutral-800">
+      <p className="text-base leading-relaxed text-neutral-500">
+        Leave a short note about working with Alfayad. This page is only open from the link you were sent.
+      </p>
+      <div className="grid gap-5 rounded-[28px] bg-white p-4 ring-1 ring-black/5 sm:p-6">
+        <label className="grid gap-2 text-sm font-medium text-neutral-800">
           Photo
           <span className="flex items-center gap-3">
             {preview ? (
               // Local preview of the file the customer just picked.
               // eslint-disable-next-line @next/next/no-img-element
-              <img src={preview} alt="" className="size-14 shrink-0 rounded-full object-cover" />
+              <img src={preview} alt="" className="size-16 shrink-0 rounded-full object-cover" />
             ) : (
-              <span className="grid size-14 shrink-0 place-items-center rounded-full bg-neutral-100 text-[11px] text-neutral-400">
+              <span className="grid size-16 shrink-0 place-items-center rounded-full bg-neutral-100 text-xs text-neutral-400">
                 Photo
               </span>
             )}
-            <input
-              type="file"
-              name="image"
-              accept="image/jpeg,image/png,image/webp"
-              required
-              onChange={choosePhoto}
-              className="min-w-0 flex-1 rounded-2xl border border-neutral-200 bg-neutral-50 px-4 py-3 text-sm font-normal text-neutral-700 file:mr-3 file:rounded-full file:border-0 file:bg-neutral-950 file:px-3 file:py-1.5 file:text-xs file:font-medium file:text-white"
-            />
+            <span className="relative flex min-h-12 min-w-0 flex-1 items-center justify-center rounded-full bg-neutral-950 px-4 py-3 text-sm font-medium text-white">
+              <span className="truncate">{photo ? photo.name : "Choose a photo"}</span>
+              <input
+                type="file"
+                name="image"
+                accept="image/jpeg,image/png,image/webp"
+                required
+                onChange={choosePhoto}
+                className="absolute inset-0 cursor-pointer opacity-0"
+              />
+            </span>
           </span>
         </label>
-        <label className="grid gap-1.5 text-sm font-medium text-neutral-800">
+        <label className="grid gap-2 text-sm font-medium text-neutral-800">
           Name
           <input
             name="name"
@@ -103,10 +115,10 @@ export default function TestimonialForm({ token }) {
             maxLength={60}
             autoComplete="name"
             placeholder="Your name"
-            className="rounded-2xl border border-neutral-200 bg-neutral-50 px-4 py-3 text-sm font-normal text-neutral-950 outline-none focus:border-neutral-400"
+            className={field}
           />
         </label>
-        <label className="grid gap-1.5 text-sm font-medium text-neutral-800">
+        <label className="grid gap-2 text-sm font-medium text-neutral-800">
           Role or company
           <input
             name="role"
@@ -114,11 +126,11 @@ export default function TestimonialForm({ token }) {
             onChange={update}
             required
             maxLength={80}
-            placeholder="Product designer at Codeteak"
-            className="rounded-2xl border border-neutral-200 bg-neutral-50 px-4 py-3 text-sm font-normal text-neutral-950 outline-none focus:border-neutral-400"
+            placeholder="Your role or company"
+            className={field}
           />
         </label>
-        <label className="grid gap-1.5 text-sm font-medium text-neutral-800">
+        <label className="grid gap-2 text-sm font-medium text-neutral-800">
           Testimonial
           <textarea
             name="message"
@@ -129,7 +141,7 @@ export default function TestimonialForm({ token }) {
             maxLength={400}
             rows={5}
             placeholder="What was it like working together?"
-            className="resize-none rounded-2xl border border-neutral-200 bg-neutral-50 px-4 py-3 text-sm font-normal text-neutral-950 outline-none focus:border-neutral-400"
+            className={`${field} resize-none`}
           />
         </label>
         <input
@@ -145,7 +157,7 @@ export default function TestimonialForm({ token }) {
         <button
           type="submit"
           disabled={status === "saving"}
-          className="mt-1 inline-flex w-max items-center rounded-full bg-neutral-950 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-neutral-800 disabled:opacity-60"
+          className="mt-1 inline-flex min-h-12 w-full items-center justify-center rounded-full bg-neutral-950 px-5 py-3 text-base font-medium text-white transition hover:bg-neutral-800 disabled:opacity-60 sm:w-max"
         >
           {status === "saving" ? "Saving…" : "Add testimonial"}
         </button>

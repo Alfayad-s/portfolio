@@ -21,6 +21,7 @@ export const viewport = {
   initialScale: 1,
   maximumScale: 1,
   userScalable: false,
+  themeColor: "#e6e6e6",
 };
 
 export const metadata = {
@@ -52,7 +53,7 @@ export const metadata = {
         url: "https://alfayad.clawdage.com/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Alfayad - Full-Stack Developer & AI Specialist Portfolio",
+        alt: "Alfayad Shameer, full-stack developer in Kerala",
         type: "image/png",
       },
     ],
@@ -99,6 +100,7 @@ export default function RootLayout({ children }) {
     jobTitle: "Full-Stack Developer",
     url: "https://alfayad.clawdage.com",
     email: "alfayadshameer056@gmail.com",
+    image: "https://alfayad.clawdage.com/profile.png",
     description: "Alfayad Shameer is a full-stack developer in Alappuzha, Kerala, India. He builds web, mobile, and AI products with the MERN stack and Next.js.",
     address: {
       "@type": "PostalAddress",

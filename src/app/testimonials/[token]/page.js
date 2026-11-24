@@ -54,24 +54,41 @@ export default async function InviteTestimonialPage({ params }) {
   const link = await findInviteLink(token);
 
   return (
-    <main className="min-h-screen overflow-y-auto px-6 py-10 sm:px-10">
+    <main className="min-h-dvh overflow-y-auto px-4 pt-8 pb-[max(2.5rem,env(safe-area-inset-bottom))] sm:px-8 sm:py-12">
       <div className="mx-auto w-full max-w-xl">
-        <h1 className="text-4xl leading-[0.95] font-extrabold tracking-[-0.045em] text-neutral-950">
+        <h1 className="text-[2rem] leading-[0.95] font-extrabold tracking-[-0.045em] text-neutral-950 sm:text-4xl">
           Add a testimonial
         </h1>
         {!link ? (
-          <p className="mt-4 text-sm leading-relaxed text-neutral-500">This link is not valid.</p>
-        ) : link.usedAt ? (
-          <p className="mt-4 text-sm leading-relaxed text-neutral-500">This link has already been used.</p>
-        ) : (
-          <>
-            <p className="mt-3 max-w-md text-sm leading-relaxed text-neutral-500">
-              Leave a short note about working with Alfayad. This page is only open from the link you were sent.
+          <div className="mt-6 rounded-[28px] bg-white px-5 py-8 ring-1 ring-black/5 sm:px-6">
+            <p className="text-lg font-semibold text-neutral-950">This link is not valid</p>
+            <p className="mt-2 text-base leading-relaxed text-neutral-600">
+              Ask Alfayad for a new testimonial link.
             </p>
-            <div className="mt-8">
-              <TestimonialForm token={token} />
-            </div>
-          </>
+            <a
+              href="mailto:alfayadshameer056@gmail.com?subject=New%20testimonial%20link"
+              className="mt-5 inline-flex min-h-12 w-full items-center justify-center rounded-full bg-neutral-950 px-5 py-3 text-base font-medium text-white sm:w-max"
+            >
+              Request a new link
+            </a>
+          </div>
+        ) : link.usedAt ? (
+          <div className="mt-6 rounded-[28px] bg-white px-5 py-8 ring-1 ring-black/5 sm:px-6">
+            <p className="text-lg font-semibold text-neutral-950">This link has already been used</p>
+            <p className="mt-2 text-base leading-relaxed text-neutral-600">
+              A testimonial was already submitted with this link. Each link works once. Request a new one from Alfayad.
+            </p>
+            <a
+              href="mailto:alfayadshameer056@gmail.com?subject=New%20testimonial%20link"
+              className="mt-5 inline-flex min-h-12 w-full items-center justify-center rounded-full bg-neutral-950 px-5 py-3 text-base font-medium text-white sm:w-max"
+            >
+              Request a new link
+            </a>
+          </div>
+        ) : (
+          <div className="mt-6 sm:mt-8">
+            <TestimonialForm token={token} />
+          </div>
         )}
       </div>
     </main>

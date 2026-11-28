@@ -205,6 +205,10 @@ export default async function Landing() {
           <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-2">
             <h1 className="text-4xl leading-[0.95] font-extrabold tracking-[-0.045em] text-neutral-950 sm:text-5xl lg:text-[3.4rem] xl:text-[4.25rem] 2xl:text-[5rem]">
               Hi, I’m Alfayad
+              <span className="sr-only">
+                {" "}
+                Shameer (Fayad) — full-stack and mobile app developer in Bengaluru
+              </span>
             </h1>
             <nav aria-label="Social media" className="flex items-center gap-1 xl:gap-1.5">
               {socials.map(({ name, href, Icon }) => (

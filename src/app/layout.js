@@ -26,11 +26,46 @@ export const viewport = {
 
 export const metadata = {
   title: {
-    default: "Alfayad Shameer | Full-Stack Developer in Bengaluru & Kerala",
+    default: "Alfayad Shameer (Fayad) | Full-Stack & Mobile App Developer in Bengaluru",
     template: "%s | Alfayad Shameer"
   },
-  description: "Alfayad Shameer is a full-stack developer working in Bengaluru at Codeteak Technologies, from Alappuzha, Kerala. He builds web, mobile, and AI products with the MERN stack and Next.js.",
-  keywords: ["Alfayad Shameer", "Alfayad", "Full-Stack Developer", "Full-Stack Developer Bengaluru", "Full-Stack Developer Kerala", "Codeteak Technologies", "MERN Developer Bengaluru", "React Developer", "Next.js", "AI Integration", "Web Development", "JavaScript", "Node.js", "MongoDB", "TypeScript"],
+  description: "Alfayad Shameer (Fayad / Alfayad S) is a full-stack and mobile app developer in Bengaluru at Codeteak Technologies, from Alappuzha, Kerala. Hire for web development, React Native apps, UI/UX, APIs, AI integration, and budget-friendly product builds.",
+  keywords: [
+    "Alfayad Shameer",
+    "Alfayad",
+    "Alfayad S",
+    "Alfayad-s",
+    "Fayad",
+    "Full-Stack Developer",
+    "Full-Stack Developer Bengaluru",
+    "Full-Stack Developer Bangalore",
+    "Full-Stack Developer Kerala",
+    "Mobile App Developer",
+    "Mobile App Developer Bengaluru",
+    "React Native Developer",
+    "React Developer",
+    "Next.js Developer",
+    "MERN Developer",
+    "MERN Developer Bengaluru",
+    "UI/UX Designer",
+    "Freelance Developer",
+    "Freelance Developer Bengaluru",
+    "Hire Developer Bengaluru",
+    "Web Development",
+    "Mobile App Development",
+    "Budget Web Development",
+    "Affordable App Development",
+    "Custom Software Development",
+    "API Development",
+    "AI Integration",
+    "Codeteak Technologies",
+    "JavaScript",
+    "TypeScript",
+    "Node.js",
+    "MongoDB",
+    "Alappuzha Developer",
+    "Kerala Developer",
+  ],
   authors: [{ name: "Alfayad Shameer", url: "https://alfayad.clawdage.com" }],
   creator: "Alfayad Shameer",
   publisher: "Alfayad Shameer",
@@ -57,8 +92,8 @@ export const metadata = {
     shortcut: ["/favicon.ico"],
   },
   openGraph: {
-    title: "Alfayad Shameer | Full-Stack Developer in Bengaluru & Kerala",
-    description: "Alfayad Shameer is a full-stack developer working in Bengaluru at Codeteak Technologies, from Alappuzha, Kerala. He builds web, mobile, and AI products with the MERN stack and Next.js.",
+    title: "Alfayad Shameer (Fayad) | Full-Stack & Mobile App Developer in Bengaluru",
+    description: "Alfayad Shameer (Fayad / Alfayad S) builds web apps, mobile apps, and AI products in Bengaluru. Hire for MERN, React Native, UI/UX, APIs, and budget-friendly development.",
     url: "https://alfayad.clawdage.com",
     siteName: "Alfayad Shameer · alfayad.clawdage.com",
     images: [
@@ -66,7 +101,7 @@ export const metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Alfayad Shameer, full-stack developer in Bengaluru and Kerala",
+        alt: "Alfayad Shameer (Fayad), full-stack and mobile app developer in Bengaluru",
         type: "image/png",
       },
       {
@@ -82,8 +117,8 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Alfayad Shameer | Full-Stack Developer in Bengaluru & Kerala",
-    description: "Alfayad Shameer is a full-stack developer working in Bengaluru at Codeteak Technologies, from Alappuzha, Kerala. He builds web, mobile, and AI products with the MERN stack and Next.js.",
+    title: "Alfayad Shameer (Fayad) | Full-Stack & Mobile App Developer in Bengaluru",
+    description: "Alfayad Shameer (Fayad / Alfayad S) builds web apps, mobile apps, and AI products in Bengaluru. Hire for MERN, React Native, UI/UX, APIs, and budget-friendly development.",
     images: ["/og-image.png"],
     creator: "@alfayad",
   },
@@ -107,9 +142,16 @@ export default function RootLayout({ children }) {
     "@type": "WebSite",
     "@id": "https://alfayad.clawdage.com/#website",
     name: "Alfayad Shameer",
-    alternateName: ["alfayad.clawdage.com", "Alfayad", "Alfayad Shameer Portfolio"],
+    alternateName: [
+      "alfayad.clawdage.com",
+      "Alfayad",
+      "Fayad",
+      "Alfayad S",
+      "Alfayad Shameer Portfolio",
+    ],
     url: "https://alfayad.clawdage.com",
-    description: "Portfolio of Alfayad Shameer, full-stack developer working in Bengaluru at Codeteak Technologies, from Alappuzha, Kerala.",
+    description:
+      "Portfolio of Alfayad Shameer (Fayad) — full-stack and mobile app developer in Bengaluru offering web development, React Native apps, UI/UX, APIs, and budget-friendly product builds.",
     inLanguage: "en",
     publisher: { "@id": "https://alfayad.clawdage.com/#person" },
     author: { "@id": "https://alfayad.clawdage.com/#person" },
@@ -120,8 +162,8 @@ export default function RootLayout({ children }) {
     "@type": "Person",
     "@id": "https://alfayad.clawdage.com/#person",
     name: "Alfayad Shameer",
-    alternateName: ["Alfayad", "alfayad"],
-    jobTitle: "Full-Stack Developer",
+    alternateName: ["Fayad", "Alfayad", "Alfayad S", "Alfayad-s", "alfayad"],
+    jobTitle: "Full-Stack Developer & Mobile App Developer",
     worksFor: {
       "@type": "Organization",
       name: "Codeteak Technologies",
@@ -141,7 +183,8 @@ export default function RootLayout({ children }) {
       contentUrl: "https://alfayad.clawdage.com/profile.png",
       caption: "Alfayad Shameer",
     },
-    description: "Alfayad Shameer is a full-stack developer currently working in Bengaluru at Codeteak Technologies. He is from Alappuzha, Kerala, and builds web, mobile, and AI products with the MERN stack and Next.js.",
+    description:
+      "Alfayad Shameer (also known as Fayad and Alfayad S) is a full-stack and mobile app developer currently working in Bengaluru at Codeteak Technologies. From Alappuzha, Kerala. He builds web apps, React Native mobile apps, UI/UX, APIs, and AI-integrated products, including budget-friendly freelance development.",
     homeLocation: {
       "@type": "Place",
       name: "Alappuzha, Kerala, India",
@@ -176,16 +219,70 @@ export default function RootLayout({ children }) {
       "JavaScript",
       "TypeScript",
       "React",
+      "React Native",
       "Node.js",
       "Next.js",
       "MongoDB",
       "Express",
       "AI Integration",
       "Web Development",
+      "Mobile App Development",
+      "UI/UX Design",
       "MERN Stack",
       "Tailwind CSS",
+      "API Development",
+      "Freelance Web Development",
+      "Budget Web Development",
+      "Affordable App Development",
     ],
     knowsLanguage: ["English", "Malayalam"],
+    makesOffer: [
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Full-stack web development",
+          description: "Custom web apps with React, Next.js, Node.js, and the MERN stack.",
+        },
+        areaServed: ["Bengaluru", "Bangalore", "Kerala", "India", "Remote"],
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Mobile app development",
+          description: "Cross-platform mobile apps with React Native.",
+        },
+        areaServed: ["Bengaluru", "Bangalore", "Kerala", "India", "Remote"],
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "UI/UX design",
+          description: "Interface and product design for web and mobile products.",
+        },
+        areaServed: ["Bengaluru", "Bangalore", "Kerala", "India", "Remote"],
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Budget-friendly product development",
+          description: "Affordable web and mobile product builds for startups and small businesses.",
+        },
+        areaServed: ["Bengaluru", "Bangalore", "Kerala", "India", "Remote"],
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "AI-integrated software",
+          description: "APIs and products with AI integration.",
+        },
+        areaServed: ["Bengaluru", "Bangalore", "Kerala", "India", "Remote"],
+      },
+    ],
     sameAs: [
       "https://github.com/Alfayad-s",
       "https://linkedin.com/in/alfayad",
@@ -194,6 +291,33 @@ export default function RootLayout({ children }) {
       "https://instagram.com/alfayads",
       "https://facebook.com/alfayad",
       "https://hirefayad.vercel.app",
+    ],
+  };
+
+  const servicesSchema = {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "@id": "https://alfayad.clawdage.com/#services",
+    name: "Alfayad Shameer — Web & Mobile Development",
+    alternateName: ["Fayad developer Bengaluru", "Alfayad S freelance developer"],
+    url: "https://alfayad.clawdage.com",
+    description:
+      "Professional web development, mobile app development, UI/UX, API, and AI integration services from Alfayad Shameer (Fayad) in Bengaluru — including budget-friendly product builds.",
+    provider: { "@id": "https://alfayad.clawdage.com/#person" },
+    areaServed: [
+      { "@type": "City", name: "Bengaluru" },
+      { "@type": "City", name: "Bangalore" },
+      { "@type": "State", name: "Karnataka" },
+      { "@type": "State", name: "Kerala" },
+      { "@type": "Country", name: "India" },
+    ],
+    serviceType: [
+      "Web Development",
+      "Mobile App Development",
+      "UI/UX Design",
+      "API Development",
+      "AI Integration",
+      "Freelance Software Development",
     ],
   };
 
@@ -230,6 +354,13 @@ export default function RootLayout({ children }) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(profileSchema),
+          }}
+        />
+        <Script
+          id="services-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(servicesSchema),
           }}
         />
       </head>

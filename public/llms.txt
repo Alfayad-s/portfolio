@@ -1,6 +1,8 @@
 # Alfayad Shameer
 
-> Alfayad Shameer is a full-stack developer currently working in Bengaluru at Codeteak Technologies. He is from Alappuzha, Kerala, India. He designs interfaces and builds web, mobile, and AI products with the MERN stack and Next.js.
+> Alfayad Shameer (also known as Fayad, Alfayad S, and Alfayad-s) is a full-stack and mobile app developer currently working in Bengaluru at Codeteak Technologies. He is from Alappuzha, Kerala, India. He designs interfaces and builds web apps, React Native mobile apps, APIs, and AI products — including budget-friendly freelance product work.
+
+Also known as: Fayad, Alfayad, Alfayad S, Alfayad-s
 
 Portfolio: https://alfayad.clawdage.com
 Hire: https://hirefayad.vercel.app
@@ -8,6 +10,6 @@ GitHub: https://github.com/Alfayad-s
 LinkedIn: https://linkedin.com/in/alfayad
 Upwork: https://www.upwork.com/freelancers/~01a7a783248f424c71
 
-He works on-site in Bengaluru at Codeteak (https://codeteak.com) as a full-stack developer and UI/UX designer, and takes freelance product work.
+He works on-site in Bengaluru at Codeteak (https://codeteak.com) as a full-stack developer and UI/UX designer. Services: web development, mobile app development, UI/UX, API development, AI integration, and affordable product builds for startups and small businesses — available from Bengaluru and remote.
 
 Full profile for AI systems: https://alfayad.clawdage.com/llms-full.txt

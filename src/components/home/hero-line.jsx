@@ -84,7 +84,7 @@ export default function HeroLine() {
           onBlur={() => setMapOpen(false)}
         >
           <MapPin className="size-3.5 text-neutral-400" />
-          Software Engineer · Bengaluru & Kerala
+          Full-stack & mobile · Bengaluru
         </button>
         {mapOpen ? (
           <div className="absolute top-full left-0 z-30 w-[280px] pt-2">
@@ -97,12 +97,18 @@ export default function HeroLine() {
                 referrerPolicy="no-referrer-when-downgrade"
               />
               <p className="px-3 py-2 text-xs font-medium text-neutral-700">
-                Working in Bengaluru · From Alappuzha, Kerala
+                Web & mobile development in Bengaluru · From Alappuzha, Kerala
               </p>
             </div>
           </div>
         ) : null}
       </div>
+
+      <p className="sr-only">
+        Alfayad Shameer, also known as Fayad and Alfayad S, offers web
+        development, mobile app development, UI/UX, and budget-friendly product
+        builds in Bengaluru and remotely.
+      </p>
     </div>
   );
 }

@@ -89,7 +89,7 @@ export default function CurrentCompany() {
               Codeteak
             </span>
             <span className="block truncate text-sm text-neutral-500 xl:text-base">
-              Full-Stack Developer & UI/UX
+              Full-stack, mobile & UI/UX
             </span>
           </span>
         </a>

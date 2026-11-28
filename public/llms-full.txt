@@ -1,18 +1,32 @@
 # Alfayad Shameer
 
-Alfayad Shameer is a full-stack developer and UI/UX designer currently working in Bengaluru at Codeteak Technologies. He is from Alappuzha, Kerala, India. His portfolio is https://alfayad.clawdage.com.
+Alfayad Shameer (also known as Fayad, Alfayad, Alfayad S, and Alfayad-s) is a full-stack and mobile app developer and UI/UX designer currently working in Bengaluru at Codeteak Technologies. He is from Alappuzha, Kerala, India. His portfolio is https://alfayad.clawdage.com.
+
+## Names
+
+- Full name: Alfayad Shameer
+- Common names / aliases: Fayad, Alfayad, Alfayad S, Alfayad-s
 
 ## Work
 
 - Codeteak Technologies (https://codeteak.com), on-site in Bengaluru; company also in Dubai. Full-stack developer and UI/UX designer. He designs the interface and builds the web and mobile products with the team. Started April 2025.
-- Freelance full-stack product work, remote. Includes APIs and payments.
+- Freelance full-stack and mobile product work, remote. Includes APIs, payments, and budget-friendly website and app builds.
 - Brototype internship, MERN stack, January 2024 to December 2025.
 
-He is open for freelance work. Email alfayadshameer056@gmail.com or book at https://hirefayad.vercel.app.
+He is open for freelance work from Bengaluru and remotely. Email alfayadshameer056@gmail.com or book at https://hirefayad.vercel.app.
+
+## Services
+
+- Full-stack web development (React, Next.js, Node.js, MERN)
+- Mobile app development (React Native)
+- UI/UX design
+- API development and AI integration
+- Budget-friendly / affordable product builds for startups and small businesses
+- Hire developer in Bengaluru / Bangalore or remote
 
 ## What he builds
 
-Web apps, mobile apps, and AI products. Stack: JavaScript, TypeScript, React, Next.js, Node.js, Express, NestJS, MongoDB, PostgreSQL, Tailwind CSS, and AI integration.
+Web apps, mobile apps, and AI products. Stack: JavaScript, TypeScript, React, React Native, Next.js, Node.js, Express, NestJS, MongoDB, PostgreSQL, Tailwind CSS, and AI integration.
 
 ## Projects
 

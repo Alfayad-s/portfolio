@@ -34,12 +34,29 @@ body::-webkit-scrollbar {
   height: 0;
 }
 
-/* Tall desktop only: fill the viewport and grow cards.
-   Shorter screens keep content-sized rows so cards stay aligned and the page scrolls. */
+/* Desktop base: content-sized rows so short screens scroll cleanly. */
+@media (min-width: 1024px) {
+  .home-layout {
+    grid-template-rows: auto auto auto;
+  }
+}
+
+/* Tall desktop only: fill the viewport, grow cards, and scale content to match. */
 @media (min-width: 1024px) and (min-height: 1000px) {
   .home-layout {
+    height: 100dvh;
     min-height: 100dvh;
-    grid-template-rows: auto minmax(180px, 0.7fr) minmax(200px, 1.15fr);
+    overflow-x: hidden;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    grid-template-rows: auto minmax(200px, 0.75fr) minmax(240px, 1.2fr);
+  }
+
+  .home-layout::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
   }
 
   .home-layout .spotlight-row {
@@ -56,6 +73,8 @@ body::-webkit-scrollbar {
     height: 100%;
     display: flex;
     flex-direction: column;
+    padding-block: 1.25rem;
+    padding-inline: 1.25rem 1.75rem;
   }
 
   .home-layout .projects-cut-grid {
@@ -65,7 +84,122 @@ body::-webkit-scrollbar {
 
   .home-layout .project-card {
     height: 100%;
-    min-height: 180px;
+    min-height: 220px;
+  }
+
+  .home-layout .spotlight-card {
+    padding: 1.25rem;
+  }
+
+  .home-layout .card-label {
+    font-size: 1rem;
+  }
+
+  .home-layout .card-title {
+    font-size: 1.5rem;
+    line-height: 1.15;
+  }
+
+  .home-layout .card-body {
+    font-size: 1rem;
+    line-height: 1.4;
+  }
+
+  .home-layout .card-meta {
+    font-size: 0.95rem;
+  }
+
+  .home-layout .card-stat {
+    font-size: 3rem;
+  }
+
+  .home-layout .card-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .home-layout .card-avatar {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+
+  .home-layout .card-action {
+    width: 2.85rem;
+    height: 2.85rem;
+  }
+
+  .home-layout .gh-chart {
+    height: 4.5rem;
+  }
+
+  .home-layout .lab-code {
+    max-width: none;
+    width: 48%;
+    padding: 1.1rem;
+    border-radius: 1.15rem;
+  }
+
+  .home-layout .lab-code-text {
+    margin-top: 0.85rem;
+    font-size: 0.9rem;
+    line-height: 1.55;
+  }
+
+  .home-layout #projects .card-title {
+    font-size: 1.75rem;
+  }
+}
+
+@media (min-width: 1536px) and (min-height: 1000px) {
+  .home-layout .spotlight-card {
+    padding: 1.6rem;
+  }
+
+  .home-layout .card-label {
+    font-size: 1.15rem;
+  }
+
+  .home-layout .card-title {
+    font-size: 1.85rem;
+  }
+
+  .home-layout .card-body {
+    font-size: 1.125rem;
+  }
+
+  .home-layout .card-meta {
+    font-size: 1rem;
+  }
+
+  .home-layout .card-stat {
+    font-size: 3.75rem;
+  }
+
+  .home-layout .card-icon {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+
+  .home-layout .card-action {
+    width: 3.25rem;
+    height: 3.25rem;
+  }
+
+  .home-layout .gh-chart {
+    height: 5.5rem;
+  }
+
+  .home-layout .lab-code-text {
+    font-size: 1.05rem;
+  }
+
+  .home-layout #projects .card-title {
+    font-size: 2.15rem;
+  }
+
+  .home-layout .projects-cut {
+    padding-block: 1.6rem;
+    padding-inline: 1.6rem 2.1rem;
   }
 }
 

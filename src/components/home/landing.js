@@ -119,7 +119,7 @@ function ProjectCard({ project, className = "" }) {
       href={project.href}
       target="_blank"
       rel="noreferrer"
-      className={`project-card group relative block h-[156px] w-full overflow-hidden rounded-[24px] transition duration-300 hover:-translate-y-1 sm:w-[210px] lg:h-[200px] lg:w-full xl:h-[220px] xl:rounded-[28px] 2xl:h-[240px] 2xl:rounded-[32px] ${
+      className={`project-card group relative block h-[156px] w-full overflow-hidden rounded-[24px] transition duration-300 hover:-translate-y-1 sm:w-[210px] lg:h-[200px] lg:w-full xl:h-[240px] xl:rounded-[28px] 2xl:h-[280px] 2xl:rounded-[32px] ${
         light ? "bg-white ring-1 ring-black/5" : "bg-neutral-950"
       } ${className}`}
     >
@@ -127,30 +127,34 @@ function ProjectCard({ project, className = "" }) {
         src={project.image}
         alt=""
         fill
-        sizes="(min-width: 1536px) 420px, (min-width: 1024px) 320px, 100vw"
-        className={light ? "object-contain p-4 pb-16 xl:p-5 xl:pb-20" : "object-contain p-3 pb-16 xl:p-4 xl:pb-20"}
+        sizes="(min-width: 1536px) 480px, (min-width: 1024px) 360px, 100vw"
+        className={
+          light
+            ? "object-contain p-4 pb-16 xl:p-6 xl:pb-22 2xl:p-8 2xl:pb-24"
+            : "object-contain p-3 pb-16 xl:p-5 xl:pb-22 2xl:p-7 2xl:pb-24"
+        }
       />
       <div
-        className={`absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 px-4 pb-4 pt-12 xl:px-5 xl:pb-5 ${
+        className={`absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 px-4 pb-4 pt-12 xl:gap-4 xl:px-5 xl:pb-5 2xl:px-6 2xl:pb-6 ${
           light
             ? "bg-gradient-to-t from-white via-white to-white/0"
             : "bg-gradient-to-t from-black via-black/75 to-transparent"
         }`}
       >
         <div className="min-w-0">
-          <p className={`truncate text-[15px] font-semibold xl:text-lg 2xl:text-xl ${light ? "text-neutral-950" : "text-white"}`}>
+          <p className={`card-title truncate text-[15px] font-semibold xl:text-lg 2xl:text-2xl ${light ? "text-neutral-950" : "text-white"}`}>
             {project.title}
           </p>
-          <p className={`mt-0.5 truncate text-xs xl:text-sm ${light ? "text-neutral-500" : "text-white/70"}`}>
+          <p className={`card-body mt-0.5 truncate text-xs xl:mt-1 xl:text-sm 2xl:text-base ${light ? "text-neutral-500" : "text-white/70"}`}>
             {project.description}
           </p>
         </div>
         <span
-          className={`grid size-8 shrink-0 place-items-center rounded-full transition group-hover:scale-105 xl:size-10 ${
+          className={`card-action grid size-8 shrink-0 place-items-center rounded-full transition group-hover:scale-105 xl:size-10 2xl:size-12 ${
             light ? "bg-neutral-100 text-neutral-800" : "bg-white/15 text-white"
           }`}
         >
-          <ArrowUpRight className="size-4 xl:size-5" />
+          <ArrowUpRight className="size-4 xl:size-5 2xl:size-6" />
         </span>
       </div>
     </a>
@@ -161,7 +165,7 @@ export default async function Landing() {
   const testimonials = await listTestimonials();
 
   return (
-    <div className="home-layout relative flex min-h-screen w-full flex-col gap-8 px-6 pt-16 pb-24 sm:px-10 lg:grid lg:grid-rows-[auto_auto_auto] lg:gap-5 lg:px-12 lg:pt-14 lg:pb-24 xl:gap-6 xl:px-16 2xl:px-20 2xl:gap-8">
+    <div className="home-layout relative flex min-h-screen w-full flex-col gap-8 px-6 pt-16 pb-24 sm:px-10 lg:grid lg:gap-5 lg:px-12 lg:pt-14 lg:pb-24 xl:gap-6 xl:px-16 2xl:px-20 2xl:gap-8">
       <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute -top-16 right-[-6%] h-[380px] w-[460px] rounded-full bg-white/80 blur-3xl" />
         <div className="absolute top-[42%] -left-20 h-64 w-64 rounded-full bg-white/60 blur-3xl" />
@@ -275,24 +279,24 @@ export default async function Landing() {
 
       <section id="projects" className="relative grid items-end gap-6 lg:grid-cols-[190px_minmax(0,1fr)] lg:items-stretch lg:gap-6 xl:grid-cols-[240px_minmax(0,1fr)] xl:gap-8 2xl:grid-cols-[280px_minmax(0,1fr)]">
         <div className="lg:flex lg:flex-col lg:justify-center">
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-black/8 bg-white/80 px-3 py-1 text-xs font-medium text-neutral-700 xl:text-sm">
-            <LayoutGrid className="size-3.5 xl:size-4" />
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-black/8 bg-white/80 px-3 py-1 text-xs font-medium text-neutral-700 xl:text-sm 2xl:px-3.5 2xl:py-1.5 2xl:text-base">
+            <LayoutGrid className="size-3.5 xl:size-4 2xl:size-5" />
             My Projects
           </span>
-          <h2 className="mt-2 text-4xl leading-[0.95] font-extrabold tracking-[-0.045em] text-neutral-950 lg:text-[2rem] xl:text-[2.5rem] 2xl:text-[3rem]">
+          <h2 className="card-title mt-2 text-4xl leading-[0.95] font-extrabold tracking-[-0.045em] text-neutral-950 lg:text-[2rem] xl:text-[2.75rem] 2xl:text-[3.25rem]">
             Featured
             <br />
             Projects
           </h2>
-          <p className="mt-1.5 max-w-xs text-sm leading-snug text-neutral-500 lg:max-w-[190px] xl:max-w-[240px] xl:text-base 2xl:max-w-[280px]">
+          <p className="card-body mt-1.5 max-w-xs text-sm leading-snug text-neutral-500 lg:max-w-[190px] xl:mt-2 xl:max-w-[240px] xl:text-base 2xl:max-w-[280px] 2xl:text-lg">
             Some of my recent works built with passion.
           </p>
           <a
             href="#projects"
-            className="mt-2 inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-medium text-neutral-900 shadow-[0_10px_24px_-16px_rgba(0,0,0,0.4)] transition hover:bg-neutral-50 xl:mt-3 xl:px-5 xl:py-2.5 xl:text-base"
+            className="mt-2 inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-medium text-neutral-900 shadow-[0_10px_24px_-16px_rgba(0,0,0,0.4)] transition hover:bg-neutral-50 xl:mt-3 xl:px-5 xl:py-2.5 xl:text-base 2xl:mt-4 2xl:px-6 2xl:py-3 2xl:text-lg"
           >
             Explore All Projects
-            <ArrowRight className="size-4 xl:size-5" />
+            <ArrowRight className="size-4 xl:size-5 2xl:size-6" />
           </a>
         </div>
 

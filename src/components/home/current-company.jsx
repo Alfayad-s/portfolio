@@ -43,9 +43,9 @@ function elapsedSince(from, to) {
 
 function Unit({ value, label }) {
   return (
-    <p className="text-2xl leading-none font-semibold tracking-[-0.04em] text-neutral-950 tabular-nums">
+    <p className="text-2xl leading-none font-semibold tracking-[-0.04em] text-neutral-950 tabular-nums xl:text-3xl 2xl:text-4xl">
       {value}
-      <span className="ml-0.5 text-base font-medium text-neutral-400">{label}</span>
+      <span className="ml-0.5 text-base font-medium text-neutral-400 xl:text-lg">{label}</span>
     </p>
   );
 }
@@ -82,18 +82,18 @@ export default function CurrentCompany() {
             alt=""
             width={44}
             height={44}
-            className="size-11 object-contain"
+            className="size-11 object-contain xl:size-14"
           />
           <span className="min-w-0">
-            <span className="block truncate text-base font-semibold tracking-[-0.03em] text-neutral-950">
+            <span className="block truncate text-base font-semibold tracking-[-0.03em] text-neutral-950 xl:text-lg 2xl:text-xl">
               Codeteak
             </span>
-            <span className="block truncate text-sm text-neutral-500">
+            <span className="block truncate text-sm text-neutral-500 xl:text-base">
               Full-Stack Developer & UI/UX
             </span>
           </span>
         </a>
-        <p className="mt-2.5 text-[13px] leading-snug text-neutral-500">
+        <p className="mt-2.5 text-[13px] leading-snug text-neutral-500 xl:text-sm 2xl:text-base">
           Product studio based in Bengaluru, now also in Dubai. I design the
           interface and build the web and mobile products with the team.
         </p>
@@ -111,11 +111,11 @@ export default function CurrentCompany() {
         </div>
       </div>
 
-      <div className="mt-3 border-t border-neutral-100 pt-2">
+      <div className="mt-3 border-t border-neutral-100 pt-2 xl:mt-4">
         <p className="text-xs font-medium tracking-[0.08em] text-neutral-400 uppercase">
           Also
         </p>
-        <ul className="mt-1.5 flex flex-col gap-2">
+        <ul className="mt-1.5 flex flex-col gap-2 xl:mt-2 xl:gap-3">
           {earlier.map((item) => (
             <li key={item.name} className="flex gap-2.5">
               <Image
@@ -123,15 +123,15 @@ export default function CurrentCompany() {
                 alt=""
                 width={44}
                 height={44}
-                className="size-11 shrink-0 rounded-lg object-contain"
+                className="size-11 shrink-0 rounded-lg object-contain xl:size-12"
               />
               <div className="min-w-0">
-                <p className="truncate text-sm font-semibold text-neutral-950">
+                <p className="truncate text-sm font-semibold text-neutral-950 xl:text-base">
                   {item.name}
                   <span className="font-medium text-neutral-400"> · {item.role}</span>
                 </p>
-                <p className="text-[11px] text-neutral-400">{item.when}</p>
-                <p className="mt-0.5 text-[13px] leading-snug text-neutral-500">
+                <p className="text-[11px] text-neutral-400 xl:text-xs">{item.when}</p>
+                <p className="mt-0.5 line-clamp-2 text-[13px] leading-snug text-neutral-500 xl:text-sm">
                   {item.description}
                 </p>
               </div>

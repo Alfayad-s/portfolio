@@ -23,7 +23,7 @@ export default function HeroLine() {
 
   return (
     <div className="mt-2 max-w-2xl">
-      <p className="text-xl leading-snug tracking-[-0.03em] lg:text-[1.55rem] lg:leading-[1.35]">
+      <p className="text-xl leading-snug tracking-[-0.03em] lg:text-[1.55rem] lg:leading-[1.35] xl:text-[1.85rem] 2xl:text-[2.15rem]">
         {parts.map((part, index) => {
           const dimmed = Boolean(active && active !== part.id);
           const motionState = reduce

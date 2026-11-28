@@ -119,7 +119,7 @@ function ProjectCard({ project, className = "" }) {
       href={project.href}
       target="_blank"
       rel="noreferrer"
-      className={`group relative block h-[156px] w-full overflow-hidden rounded-[24px] transition duration-300 hover:-translate-y-1 sm:w-[210px] ${
+      className={`project-card group relative block h-[156px] w-full overflow-hidden rounded-[24px] transition duration-300 hover:-translate-y-1 sm:w-[210px] lg:h-[200px] lg:w-full xl:h-[220px] xl:rounded-[28px] 2xl:h-[240px] 2xl:rounded-[32px] ${
         light ? "bg-white ring-1 ring-black/5" : "bg-neutral-950"
       } ${className}`}
     >
@@ -127,30 +127,30 @@ function ProjectCard({ project, className = "" }) {
         src={project.image}
         alt=""
         fill
-        sizes="(min-width: 1024px) 240px, 100vw"
-        className={light ? "object-contain p-4 pb-16" : "object-contain p-3 pb-16"}
+        sizes="(min-width: 1536px) 420px, (min-width: 1024px) 320px, 100vw"
+        className={light ? "object-contain p-4 pb-16 xl:p-5 xl:pb-20" : "object-contain p-3 pb-16 xl:p-4 xl:pb-20"}
       />
       <div
-        className={`absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 px-4 pb-4 pt-12 ${
+        className={`absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 px-4 pb-4 pt-12 xl:px-5 xl:pb-5 ${
           light
             ? "bg-gradient-to-t from-white via-white to-white/0"
             : "bg-gradient-to-t from-black via-black/75 to-transparent"
         }`}
       >
         <div className="min-w-0">
-          <p className={`truncate text-[15px] font-semibold ${light ? "text-neutral-950" : "text-white"}`}>
+          <p className={`truncate text-[15px] font-semibold xl:text-lg 2xl:text-xl ${light ? "text-neutral-950" : "text-white"}`}>
             {project.title}
           </p>
-          <p className={`mt-0.5 truncate text-xs ${light ? "text-neutral-500" : "text-white/70"}`}>
+          <p className={`mt-0.5 truncate text-xs xl:text-sm ${light ? "text-neutral-500" : "text-white/70"}`}>
             {project.description}
           </p>
         </div>
         <span
-          className={`grid size-8 shrink-0 place-items-center rounded-full transition group-hover:scale-105 ${
+          className={`grid size-8 shrink-0 place-items-center rounded-full transition group-hover:scale-105 xl:size-10 ${
             light ? "bg-neutral-100 text-neutral-800" : "bg-white/15 text-white"
           }`}
         >
-          <ArrowUpRight className="size-4" />
+          <ArrowUpRight className="size-4 xl:size-5" />
         </span>
       </div>
     </a>
@@ -161,16 +161,16 @@ export default async function Landing() {
   const testimonials = await listTestimonials();
 
   return (
-    <div className="relative flex min-h-screen w-full flex-col px-6 pt-16 pb-24 sm:px-10 lg:h-full lg:min-h-0 lg:overflow-hidden lg:px-12 lg:pt-14 lg:pb-24">
+    <div className="home-layout relative flex min-h-screen w-full flex-col gap-8 px-6 pt-16 pb-24 sm:px-10 lg:grid lg:grid-rows-[auto_auto_auto] lg:gap-5 lg:px-12 lg:pt-14 lg:pb-24 xl:gap-6 xl:px-16 2xl:px-20 2xl:gap-8">
       <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute -top-16 right-[-6%] h-[380px] w-[460px] rounded-full bg-white/80 blur-3xl" />
         <div className="absolute top-[42%] -left-20 h-64 w-64 rounded-full bg-white/60 blur-3xl" />
         <div className="absolute right-[-4%] bottom-10 h-72 w-[55%] rounded-[100%] bg-white/70 blur-2xl" />
       </div>
 
-      <section className="relative grid min-h-0 flex-1 grid-cols-1 items-stretch gap-8 lg:grid-cols-[minmax(0,1fr)_380px] lg:grid-rows-[minmax(0,1fr)_auto] lg:gap-x-10 lg:gap-y-0">
-        <div className="flex min-h-0 w-full min-w-0 flex-col lg:col-start-1 lg:row-start-1 lg:h-full">
-        <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:gap-10">
+      <section className="relative grid grid-cols-1 items-start gap-8 lg:grid-cols-[minmax(0,1fr)_380px] lg:gap-x-10 xl:grid-cols-[minmax(0,1fr)_480px] xl:gap-x-14 2xl:grid-cols-[minmax(0,1fr)_560px] 2xl:gap-x-16">
+        <div className="flex min-h-0 w-full min-w-0 flex-col lg:col-start-1 lg:row-start-1">
+        <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:gap-10 xl:gap-12">
         <div className="relative shrink-0">
           <Image
             src="/profile.png"
@@ -178,13 +178,13 @@ export default async function Landing() {
             width={1024}
             height={1536}
             priority
-            className="size-28 rounded-full object-cover object-[center_30%] shadow-[0_24px_40px_-24px_rgba(0,0,0,0.55)] ring-[5px] ring-white lg:size-36"
+            className="size-28 rounded-full object-cover object-[center_30%] shadow-[0_24px_40px_-24px_rgba(0,0,0,0.55)] ring-[5px] ring-white lg:size-36 xl:size-44 2xl:size-52"
           />
-          <span className="absolute top-3 right-1 size-3.5 rounded-full bg-neutral-300 ring-[5px] ring-[#e6e6e6] lg:top-4" />
+          <span className="absolute top-3 right-1 size-3.5 rounded-full bg-neutral-300 ring-[5px] ring-[#e6e6e6] lg:top-4 xl:size-4" />
         </div>
 
         <div className="min-w-0">
-          <p className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm font-medium text-neutral-800">
+          <p className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm font-medium text-neutral-800 xl:text-base">
             <span className="flex flex-wrap items-center gap-x-2 gap-y-1 tracking-[0.04em]">
               <span className="size-2 rounded-full bg-emerald-500 shadow-[0_0_0_4px_rgba(16,185,129,0.16)]" />
               <span>MERN</span>
@@ -199,10 +199,10 @@ export default async function Landing() {
             </span>
           </p>
           <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-2">
-            <h1 className="text-4xl leading-[0.95] font-extrabold tracking-[-0.045em] text-neutral-950 sm:text-5xl lg:text-[3.4rem]">
+            <h1 className="text-4xl leading-[0.95] font-extrabold tracking-[-0.045em] text-neutral-950 sm:text-5xl lg:text-[3.4rem] xl:text-[4.25rem] 2xl:text-[5rem]">
               Hi, I’m Alfayad
             </h1>
-            <nav aria-label="Social media" className="flex items-center gap-1">
+            <nav aria-label="Social media" className="flex items-center gap-1 xl:gap-1.5">
               {socials.map(({ name, href, Icon }) => (
                 <a
                   key={name}
@@ -210,39 +210,39 @@ export default async function Landing() {
                   target="_blank"
                   rel="noreferrer"
                   aria-label={name}
-                  className="inline-flex size-8 items-center justify-center rounded-full text-neutral-800 transition hover:bg-white hover:text-neutral-950"
+                  className="inline-flex size-8 items-center justify-center rounded-full text-neutral-800 transition hover:bg-white hover:text-neutral-950 xl:size-10"
                 >
-                  <Icon className="size-4" aria-hidden />
+                  <Icon className="size-4 xl:size-5" aria-hidden />
                 </a>
               ))}
             </nav>
           </div>
           <HeroLine />
 
-          <div className="mt-4 flex flex-wrap items-center gap-3 sm:gap-4">
+          <div className="mt-4 flex flex-wrap items-center gap-3 sm:gap-4 xl:mt-6">
             <a
               href="https://linkedin.com/in/alfayad"
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-full bg-neutral-950 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-neutral-800"
+              className="inline-flex items-center gap-2 rounded-full bg-neutral-950 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-neutral-800 xl:px-6 xl:py-3 xl:text-base"
             >
               Show More About Me
-              <ArrowRight className="size-4" />
+              <ArrowRight className="size-4 xl:size-5" />
             </a>
             <a
               href="/resume/resume.pdf"
               download
-              className="inline-flex items-center gap-2 px-1 py-2.5 text-sm font-medium text-neutral-900 transition hover:text-neutral-600"
+              className="inline-flex items-center gap-2 px-1 py-2.5 text-sm font-medium text-neutral-900 transition hover:text-neutral-600 xl:text-base"
             >
-              <Download className="size-4" />
+              <Download className="size-4 xl:size-5" />
               Download Resume
             </a>
-            <span className="hidden h-11 w-px bg-neutral-300 lg:block" aria-hidden />
+            <span className="hidden h-11 w-px bg-neutral-300 lg:block xl:h-12" aria-hidden />
             <TechStack />
           </div>
         </div>
         </div>
-        <p className="mt-6 flex flex-col items-start gap-2 text-sm leading-snug text-neutral-600 lg:mt-auto lg:mb-3 lg:h-8 lg:flex-row lg:flex-wrap lg:items-center lg:gap-x-2.5 lg:gap-y-0 lg:leading-none">
+        <p className="mt-6 flex flex-col items-start gap-2 text-sm leading-snug text-neutral-600 lg:mt-8 lg:h-auto lg:flex-row lg:flex-wrap lg:items-center lg:gap-x-2.5 lg:gap-y-0 lg:leading-none xl:text-base">
           <span className="inline-flex items-center gap-2 font-medium text-neutral-900">
             <span className="size-2 rounded-full bg-emerald-500 shadow-[0_0_0_3px_rgba(16,185,129,0.16)]" />
             Open for freelance
@@ -266,43 +266,39 @@ export default async function Landing() {
           </a>
         </p>
         </div>
-        <div className="min-h-0 w-full lg:col-start-2 lg:row-start-1 lg:w-[380px]">
+        <div className="min-h-0 w-full lg:col-start-2 lg:row-start-1 lg:w-[380px] xl:w-[480px] 2xl:w-[560px]">
           <CurrentCompany />
         </div>
-        <SpotlightRow testimonials={testimonials} />
       </section>
 
-      <section id="projects" className="relative mt-auto grid shrink-0 items-end gap-6 pt-6 lg:grid-cols-[190px_minmax(0,1fr)] lg:gap-6 lg:pt-2">
-        <div>
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-black/8 bg-white/80 px-3 py-1 text-xs font-medium text-neutral-700">
-            <LayoutGrid className="size-3.5" />
+      <SpotlightRow testimonials={testimonials} />
+
+      <section id="projects" className="relative grid items-end gap-6 lg:grid-cols-[190px_minmax(0,1fr)] lg:items-stretch lg:gap-6 xl:grid-cols-[240px_minmax(0,1fr)] xl:gap-8 2xl:grid-cols-[280px_minmax(0,1fr)]">
+        <div className="lg:flex lg:flex-col lg:justify-center">
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-black/8 bg-white/80 px-3 py-1 text-xs font-medium text-neutral-700 xl:text-sm">
+            <LayoutGrid className="size-3.5 xl:size-4" />
             My Projects
           </span>
-          <h2 className="mt-2 text-4xl leading-[0.95] font-extrabold tracking-[-0.045em] text-neutral-950 lg:text-[2rem]">
+          <h2 className="mt-2 text-4xl leading-[0.95] font-extrabold tracking-[-0.045em] text-neutral-950 lg:text-[2rem] xl:text-[2.5rem] 2xl:text-[3rem]">
             Featured
             <br />
             Projects
           </h2>
-          <p className="mt-1.5 max-w-xs text-sm leading-snug text-neutral-500 lg:max-w-[190px]">
+          <p className="mt-1.5 max-w-xs text-sm leading-snug text-neutral-500 lg:max-w-[190px] xl:max-w-[240px] xl:text-base 2xl:max-w-[280px]">
             Some of my recent works built with passion.
           </p>
           <a
             href="#projects"
-            className="mt-2 inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-medium text-neutral-900 shadow-[0_10px_24px_-16px_rgba(0,0,0,0.4)] transition hover:bg-neutral-50"
+            className="mt-2 inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-medium text-neutral-900 shadow-[0_10px_24px_-16px_rgba(0,0,0,0.4)] transition hover:bg-neutral-50 xl:mt-3 xl:px-5 xl:py-2.5 xl:text-base"
           >
             Explore All Projects
-            <ArrowRight className="size-4" />
+            <ArrowRight className="size-4 xl:size-5" />
           </a>
         </div>
 
-        <div className="relative">
-          <div
-            aria-hidden
-            className="absolute -top-4 -right-6 -bottom-4 -left-4 overflow-visible rounded-l-[36px] bg-white sm:-right-10 lg:-right-12"
-          >
-            <EdgeCut side="right" />
-          </div>
-          <div className="relative z-10 grid items-start gap-5 sm:w-max sm:grid-cols-3">
+        <div className="projects-cut relative -mr-6 rounded-l-[36px] bg-white py-4 pr-4 pl-4 sm:-mr-10 sm:pr-6 lg:-mr-12 lg:rounded-l-[40px] lg:py-5 lg:pr-8 lg:pl-5 xl:-mr-16 2xl:-mr-20">
+          <EdgeCut side="right" />
+          <div className="projects-cut-grid relative z-10 grid items-stretch gap-5 sm:w-max sm:grid-cols-3 lg:h-full lg:w-full lg:gap-4">
             <ProjectCard project={featured[0]} />
             <ProjectCard project={featured[1]} />
             <ProjectCard project={featured[2]} />

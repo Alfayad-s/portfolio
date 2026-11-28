@@ -28,7 +28,7 @@ export default function GithubActivity() {
     };
   }, []);
 
-  const weeks = activity?.weeks?.length ? activity.weeks : Array.from({ length: 18 }, () => 0);
+  const weeks = activity?.weeks?.length ? activity.weeks.slice(-12) : Array.from({ length: 12 }, () => 0);
   const peak = Math.max(...weeks, 1);
 
   return (
@@ -36,13 +36,13 @@ export default function GithubActivity() {
       href="https://github.com/Alfayad-s"
       target="_blank"
       rel="noreferrer"
-      className="flex h-full flex-col justify-between rounded-[24px] bg-white px-4 py-3 ring-1 ring-black/5"
+      className="flex min-h-[168px] flex-col justify-between gap-3 overflow-hidden rounded-[24px] bg-white p-3.5 ring-1 ring-black/5 lg:h-full xl:min-h-[180px] xl:rounded-[28px] xl:p-4 2xl:rounded-[32px]"
     >
-      <div className="flex items-center justify-between gap-3">
+      <div className="flex items-center justify-between gap-2">
         <span className="flex min-w-0 items-center gap-2">
-          <GitHubDark className="size-7 shrink-0" />
-          <span className="truncate text-[15px] font-semibold tracking-[-0.03em] text-neutral-950">
-            GitHub Activity
+          <GitHubDark className="size-6 shrink-0 xl:size-7" />
+          <span className="truncate text-[15px] font-semibold tracking-[-0.03em] text-neutral-950 xl:text-base">
+            GitHub
           </span>
         </span>
         <span className="flex shrink-0 items-center gap-1.5 text-[11px] text-neutral-400">
@@ -51,23 +51,25 @@ export default function GithubActivity() {
               activity?.activeThisWeek ? "bg-emerald-500" : "bg-neutral-300"
             }`}
           />
-          {activity?.activeThisWeek ? "Active this week" : "Quiet this week"}
+          <span className="hidden min-[1100px]:inline xl:hidden 2xl:inline">
+            {activity?.activeThisWeek ? "Active" : "Quiet"}
+          </span>
         </span>
       </div>
-      <div className="mt-2 flex items-end justify-between gap-3">
-        <div>
-          <p className="text-2xl leading-none font-semibold tracking-[-0.04em] text-neutral-950">
+      <div className="flex min-w-0 items-end justify-between gap-3">
+        <div className="min-w-0 shrink-0">
+          <p className="text-2xl leading-none font-semibold tracking-[-0.04em] text-neutral-950 xl:text-3xl">
             {activity ? formatTotal(activity.total) : "—"}
           </p>
-          <p className="mt-1 text-[11px] text-neutral-400">Total Contributions</p>
+          <p className="mt-1 text-[11px] text-neutral-400">Contributions</p>
         </div>
-        <div className="flex h-10 items-end gap-[2px]" aria-hidden>
+        <div className="flex h-10 min-w-0 flex-1 items-end gap-0.5 overflow-hidden xl:h-12" aria-hidden>
           {weeks.map((count, index) => (
             <span
               key={index}
-              className="w-1 rounded-full bg-emerald-300"
+              className="min-w-0 flex-1 rounded-full bg-emerald-300"
               style={{
-                height: count === 0 ? 4 : Math.max(10, Math.round((count / peak) * 40)),
+                height: count === 0 ? 4 : Math.max(8, Math.round((count / peak) * 40)),
               }}
             />
           ))}

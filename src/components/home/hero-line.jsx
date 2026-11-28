@@ -14,7 +14,7 @@ const parts = [
 ];
 
 const MAP_SRC =
-  "https://maps.google.com/maps?q=Alappuzha,Kerala,India&z=13&hl=en&output=embed";
+  "https://maps.google.com/maps?q=Bengaluru,Karnataka,India&z=12&hl=en&output=embed";
 
 export default function HeroLine() {
   const [active, setActive] = useState(null);
@@ -84,20 +84,20 @@ export default function HeroLine() {
           onBlur={() => setMapOpen(false)}
         >
           <MapPin className="size-3.5 text-neutral-400" />
-          Software Engineer · Kerala, India
+          Software Engineer · Bengaluru & Kerala
         </button>
         {mapOpen ? (
           <div className="absolute top-full left-0 z-30 w-[280px] pt-2">
             <div className="overflow-hidden rounded-2xl bg-white ring-1 ring-black/5">
               <iframe
-                title="Map of Alappuzha, Kerala"
+                title="Map of Bengaluru, Karnataka"
                 src={MAP_SRC}
                 className="pointer-events-none h-[180px] w-full"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
               />
               <p className="px-3 py-2 text-xs font-medium text-neutral-700">
-                Alappuzha, Kerala
+                Working in Bengaluru · From Alappuzha, Kerala
               </p>
             </div>
           </div>

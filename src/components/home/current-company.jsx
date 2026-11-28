@@ -94,8 +94,9 @@ export default function CurrentCompany() {
           </span>
         </a>
         <p className="mt-2.5 text-[13px] leading-snug text-neutral-500 xl:text-sm 2xl:text-base">
-          Product studio based in Bengaluru, now also in Dubai. I design the
-          interface and build the web and mobile products with the team.
+          Currently working in Bengaluru at Codeteak Technologies. Product
+          studio based in Bengaluru, now also in Dubai. I design the interface
+          and build the web and mobile products with the team.
         </p>
         <div
           className="mt-2.5 flex items-end gap-6"

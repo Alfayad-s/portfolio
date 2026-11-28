@@ -1,11 +1,11 @@
 # Alfayad Shameer
 
-Alfayad Shameer is a full-stack developer and UI/UX designer based in Alappuzha, Kerala, India. His portfolio is https://alfayad.clawdage.com.
+Alfayad Shameer is a full-stack developer and UI/UX designer currently working in Bengaluru at Codeteak Technologies. He is from Alappuzha, Kerala, India. His portfolio is https://alfayad.clawdage.com.
 
 ## Work
 
-- Codeteak (https://codeteak.com), Bengaluru and Dubai. Software engineer. He designs the interface and builds the web and mobile products with the team. Started April 2025.
-- Freelance full-stack product work, remote, from Alappuzha. Includes APIs and payments.
+- Codeteak Technologies (https://codeteak.com), on-site in Bengaluru; company also in Dubai. Full-stack developer and UI/UX designer. He designs the interface and builds the web and mobile products with the team. Started April 2025.
+- Freelance full-stack product work, remote. Includes APIs and payments.
 - Brototype internship, MERN stack, January 2024 to December 2025.
 
 He is open for freelance work. Email alfayadshameer056@gmail.com or book at https://hirefayad.vercel.app.

@@ -172,7 +172,7 @@ export const LanguageProvider = ({ children }) => {
       
       // Experience
       codeTeakTitle: 'FULL-STACK DEVELOPER & UI/UX DESIGNER',
-      codeTeakDescription: 'Working from the office at Codeteak Technologies on scalable web and mobile applications using React, React Native, and Node.js, plus UI/UX design for company products.',
+      codeTeakDescription: 'Working on-site in Bengaluru at Codeteak Technologies on scalable web and mobile applications using React, React Native, and Node.js, plus UI/UX design for company products.',
       brototypeTitle: 'INTERN',
       brototypeDescription: 'Gained hands-on experience developing and managing full-stack web applications using the MERN stack (MongoDB, Express, React, Node.js).',
       brototypeDescription2: 'Collaborated with cross-functional teams to design and implement solutions for various clients, ensuring code quality and performance.',
@@ -382,7 +382,7 @@ export const LanguageProvider = ({ children }) => {
       
       // Experience
       codeTeakTitle: 'फुल स्टैक डेवलपर और UI/UX डिजाइनर',
-      codeTeakDescription: 'Codeteak Technologies के ऑफिस से काम करते हुए React, React Native और Node.js से स्केलेबल वेब और मोबाइल ऐप्स तथा कंपनी उत्पादों के लिए UI/UX डिजाइन।',
+      codeTeakDescription: 'बेंगलुरु में Codeteak Technologies के ऑफिस से काम करते हुए React, React Native और Node.js से स्केलेबल वेब और मोबाइल ऐप्स तथा कंपनी उत्पादों के लिए UI/UX डिजाइन।',
       brototypeTitle: 'इंटर्न',
       brototypeDescription: 'MERN स्टैक (MongoDB, Express, React, Node.js) का उपयोग करके फुल स्टैक वेब एप्लिकेशन विकसित करने और प्रबंधित करने का व्यावहारिक अनुभव प्राप्त किया।',
       brototypeDescription2: 'विभिन्न क्लाइंटों के लिए समाधान डिजाइन करने और लागू करने के लिए क्रॉस-फंक्शनल टीमों के साथ सहयोग किया, कोड गुणवत्ता और प्रदर्शन सुनिश्चित किया।',
@@ -592,7 +592,7 @@ export const LanguageProvider = ({ children }) => {
       
       // Experience
       codeTeakTitle: 'مطور ويب شامل ومصمم واجهات',
-      codeTeakDescription: 'أعمل من مكتب Codeteak Technologies على تطبيقات ويب ومحمولة قابلة للتوسع باستخدام React وReact Native وNode.js، إضافةً إلى تصميم واجهات وتجربة المستخدم لمنتجات الشركة.',
+      codeTeakDescription: 'أعمل في بنغالور بمكتب Codeteak Technologies على تطبيقات ويب ومحمولة قابلة للتوسع باستخدام React وReact Native وNode.js، إضافةً إلى تصميم واجهات وتجربة المستخدم لمنتجات الشركة.',
       brototypeTitle: 'متدرب',
       brototypeDescription: 'اكتسبت خبرة عملية في تطوير وإدارة تطبيقات الويب الشاملة باستخدام MERN stack (MongoDB, Express, React, Node.js).',
       brototypeDescription2: 'تعاونت مع فرق متعددة الوظائف لتصميم وتنفيذ حلول لعملاء مختلفين، مع ضمان جودة الكود والأداء.',
